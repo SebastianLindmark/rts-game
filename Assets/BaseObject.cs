@@ -11,31 +11,35 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
     public Player GetOwner()
     {
-        return owner;
+        //return owner;
+        
+        return GetComponent<PlayerScript>().GetPlayer();
     }
 
     public void SetOwner(Player p)
     {
-        owner = p;
+        GetComponent<PlayerScript>().GetPlayer().setPlayerId(p.getPlayerId()); //This wont work if comparing references.
+        
     }
 
-    public abstract bool Within(float x, float y);
+    public bool Within(Vector3 clickVector) {
+        return GetComponent<Collider>().bounds.Contains(clickVector);
+    }
 
     public abstract void OnSelect();
-    public abstract void OnSelectClick(float x, float y,BaseObject target);
+    public abstract void OnEnemyClick(BaseObject target);
+    public abstract void OnGroundClick(Vector3 target);
     public abstract void OnUnselect();
 
 
 
     virtual public void Start () {
-
-        InputManager inputManager = inputManagerGameObject.GetComponent<InputManager>();
+        InputManager inputManager = GameObject.Find("GameControllerObject").GetComponent<InputManager>();
         inputManager.RegisterListener(this);
     }
 
 
-    virtual public void Update () {
-        
+    public void Update () {
     }
     
 

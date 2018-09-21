@@ -14,4 +14,20 @@ public class Player{
         return playerId;
     }
 
+    public void setPlayerId(int id) {
+        playerId = id;
+    }
+
+    public override bool Equals(object obj)
+    {
+        BaseObject item = obj as BaseObject;
+
+        if (item == null)
+        {
+            return false;
+        }
+
+        return getPlayerId() == item.GetOwner().getPlayerId();
+    }
+
 }

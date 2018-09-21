@@ -3,37 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public abstract class BaseUnit : BaseObject {
+public class BaseUnit : BaseObject {
 
     private AttackRule attackRule = new StandardAttackRule(); //Should be DI.
 
     public override void Start () {
+        base.Start();
+    }
+
+
+/*    public override void Update () {
         
     }
-
-
-    public override void Update () {
-        
-    }
-
-    public override bool Within(float x, float y) {
-        return true;
-    }
-
+    
+    */
     public override void OnSelect()
     {
-        Debug.Log("Im am selected");
+        Debug.Log("Im selected");
         //Do your thaaang
     }
 
 
-    public override void OnSelectClick(float x, float y, BaseObject target)
+    public override void OnGroundClick(Vector3 target)
     {
-        Debug.Log("Im am selected and clicked");
+        Debug.Log("Walk me");
+        Walk(target);
+    }
+
+
+    public override void OnEnemyClick(BaseObject target)
+    {
         //We need some kind of behaviour pattern here. Example: What happends if selected -> press on own/enemy building?
 
         if (target != null)
         {
+            Debug.Log("My owner is " + GetOwner());
+            Debug.Log("target owner is " + target.GetOwner());
             if (attackRule.canAttack(GetOwner(), target)) {
                 //attack
             }
@@ -42,25 +47,20 @@ public abstract class BaseUnit : BaseObject {
                 //show feedback
             }
         }
-        else
-        {
-            //Pressed on ground (or a non BaseObject)
-            Walk(x,y);
-        }
-
     }
 
-    public virtual void Walk(float x, float y) {
-
+    public virtual void Walk(Vector3 direction)
+    {
+        Debug.Log("Walking the walk");
         IAstarAI ai = GetComponent<IAstarAI>();
-        ai.destination = new Vector3(x,y,transform.position.z);
+        ai.destination = direction;
         ai.SearchPath();
     }
 
 
     public override void OnUnselect()
     {
-
+        Debug.Log("Unselected");
     }
 
     

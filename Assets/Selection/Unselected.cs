@@ -10,8 +10,12 @@ public class Unselected : SelectionState {
         parent = p;
     }
 
-    public void Select(float x, float y, List<BaseObject> selectedObjects)
+    public void Select(Vector3 clickVector, List<BaseObject> selectedObjects)
     {
+        if (selectedObjects.Count == 0) {
+            return;
+        }
+
         foreach (BaseObject selectedObject in selectedObjects) {
             selectedObject.OnSelect();
         }

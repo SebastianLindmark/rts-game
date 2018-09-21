@@ -21,16 +21,30 @@ public class Selected : SelectionState
         }
         
         parent.SwitchState(new Unselected(parent));
-
     }
 
-    public void Select(float x,float y, List<BaseObject> clickedObjects)
+    public void Select(Vector3 clickVector, List<BaseObject> clickedObjects)
     {
-        BaseObject clickedObject = clickedObjects[0];
-        
-        foreach(BaseObject obj in selectedObjects){
-            obj.OnSelectClick(x, y, clickedObject);
-        }
-        
+
+        /* BaseObject clickedObject = null;
+         if (clickedObjects.Count != 0)
+         {
+             clickedObject = clickedObjects[0];
+
+             if (clickedObject.GetOwner().Equals())
+             {
+
+             }
+
+
+         }
+
+
+
+         foreach(BaseObject obj in selectedObjects){
+             obj.OnSelectClick(clickVector, clickedObject);
+         }
+
+     }*/
     }
 }

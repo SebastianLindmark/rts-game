@@ -7,7 +7,7 @@ public class SelectionHandler
 
     private SelectionState selectedState;
 
-    SelectionHandler() {
+    public SelectionHandler() {
         selectedState = new Unselected(this);
     }
 
@@ -16,10 +16,10 @@ public class SelectionHandler
         selectedState.Unselect(objs);
     }
 
-    public void Select(float x,float y,List<BaseObject> selectedObjects)
+    public void Select(Vector3 clickVector, List<BaseObject> selectedObjects)
     {
 
-        selectedState.Select(x, y, selectedObjects);
+        selectedState.Select(clickVector, selectedObjects);
     }
 
     public void SwitchState(SelectionState newState)

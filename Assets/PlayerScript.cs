@@ -11,6 +11,11 @@ public class PlayerScript : MonoBehaviour {
         player = PlayerManager.CreatePlayer();
         
     }
+
+    public Player GetPlayer()
+    {
+        return player;
+    }
     
     void Update () {
         

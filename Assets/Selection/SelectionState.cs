@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface SelectionState {
 
-    void Select(float x, float y, List<BaseObject> selectedObjects);
+    void Select(Vector3 clickVector, List<BaseObject> selectedObjects);
     void Unselect(List<BaseObject> objs);
 
 }

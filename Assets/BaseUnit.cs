@@ -51,7 +51,6 @@ public class BaseUnit : BaseObject {
 
     public virtual void Walk(Vector3 direction)
     {
-        Debug.Log("Walking the walk");
         IAstarAI ai = GetComponent<IAstarAI>();
         ai.destination = direction;
         ai.SearchPath();

@@ -9,7 +9,6 @@ public class InputManager : MonoBehaviour
     public Camera cam;
 
     private List<BaseObject> inputListeners = new List<BaseObject>();
-
     private List<BaseObject> selectedObjects = new List<BaseObject>();
     
 
@@ -18,38 +17,7 @@ public class InputManager : MonoBehaviour
         inputListeners.Add(listener);
     }
 
-    void NotifyClickListeners(Vector3 clickPosition)
-    {
-
-        Vector3 clickVector;
-
-        RaycastHit hit;
-        if (Physics.Raycast(cam.ScreenPointToRay(clickPosition), out hit, Mathf.Infinity))
-        {
-            clickVector = hit.point;
-        }
-        else
-        {
-            Debug.LogError("Invalid raycast, ignoring click");
-            return;
-        }
-
-
-        List<BaseObject> selectedObjects = new List<BaseObject>();
-
-        foreach (BaseObject obj in inputListeners)
-        {
-            if (obj.Within(clickVector))
-            {
-                selectedObjects.Add(obj);
-            }
-        }
-
-    }
-
-    void NotifyDeselectListeners(float x, float y)
-    {
-    }
+    
 
     void Start()
     {
@@ -57,48 +25,34 @@ public class InputManager : MonoBehaviour
     }
 
 
-
-
-
     void Update()
     {
-
-        //test();
-
-        
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            BaseUnit[] l = GameObject.FindObjectsOfType<BaseUnit>();
-            foreach (BaseUnit u in l) {
-                Debug.Log("Walking");
-                u.Walk(Input.mousePosition);
-            }
-        }
-
-        
-        
-        /*if (Input.GetMouseButtonDown(0))
-        {
-            NotifyClickListeners(Input.mousePosition);
-        }
-
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            NotifyDeselectListeners(Input.mousePosition.x, Input.mousePosition.y);
-        }*/
+        test();
 
     }
 
-    //
+    public Texture t;
 
-    ///
+    void OnGUI()
+    {
 
-    //
+        if (startSelectionDrag != Vector3.zero)
+        {
+            Vector3 curPos = Input.mousePosition;
+            Rect rect = new Rect(startSelectionDrag.x, startSelectionDrag.y, startSelectionDrag.x - curPos.x, startSelectionDrag.y - curPos.y);
+            float width =  curPos.x - startSelectionDrag.x;
+            float height = startSelectionDrag.y - curPos.y;
+            Rect r = new Rect(startSelectionDrag.x, Screen.height - startSelectionDrag.y, width, height);
 
-    //
-    private Vector3 startSelectionDrag;
+            Utils.DrawScreenRect(r, new Color(0.8f, 0.8f, 0.95f, 0.25f));
+            Utils.DrawScreenRectBorder(r, 1, Color.white);
+        }
+
+
+
+    }
+
+    private Vector3 startSelectionDrag = Vector3.zero;
     private Vector3 endSelectionDrag;
 
 
@@ -111,6 +65,8 @@ public class InputManager : MonoBehaviour
             startSelectionDrag = Input.mousePosition;
         }
         else if (Input.GetMouseButtonUp(0)) {
+
+            Vector3 worldPosClick = ConvertMousePosToWorldSpace(Input.mousePosition);
 
             List<BaseObject> clickedObjects;
 
@@ -133,12 +89,15 @@ public class InputManager : MonoBehaviour
                 HandleClickOnObject(clickedObjects[0]);
             }
             else {
-                HandleClickOnGround(startSelectionDrag);
-            }    
+                HandleClickOnGround(worldPosClick);
+            }
+
+            startSelectionDrag = Vector3.zero;
         }
         else if (Input.GetMouseButtonUp(1))
         {
             DeselectObjects();
+            startSelectionDrag = Vector3.zero;
         }
 
         
@@ -170,13 +129,23 @@ public class InputManager : MonoBehaviour
 
     }
 
+    private Vector3 ConvertMousePosToWorldSpace(Vector3 mousePosition) {
+
+        RaycastHit hit;
+        if (Physics.Raycast(cam.ScreenPointToRay(mousePosition), out hit, Mathf.Infinity))
+        {
+            return hit.point;
+        }
+        return Vector3.zero;
+
+    }
+
 
     private void HandleClickOnGround(Vector3 position)
     {
         Debug.Log("Click on ground");
         foreach (BaseObject obj in selectedObjects)
         {
-            Debug.Log("Moving unit");
             obj.OnGroundClick(position);
         }
     }
@@ -197,6 +166,7 @@ public class InputManager : MonoBehaviour
         {
             o.OnUnselect();
         }
+        selectedObjects.Clear();
     }
 
     private void ClickSelectObjects(BaseObject clickedObject) {
@@ -250,6 +220,7 @@ public class InputManager : MonoBehaviour
         return viewportBounds.Contains(
             camera.WorldToViewportPoint(gameObject.transform.position));
     }
+
 
 
     public static Bounds GetViewportBounds(Camera camera, Vector3 screenPosition1, Vector3 screenPosition2)

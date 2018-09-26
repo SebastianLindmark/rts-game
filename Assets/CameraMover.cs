@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class CameraMover : MonoBehaviour {
 
-    private int screenWidth;
-    private int screenHeight;
+    private float screenWidth;
+    private float screenHeight;
 
     public const int boundary = 15; //pixels
     public const float scrollSpeed = 0.35f;
     public const float zoomSpeed = 5f;
 
-    public const float zoomMin = 10f;
-    public const float zoomMax = 30f;
+    public const float zoomMin = 20f;
+    public const float zoomMax = 40f;
 
     void Start () {
+
         this.screenWidth = Screen.width;
         this.screenHeight = Screen.height;
     }

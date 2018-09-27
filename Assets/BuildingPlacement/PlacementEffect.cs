@@ -10,6 +10,7 @@ public class PlacementEffect {
 
     private Material placementMaterial;
 
+    private int savedLayer;
 
     public PlacementEffect(GameObject o)
     {
@@ -21,7 +22,8 @@ public class PlacementEffect {
     }
 
     private void Setup() {
-        obj.GetComponent<Collider>().enabled = false;
+        savedLayer = obj.gameObject.layer;
+        obj.gameObject.layer = LayerMask.NameToLayer("Placement");
         placementMaterial.shader = Shader.Find("Transparent/Diffuse");
     }
 
@@ -44,7 +46,7 @@ public class PlacementEffect {
 
     public GameObject Reset() {
         SetMaterial(originalMaterial);
-        obj.GetComponent<Collider>().enabled = true;
+        obj.gameObject.layer = savedLayer;
         return obj;
     }
 

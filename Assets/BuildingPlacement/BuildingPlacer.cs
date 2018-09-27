@@ -33,10 +33,8 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
         if (placementObject != null)
         {
-            RaycastHit hitInfo;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            int layerMask = ((1 << LayerMask.NameToLayer("Building")));
-            if (Physics.Raycast(ray, out hitInfo,Mathf.Infinity, layerMask) && hitInfo.collider != null)
+            
+            if (HitsObstacle(Input.mousePosition))
             {
                 placementObject.ApplyInvalidEffect();
             }
@@ -45,7 +43,11 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
                 placementObject.ApplyValidEffect();
             }
 
-            if (Physics.Raycast(ray, out hitInfo))
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hitInfo;
+            int layerMask = ((1 << LayerMask.NameToLayer("Ground")));
+            if (Physics.Raycast(ray, out hitInfo,Mathf.Infinity,layerMask))
             {
                 var finalPosition = GetNearestPointOnGrid(hitInfo.point);
                 GameObject p = placementObject.obj;
@@ -54,12 +56,11 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
             }
         }
-
     }
 
 
     void LateUpdate () {
-        if (Input.GetMouseButtonDown(0) && placementObject != null)
+        if (Input.GetMouseButtonDown(0) && placementObject != null && !HitsObstacle(Input.mousePosition))
         {
             placementObject.Reset();
             placementObject = null;
@@ -91,7 +92,39 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
         placementObject = new PlacementEffect(Instantiate<BaseObject>(obj).gameObject);       
     }
 
- 
+
+    public bool HitsObstacle(Vector3 clickPosition)
+    {
+
+        GameObject gameObject = placementObject.obj;
+        int layerMask = ((1 << LayerMask.NameToLayer("Building")));
+        Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, gameObject.transform.localScale / 2, Quaternion.identity, layerMask);
+        Debug.Log(hitColliders.Length);
+        return hitColliders.Length > 0;
+        
+        /*
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitInfo;
+        int layerMask = ((1 << LayerMask.NameToLayer("Building")));
+
+        Vector3 position = placementObject.obj.transform.position;
+        Vector3 something = placementObject.obj.transform.localScale;
+        Debug.Log(something);
+        Vector3 somethingElse = placementObject.obj.transform.forward;
+
+        RaycastHit rayHit;
+
+        if (Physics.BoxCast(position, something, somethingElse, out rayHit))
+        {
+            Debug.Log("I hit something");
+        }
+
+        
+        return (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask) && hitInfo.collider != null);
+        */
+    }
+
+
     public Vector3 GetNearestPointOnGrid(Vector3 position)
     {
         int xCount = Mathf.RoundToInt(position.x / gridSquareSize);

@@ -36,6 +36,8 @@ public class InputManager : MonoBehaviour
     void OnGUI()
     {
 
+        //Debug.Log(startSelectionDrag);
+
         if (startSelectionDrag != Vector3.zero)
         {
             Vector3 curPos = Input.mousePosition;
@@ -64,7 +66,8 @@ public class InputManager : MonoBehaviour
         {
             startSelectionDrag = Input.mousePosition;
         }
-        else if (Input.GetMouseButtonUp(0)) {
+        else if (Input.GetMouseButtonUp(0))
+        {
 
             Vector3 worldPosClick = ConvertMousePosToWorldSpace(Input.mousePosition);
 
@@ -88,7 +91,8 @@ public class InputManager : MonoBehaviour
             {
                 HandleClickOnObject(clickedObjects[0]);
             }
-            else {
+            else
+            {
                 HandleClickOnGround(worldPosClick);
             }
 
@@ -99,7 +103,6 @@ public class InputManager : MonoBehaviour
             DeselectObjects();
             startSelectionDrag = Vector3.zero;
         }
-
         
     }
 

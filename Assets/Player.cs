@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Player{
 
-    int playerId;
+    private int playerId;
+    public int availableFunds = 0;
 
     public Player() {
         playerId = Random.Range(0, 1000000000);

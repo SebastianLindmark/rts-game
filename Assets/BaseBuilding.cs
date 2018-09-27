@@ -2,36 +2,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseBuilding : BaseObject {
+public class BaseBuilding : BaseObject, ToolbarClickListener
+{
 
+    public List<BaseObject> spawnableUnits;
 
     public override void OnEnemyClick(BaseObject target)
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void OnGroundClick(Vector3 target)
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void OnSelect()
     {
-        throw new System.NotImplementedException();
+        ToolbarController toolbarController = GameObject.Find("Toolbar").GetComponent<ToolbarController>();
+        toolbarController.PopulateToolbar(spawnableUnits, GetOwner(), this);
     }
 
     public override void OnUnselect()
     {
-        throw new System.NotImplementedException();
+        
+    }
+
+    public void OnToolBarClick(BaseObject clickedObj)
+    {
+        Debug.Log("Building item was clicked");
+        if (clickedObj.unitCost < GetOwner().availableFunds)
+        {
+            BaseObject instantiated = new BaseFactory().CreateUnit(this, clickedObj);
+            instantiated.transform.position = transform.position + new Vector3(5, 5, 0); //add spacing
+        }
     }
 
     // Use this for initialization
-    new void Start () {
-        
+    public override void Start () {
+        base.Start();
+        GameObject gameObject = Resources.Load("Prefabs/ExampleUnit") as GameObject;
+        spawnableUnits.Add(gameObject.GetComponent<BaseObject>());
     }
     
     // Update is called once per frame
-    void Update () {
-        
+    public override void Update () {
+        base.Update();
+
     }
+
 }

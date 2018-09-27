@@ -7,6 +7,9 @@ public class BaseUnit : BaseObject {
 
     private AttackRule attackRule = new StandardAttackRule(); //Should be DI.
 
+
+
+
     public override void Start () {
         base.Start();
     }
@@ -26,7 +29,6 @@ public class BaseUnit : BaseObject {
 
     public override void OnGroundClick(Vector3 target)
     {
-        Debug.Log("Walk me");
         Walk(target);
     }
 

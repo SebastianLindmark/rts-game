@@ -6,8 +6,12 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
     private Player owner;
 
-    public GameObject inputManagerGameObject;
+    public int unitCost;
 
+
+    private GameObject inputManagerGameObject;
+
+    
 
     public Player GetOwner()
     {
@@ -39,7 +43,7 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
     }
 
 
-    public void Update () {
+    virtual public void Update () {
     }
     
 

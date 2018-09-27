@@ -16,7 +16,7 @@ public class PlayerManager : MonoBehaviour {
     } 
     
     void Start () {
-        
+   
     }
     
     

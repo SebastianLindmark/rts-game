@@ -24,7 +24,8 @@ GameObject:
   - component: {fileID: 23975310231862936}
   - component: {fileID: 33242955303131086}
   - component: {fileID: 114330802205888200}
-  m_Layer: 10
+  - component: {fileID: 114731443621003388}
+  m_Layer: 11
   m_Name: ExampleBuilding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +60,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 863174fbef875425ca78e4c949f12318, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,3 +123,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitCost: 0
   spawnableUnits: []
+--- !u!114 &114731443621003388
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1138528773281624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 530735eed7fd1c24ab4a1b6f9e3d2563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

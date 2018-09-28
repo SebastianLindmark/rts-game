@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114146821644634056}
   - component: {fileID: 114775440455169332}
   - component: {fileID: 143236567389399802}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ExampleUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a84701d674feb1644a56b5456fda5703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManagerGameObject: {fileID: 0}
+  unitCost: 0
 --- !u!114 &114775440455169332
 MonoBehaviour:
   m_ObjectHideFlags: 1

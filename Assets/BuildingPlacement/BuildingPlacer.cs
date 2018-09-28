@@ -8,7 +8,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
     public List<BaseObject> spawnableBuildings;
 
-    private PlacementEffect placementObject;
+    private GameObject placementObject;
 
     private int gridSquareSize = 2;
 
@@ -36,11 +36,14 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
             
             if (HitsObstacle(Input.mousePosition))
             {
-                placementObject.ApplyInvalidEffect();
+                Debug.Log("Invalid");
+                placementObject.GetComponent<PlacementEffect>().ApplyInvalidEffect();
             }
             else
+
             {
-                placementObject.ApplyValidEffect();
+                Debug.Log("Valid");
+                placementObject.GetComponent<PlacementEffect>().ApplyValidEffect();
             }
 
 
@@ -50,9 +53,8 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
             if (Physics.Raycast(ray, out hitInfo,Mathf.Infinity,layerMask))
             {
                 var finalPosition = GetNearestPointOnGrid(hitInfo.point);
-                GameObject p = placementObject.obj;
-                finalPosition.y += p.transform.lossyScale.y / 2;
-                p.transform.position = finalPosition;              
+                finalPosition.y += placementObject.transform.lossyScale.y / 2;
+                placementObject.transform.position = finalPosition;              
 
             }
         }
@@ -62,7 +64,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
     void LateUpdate () {
         if (Input.GetMouseButtonDown(0) && placementObject != null && !HitsObstacle(Input.mousePosition))
         {
-            placementObject.Reset();
+            placementObject.GetComponent<PlacementEffect>().Reset();
             placementObject = null;
         }
         else if (Input.GetMouseButtonUp(1))
@@ -82,46 +84,24 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
     public void Deselect()
     {
         if (placementObject != null) {
-            Destroy(placementObject.obj);
+            Destroy(placementObject);
             placementObject = null;
         }
     }
 
     public void OnToolBarClick(BaseObject obj)
     {
-        placementObject = new PlacementEffect(Instantiate<BaseObject>(obj).gameObject);       
+        placementObject = Instantiate(obj.gameObject);
+        placementObject.GetComponent<PlacementEffect>().Setup();
     }
 
 
     public bool HitsObstacle(Vector3 clickPosition)
     {
-
-        GameObject gameObject = placementObject.obj;
         int layerMask = ((1 << LayerMask.NameToLayer("Building")));
-        Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, gameObject.transform.localScale / 2, Quaternion.identity, layerMask);
+        Collider[] hitColliders = Physics.OverlapBox(placementObject.transform.position, placementObject.transform.localScale / 2, Quaternion.identity, layerMask);
         Debug.Log(hitColliders.Length);
         return hitColliders.Length > 0;
-        
-        /*
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hitInfo;
-        int layerMask = ((1 << LayerMask.NameToLayer("Building")));
-
-        Vector3 position = placementObject.obj.transform.position;
-        Vector3 something = placementObject.obj.transform.localScale;
-        Debug.Log(something);
-        Vector3 somethingElse = placementObject.obj.transform.forward;
-
-        RaycastHit rayHit;
-
-        if (Physics.BoxCast(position, something, somethingElse, out rayHit))
-        {
-            Debug.Log("I hit something");
-        }
-
-        
-        return (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask) && hitInfo.collider != null);
-        */
     }
 
 

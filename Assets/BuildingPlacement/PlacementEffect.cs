@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlacementEffect {
-
-    public GameObject obj;
+public class PlacementEffect : MonoBehaviour{
 
     private Material originalMaterial;
 
@@ -12,23 +10,23 @@ public class PlacementEffect {
 
     private int savedLayer;
 
-    public PlacementEffect(GameObject o)
-    {
-        originalMaterial = new Material(o.GetComponent<Renderer>().material);
-        placementMaterial = new Material(o.GetComponent<Renderer>().material);
-        obj = o;
-        Setup();
 
+
+    void Start()
+    {
+        originalMaterial = new Material(GetComponent<Renderer>().material);
+        placementMaterial = new Material(GetComponent<Renderer>().material);
     }
 
-    private void Setup() {
-        savedLayer = obj.gameObject.layer;
-        obj.gameObject.layer = LayerMask.NameToLayer("Placement");
+    public void Setup() {
+        savedLayer = gameObject.layer;
+        gameObject.layer = LayerMask.NameToLayer("Placement");
         placementMaterial.shader = Shader.Find("Transparent/Diffuse");
     }
 
     public void ApplyValidEffect()
     {
+        
         Material material = new Material(placementMaterial);
         material.color = new Color(material.color.r, material.color.g, material.color.b, 0.2f);
         SetMaterial(material);
@@ -41,13 +39,12 @@ public class PlacementEffect {
     }
 
     public void SetMaterial(Material material) {
-        obj.GetComponent<Renderer>().material = material;
+        GetComponent<Renderer>().material = material;
     }
 
-    public GameObject Reset() {
+    public void Reset() {
         SetMaterial(originalMaterial);
-        obj.gameObject.layer = savedLayer;
-        return obj;
+        gameObject.layer = savedLayer;
     }
 
 }

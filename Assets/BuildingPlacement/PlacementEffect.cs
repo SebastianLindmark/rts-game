@@ -16,12 +16,13 @@ public class PlacementEffect : MonoBehaviour{
     {
         originalMaterial = new Material(GetComponent<Renderer>().material);
         placementMaterial = new Material(GetComponent<Renderer>().material);
+        placementMaterial.shader = Shader.Find("Transparent/Diffuse");
     }
 
     public void Setup() {
         savedLayer = gameObject.layer;
         gameObject.layer = LayerMask.NameToLayer("Placement");
-        placementMaterial.shader = Shader.Find("Transparent/Diffuse");
+        
     }
 
     public void ApplyValidEffect()

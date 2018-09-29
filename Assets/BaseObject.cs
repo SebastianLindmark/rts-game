@@ -27,6 +27,7 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
     }
 
     public bool Within(Vector3 clickVector) {
+        
         return GetComponent<Collider>().bounds.Contains(clickVector);
     }
 

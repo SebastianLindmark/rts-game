@@ -227,7 +227,6 @@ GameObject:
   m_Component:
   - component: {fileID: 474134}
   - component: {fileID: 114138077772436992}
-  - component: {fileID: 114057608312214766}
   - component: {fileID: 114394256295743300}
   - component: {fileID: 114433173265689866}
   - component: {fileID: 143682442965887346}
@@ -1656,7 +1655,7 @@ MonoBehaviour:
   repathRate: 0.5
   canSearch: 1
   canMove: 1
-  maxSpeed: 1
+  maxSpeed: 5
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -1673,17 +1672,6 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
---- !u!114 &114057608312214766
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 153872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 555a0e438b4b7e34aa9eea0c50fff9dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114138077772436992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1708,6 +1696,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   attackRange: 50
+  attackState: 0
+  attackOpponent: {fileID: 0}
 --- !u!114 &114433173265689866
 MonoBehaviour:
   m_ObjectHideFlags: 1

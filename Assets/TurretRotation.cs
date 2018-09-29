@@ -16,7 +16,7 @@ public class TurretRotation : MonoBehaviour, AttackListener {
         tankTurretTransform = GetChildTransform(transform,"UpperBody");
 
         attackHandler = GetComponent<AttackHandler>();
-        targetRotation = transform.root.eulerAngles.y + 90;
+        SetTargetRotation(transform.root.eulerAngles.y);
     }
 
     
@@ -42,7 +42,7 @@ public class TurretRotation : MonoBehaviour, AttackListener {
     }
 
     public void SetTargetRotation(float rotation) {
-        targetRotation = rotation;
+        targetRotation = rotation + 90;
     }
 
 
@@ -67,11 +67,15 @@ public class TurretRotation : MonoBehaviour, AttackListener {
 
     public void onAttack(BaseObject target)
     {
-        Debug.Log("Turret detected attack");
-        Vector3 targetDir = tankTurretTransform.position - target.gameObject.transform.position;
-        targetRotation = Vector3.Angle(targetDir, transform.forward);
+       
+        Debug.Log("Other " + target.gameObject.transform.position);
+        Debug.Log("Me " + gameObject.transform.position);
+        Vector2 targetVector = new Vector2(target.gameObject.transform.position.x, target.gameObject.transform.position.z);
+        Vector2 meVector = new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
 
-
+        Vector2 targetDir = meVector - targetVector;
+        float angle = Vector2.Angle(targetDir, transform.up);
+        SetTargetRotation(angle + 180);
     }
 
     public Transform GetChildTransform(Transform parent, string target) {

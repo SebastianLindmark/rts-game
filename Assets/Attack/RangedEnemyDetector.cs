@@ -22,7 +22,9 @@ public class RangedEnemyDetector : MonoBehaviour {
     }
 
 	void Update () {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange);
+        int layerMask = ((1 << LayerMask.NameToLayer("Building")));
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange,layerMask);
+        Debug.Log(hitColliders.Length);
         if (hitColliders.Length > 0)
         {
             NotifyListeners(hitColliders[0].gameObject);

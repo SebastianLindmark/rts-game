@@ -29,6 +29,7 @@ public class AttackHandler : MonoBehaviour, EnemyDetectedListener{
     public void EnemyInRangeDetected(BaseObject enemy)
     {
         Debug.Log("Enemy in range detected");
+        Attack(enemy);
     }
 
     public void HitByEnemyDetected(BaseObject enemy)

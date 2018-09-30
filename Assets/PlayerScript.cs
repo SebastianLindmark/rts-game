@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour {
+public class PlayerScript  {
 
 
     private Player player;
@@ -15,9 +15,5 @@ public class PlayerScript : MonoBehaviour {
     public Player GetPlayer()
     {
         return player;
-    }
-    
-    void Update () {
-        
     }
 }

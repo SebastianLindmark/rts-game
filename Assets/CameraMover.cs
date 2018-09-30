@@ -23,7 +23,13 @@ public class CameraMover : MonoBehaviour {
     void Update () {
         Vector3 positionDelta = new Vector3(0, 0, 0);
 
-        if (Input.mousePosition.x < boundary)
+        if (!Input.GetKey(KeyCode.LeftControl)) {
+            return;
+        }
+
+
+
+            if (Input.mousePosition.x < boundary)
         {
             positionDelta.x = scrollSpeed;
         }

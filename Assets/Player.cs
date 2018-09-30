@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player{
 
     private int playerId;
-    public int availableFunds = 0;
+    public int availableFunds = 10000;
 
     public Player() {
         playerId = Random.Range(0, 1000000000);
@@ -28,7 +28,7 @@ public class Player{
             return false;
         }
 
-        return getPlayerId() == item.GetOwner().getPlayerId();
+        return getPlayerId() == item.GetPlayer().getPlayerId();
     }
 
 }

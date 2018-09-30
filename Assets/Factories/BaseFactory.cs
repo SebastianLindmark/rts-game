@@ -5,11 +5,12 @@ using UnityEngine;
 public class BaseFactory : MonoBehaviour, IBaseFactory {
 
 
-    public BaseObject CreateUnit(BaseObject self,BaseObject type)
+    public BaseObject CreateUnit(BaseObject self,BaseObject type,Vector3 position)
     {
         
-        BaseObject instantiated = Instantiate<BaseObject>(type);
-        instantiated.SetOwner(self.GetOwner());
+        BaseObject instantiated = Instantiate<BaseObject>(type,position, Quaternion.Euler(new Vector3(1,0,0)));
+        instantiated.SetPlayer(self.GetPlayer());
+        Debug.Log("I was instantiated with rotation of " + instantiated.transform.eulerAngles);
         return instantiated;
     }
 

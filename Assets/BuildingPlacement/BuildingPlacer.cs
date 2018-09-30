@@ -18,7 +18,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
         spawnableBuildings.Add(gameObject.GetComponent<BaseObject>());
         spawnableBuildings.Add(gameObject.GetComponent<BaseObject>());
         spawnableBuildings.Add(gameObject.GetComponent<BaseObject>());
-        toolbarController.PopulateToolbar(spawnableBuildings, GetComponent<PlayerScript>().GetPlayer(), this);
+        toolbarController.PopulateToolbar(spawnableBuildings, GetComponent<PlayerInitializer>().GetPlayer(), this);
     }
 
     void Update() {
@@ -36,13 +36,11 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
             
             if (HitsObstacle(Input.mousePosition))
             {
-                Debug.Log("Invalid");
                 placementObject.GetComponent<PlacementEffect>().ApplyInvalidEffect();
             }
             else
 
             {
-                Debug.Log("Valid");
                 placementObject.GetComponent<PlacementEffect>().ApplyValidEffect();
             }
 
@@ -71,7 +69,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
         {
             if (placementObject == null)
             {
-                toolbarController.PopulateToolbar(spawnableBuildings, GetComponent<PlayerScript>().GetPlayer(), this);
+                toolbarController.PopulateToolbar(spawnableBuildings, GetComponent<PlayerInitializer>().GetPlayer(), this);
             }
             else
             {

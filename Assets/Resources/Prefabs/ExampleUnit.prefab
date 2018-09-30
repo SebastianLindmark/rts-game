@@ -22,10 +22,9 @@ GameObject:
   - component: {fileID: 114617020618610106}
   - component: {fileID: 23781907187734696}
   - component: {fileID: 33391342634337904}
-  - component: {fileID: 114334530475667622}
   - component: {fileID: 114146821644634056}
   - component: {fileID: 114775440455169332}
-  - component: {fileID: 143236567389399802}
+  - component: {fileID: 143392139351362476}
   m_Layer: 11
   m_Name: ExampleUnit
   m_TagString: Untagged
@@ -39,13 +38,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1258135367456520}
-  m_LocalRotation: {x: -0.00409981, y: 0, z: -0, w: 0.9999916}
-  m_LocalPosition: {x: -12.957827, y: 1.2, z: 1.8}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -18.6, y: 7.5, z: 16.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.47000003, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23781907187734696
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -114,17 +113,6 @@ MonoBehaviour:
   traversableTags: -1
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask: -1
---- !u!114 &114334530475667622
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1258135367456520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46a5fd0a00f93dd41a705fa64537e888, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114617020618610106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,7 +157,7 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
---- !u!143 &143236567389399802
+--- !u!143 &143392139351362476
 CharacterController:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}

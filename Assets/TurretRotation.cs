@@ -9,11 +9,16 @@ public class TurretRotation : MonoBehaviour, AttackListener {
    private float targetRotation;
    private AttackHandler attackHandler;
 
-   
+    private Vector3 defaultRotation;
 
     void Start () {
         Transform transform = GetComponent<Transform>();
         tankTurretTransform = GetChildTransform(transform,"UpperBody");
+        defaultRotation = tankTurretTransform.eulerAngles;
+
+        Debug.Log("I was created with a rotation of " + defaultRotation);
+        
+
 
         attackHandler = GetComponent<AttackHandler>();
         SetTargetRotation(transform.root.eulerAngles.y);
@@ -33,16 +38,9 @@ public class TurretRotation : MonoBehaviour, AttackListener {
     }
 
 
-   
-
-
-    public bool RotationDone() {
-        Vector3 rotation = transform.rotation.eulerAngles;
-        return Mathf.Abs(Mathf.Abs(targetRotation) - Mathf.Abs(rotation.y)) < 1f;
-    }
-
+  
     public void SetTargetRotation(float rotation) {
-        targetRotation = rotation + 90;
+        targetRotation = rotation + defaultRotation.y;
     }
 
 
@@ -57,7 +55,6 @@ public class TurretRotation : MonoBehaviour, AttackListener {
                 return true;
             }
 
-            Vector3 position = new Vector3(0, targetRotation, 0);
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, targetRotation, 0), Time.deltaTime * 5f);
         }
         return false;
@@ -68,8 +65,6 @@ public class TurretRotation : MonoBehaviour, AttackListener {
     public void onAttack(BaseObject target)
     {
        
-        Debug.Log("Other " + target.gameObject.transform.position);
-        Debug.Log("Me " + gameObject.transform.position);
         Vector2 targetVector = new Vector2(target.gameObject.transform.position.x, target.gameObject.transform.position.z);
         Vector2 meVector = new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
 

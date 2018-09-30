@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IBaseFactory  {
 
-    BaseObject CreateUnit(BaseObject self,BaseObject type);
+    BaseObject CreateUnit(BaseObject self,BaseObject type, Vector3 position);
 }

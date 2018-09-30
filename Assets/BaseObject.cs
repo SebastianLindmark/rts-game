@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
-    private Player owner;
+    private Player player;
 
     public int unitCost;
 
@@ -13,16 +13,28 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
     
 
-    public Player GetOwner()
+    public Player GetPlayer()
     {
         //return owner;
-        
-        return GetComponent<PlayerScript>().GetPlayer();
+
+        if (player == null)
+        {
+            Debug.LogWarning("Creating new player from script.");
+            player = new Player();
+        }
+
+        return player;
     }
 
-    public void SetOwner(Player p)
+    public void SetPlayer(Player p)
     {
-        GetComponent<PlayerScript>().GetPlayer().setPlayerId(p.getPlayerId()); //This wont work if comparing references.
+        if (player == null)
+        {
+            Debug.LogWarning("Creating new player from script.");
+            player = new Player();
+        }
+        
+        player.setPlayerId(p.getPlayerId()); //This wont work if comparing references.
         
     }
 

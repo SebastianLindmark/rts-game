@@ -20,7 +20,7 @@ public class BaseBuilding : BaseObject, ToolbarClickListener
     public override void OnSelect()
     {
         ToolbarController toolbarController = GameObject.Find("Toolbar").GetComponent<ToolbarController>();
-        toolbarController.PopulateToolbar(spawnableUnits, GetOwner(), this);
+        toolbarController.PopulateToolbar(spawnableUnits, GetPlayer(), this);
     }
 
     public override void OnUnselect()
@@ -30,19 +30,21 @@ public class BaseBuilding : BaseObject, ToolbarClickListener
 
     public void OnToolBarClick(BaseObject clickedObj)
     {
-        Debug.Log("Building item was clicked");
-        if (clickedObj.unitCost < GetOwner().availableFunds)
+        if (clickedObj.unitCost < GetPlayer().availableFunds)
         {
-            BaseObject instantiated = new BaseFactory().CreateUnit(this, clickedObj);
-            instantiated.transform.position = transform.position + new Vector3(5, 5, 0); //add spacing
+            Vector3 initalPosition = transform.position + new Vector3(Random.Range(5,10), 5, Random.Range(5, 10)); //add spacing
+            BaseObject instantiated = new BaseFactory().CreateUnit(this, clickedObj,initalPosition);            
+        }
+        else
+        {
+            Debug.Log("Invalid funds");
         }
     }
 
     // Use this for initialization
     public override void Start () {
         base.Start();
-        GameObject gameObject = Resources.Load("Prefabs/ExampleUnit") as GameObject;
-        spawnableUnits.Add(gameObject.GetComponent<BaseObject>());
+        //GameObject gameObject = Resources.Load("Prefabs/Tank_02_Prefeb") as GameObject;
     }
     
     // Update is called once per frame

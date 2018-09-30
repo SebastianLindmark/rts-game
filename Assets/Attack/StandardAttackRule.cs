@@ -6,6 +6,6 @@ public class StandardAttackRule : AttackRule
 {
     public bool canAttack(Player player, BaseObject targetObject)
     {
-        return player.getPlayerId() != targetObject.GetOwner().getPlayerId();
+        return player.getPlayerId() != targetObject.GetPlayer().getPlayerId();
     }
 }

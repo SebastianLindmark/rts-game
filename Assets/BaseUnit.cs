@@ -39,9 +39,9 @@ public class BaseUnit : BaseObject {
 
         if (target != null)
         {
-            Debug.Log("My owner is " + GetOwner());
-            Debug.Log("target owner is " + target.GetOwner());
-            if (attackRule.canAttack(GetOwner(), target)) {
+            Debug.Log("My owner is " + GetPlayer());
+            Debug.Log("target owner is " + target.GetPlayer());
+            if (attackRule.canAttack(GetPlayer(), target)) {
                 //attack
             }
             else

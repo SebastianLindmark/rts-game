@@ -8,10 +8,10 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
     public int unitCost;
 
+    public GameObject selectionMarker;
 
     private GameObject inputManagerGameObject;
 
-    
 
     public Player GetPlayer()
     {
@@ -44,9 +44,11 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
     }
 
     public abstract void OnSelect();
+    public abstract void OnUnselect();
+
     public abstract void OnEnemyClick(BaseObject target);
     public abstract void OnGroundClick(Vector3 target);
-    public abstract void OnUnselect();
+    
 
 
 

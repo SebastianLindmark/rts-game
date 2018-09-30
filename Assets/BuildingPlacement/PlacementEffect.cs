@@ -8,14 +8,27 @@ public class PlacementEffect : MonoBehaviour{
 
     private Material placementMaterial;
 
+    private Renderer placementRenderer;
+
     private int savedLayer;
+
 
 
 
     void Start()
     {
-        originalMaterial = new Material(GetComponent<Renderer>().material);
-        placementMaterial = new Material(GetComponent<Renderer>().material);
+
+        placementRenderer = GetComponentInChildren<Renderer>();
+
+        if (!placementRenderer)
+        {
+            Debug.LogError("Material must have a renderer");
+            return;
+        }
+
+        originalMaterial = new Material(placementRenderer.material);
+        placementMaterial = new Material(placementRenderer.material);
+
         placementMaterial.shader = Shader.Find("Transparent/Diffuse");
     }
 
@@ -34,13 +47,14 @@ public class PlacementEffect : MonoBehaviour{
     }
 
     public void ApplyInvalidEffect() {
+        Debug.Log(placementMaterial);
         Material material = new Material(placementMaterial);
         material.color = new Color(255, 0, 0, 0.2f);
         SetMaterial(material);
     }
 
     public void SetMaterial(Material material) {
-        GetComponent<Renderer>().material = material;
+        placementRenderer.material = material;
     }
 
     public void Reset() {

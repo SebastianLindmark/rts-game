@@ -9,9 +9,9 @@ GameObject:
   m_Component:
   - component: {fileID: 405570}
   - component: {fileID: 114340973148955188}
-  - component: {fileID: 65829161103554420}
   - component: {fileID: 114755592538194526}
-  m_Layer: 0
+  - component: {fileID: 65359246099147638}
+  m_Layer: 11
   m_Name: VehicleHangar_01_Prefeb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 480774}
   - component: {fileID: 3338768}
   - component: {fileID: 2340270}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: VechileHangar_01_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   m_Component:
   - component: {fileID: 484584}
   - component: {fileID: 9547918}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: VehicleHangar_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,8 +58,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.2, y: 1.264283, z: 15.52}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: -10.2, y: 1.422313, z: 15.52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 484584}
   m_Father: {fileID: 0}
@@ -72,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 122670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.000000047683713, y: 0.31733325, z: 0}
+  m_LocalPosition: {x: 0.000000047683713, y: 0.13, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 484584}
@@ -163,7 +163,7 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 113290}
   m_IsPrefabAsset: 1
---- !u!65 &65829161103554420
+--- !u!65 &65359246099147638
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -173,8 +173,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 6.1176033, y: 4.0156593, z: 6.242594}
+  m_Center: {x: 0, y: 0, z: -0.04775715}
 --- !u!114 &114340973148955188
 MonoBehaviour:
   m_ObjectHideFlags: 1

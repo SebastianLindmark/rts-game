@@ -14,10 +14,6 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
     void Start () {
         toolbarController = GameObject.Find("Toolbar").GetComponent<ToolbarController>();
-        GameObject gameObject = Resources.Load("Prefabs/ExampleBuilding") as GameObject;
-        spawnableBuildings.Add(gameObject.GetComponent<BaseObject>());
-        spawnableBuildings.Add(gameObject.GetComponent<BaseObject>());
-        spawnableBuildings.Add(gameObject.GetComponent<BaseObject>());
         toolbarController.PopulateToolbar(spawnableBuildings, GetComponent<PlayerInitializer>().GetPlayer(), this);
     }
 
@@ -51,9 +47,13 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
             if (Physics.Raycast(ray, out hitInfo,Mathf.Infinity,layerMask))
             {
                 var finalPosition = GetNearestPointOnGrid(hitInfo.point);
-                finalPosition.y += placementObject.transform.lossyScale.y / 2;
-                placementObject.transform.position = finalPosition;              
 
+
+
+                float objectHeight = placementObject.GetComponentInChildren<Renderer>().bounds.size.y;
+                finalPosition.y += objectHeight / 2;
+                placementObject.transform.position = finalPosition;
+                
             }
         }
     }
@@ -89,6 +89,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
     public void OnToolBarClick(BaseObject obj)
     {
+        Debug.Log("Tool bar was clicked, spawning " + obj.name);
         placementObject = Instantiate(obj.gameObject);
         placementObject.GetComponent<PlacementEffect>().Setup();
     }
@@ -98,7 +99,6 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
     {
         int layerMask = ((1 << LayerMask.NameToLayer("Building")));
         Collider[] hitColliders = Physics.OverlapBox(placementObject.transform.position, placementObject.transform.localScale / 2, Quaternion.identity, layerMask);
-        Debug.Log(hitColliders.Length);
         return hitColliders.Length > 0;
     }
 

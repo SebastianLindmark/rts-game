@@ -7,8 +7,9 @@ public class BaseUnit : BaseObject {
 
     private AttackRule attackRule = new StandardAttackRule(); //Should be DI.
 
+    public GameObject projectilePosition;
 
-
+    public GameObject bulletPrefab;
 
     public override void Start () {
         base.Start();
@@ -22,7 +23,6 @@ public class BaseUnit : BaseObject {
     */
     public override void OnSelect()
     {
-        Debug.Log("Im selected");
         //Do your thaaang
     }
 
@@ -39,10 +39,9 @@ public class BaseUnit : BaseObject {
 
         if (target != null)
         {
-            Debug.Log("My owner is " + GetPlayer());
-            Debug.Log("target owner is " + target.GetPlayer());
             if (attackRule.canAttack(GetPlayer(), target)) {
                 //attack
+                //Walk to the enemy position - our shooting range. The RangedEnemyDetector will then handle the attacking.
             }
             else
             {
@@ -64,5 +63,10 @@ public class BaseUnit : BaseObject {
         Debug.Log("Unselected");
     }
 
-    
+    public override void Attack(BaseObject target)
+    {
+        GameObject spawned = Instantiate(this.bulletPrefab, projectilePosition.transform.position, projectilePosition.transform.rotation);
+        spawned.GetComponent<Bullet>().Setup(target);
+
+    }
 }

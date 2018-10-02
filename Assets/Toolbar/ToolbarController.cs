@@ -44,10 +44,14 @@ public class ToolbarController : MonoBehaviour {
                 icon.normal.textColor = Color.red;
 
                 Rect subIcon = new Rect(startX + 5, 5, (toolbarWidth / 10) - 10, toolbarRect.height - 10);
-                if (GUI.Button(subIcon, "Blah"))
+                string name = toolbarData.Data[k].name;
+                if (GUI.Button(subIcon, name))
                 {
                     ToolItemClick(k);
                 }
+                
+
+                //GUI.Button(subIcon, ,);
 
 
                 startX += toolbarWidth / 10;

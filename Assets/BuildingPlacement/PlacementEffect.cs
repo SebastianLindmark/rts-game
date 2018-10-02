@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlacementEffect : MonoBehaviour{
 
-    private Material originalMaterial;
+    private Material[] originalMaterials;
 
-    private Material placementMaterial;
+    private Material[] placementMaterials;
 
-    private Renderer placementRenderer;
+    private Renderer[] placementRenderers;
 
     private int savedLayer;
 
@@ -18,18 +18,25 @@ public class PlacementEffect : MonoBehaviour{
     void Start()
     {
 
-        placementRenderer = GetComponentInChildren<Renderer>();
+        placementRenderers = GetComponentsInChildren<Renderer>();
 
-        if (!placementRenderer)
+        if (placementRenderers.Length == 0)
         {
             Debug.LogError("Material must have a renderer");
             return;
         }
 
-        originalMaterial = new Material(placementRenderer.material);
-        placementMaterial = new Material(placementRenderer.material);
+        placementMaterials = new Material[placementRenderers.Length];
+        originalMaterials = new Material[placementRenderers.Length];
 
-        placementMaterial.shader = Shader.Find("Transparent/Diffuse");
+        for (int i = 0; i < placementRenderers.Length; i++)
+        {
+            originalMaterials[i] = new Material(placementRenderers[i].material);
+            placementMaterials[i] = new Material(placementRenderers[i].material);
+
+            placementMaterials[i].shader = Shader.Find("Transparent/Diffuse");
+        }
+        
     }
 
     public void Setup() {
@@ -40,26 +47,35 @@ public class PlacementEffect : MonoBehaviour{
 
     public void ApplyValidEffect()
     {
+
+        for (int i = 0; i < placementMaterials.Length; i++) {
+
+            Material material = new Material(placementMaterials[i]);
+            material.color = new Color(material.color.r, material.color.g, material.color.b, 0.2f);
+            SetMaterial(i,material);
+        }
         
-        Material material = new Material(placementMaterial);
-        material.color = new Color(material.color.r, material.color.g, material.color.b, 0.2f);
-        SetMaterial(material);
     }
 
     public void ApplyInvalidEffect() {
-        Debug.Log(placementMaterial);
-        Material material = new Material(placementMaterial);
-        material.color = new Color(255, 0, 0, 0.2f);
-        SetMaterial(material);
+        for (int i = 0; i < placementMaterials.Length; i++) {
+            Material material = new Material(placementMaterials[i]);
+            material.color = new Color(255, 0, 0, 0.2f);
+            SetMaterial(i,material);
+        }
+        
     }
 
-    public void SetMaterial(Material material) {
-        placementRenderer.material = material;
+    public void SetMaterial(int index, Material material) {
+        placementRenderers[index].material = material;
     }
 
     public void Reset() {
-        SetMaterial(originalMaterial);
-        gameObject.layer = savedLayer;
+        for (int i = 0; i < originalMaterials.Length; i++) {
+            SetMaterial(i,originalMaterials[i]);
+            gameObject.layer = savedLayer;
+        }
+        
     }
 
 }

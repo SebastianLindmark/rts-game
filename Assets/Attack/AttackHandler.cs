@@ -10,6 +10,10 @@ public class AttackHandler : MonoBehaviour, EnemyDetectedListener{
     public float damage = 0; //should be moved to a data class
     public float attackRange = 50;
 
+    public float fireRate = 2;
+
+    private float lastShotTimestamp = 0;
+
     public bool attackState = false;
     public BaseObject attackOpponent;
 
@@ -23,12 +27,30 @@ public class AttackHandler : MonoBehaviour, EnemyDetectedListener{
 	
 	
 	void Update () {
-		
+
+        if (attackState)
+        {
+
+            if (GetComponent<RangedEnemyDetector>().IsObjectInRange(attackOpponent.gameObject))
+            {
+                Attack(attackOpponent);
+            }
+            else
+            {
+                attackState = false;
+            }
+
+        }
+        else {
+            
+        }
+
 	}
 
     public void EnemyInRangeDetected(BaseObject enemy)
     {
-        Attack(enemy);
+        attackOpponent = enemy;
+        attackState = true;
     }
 
     public void HitByEnemyDetected(BaseObject enemy)
@@ -37,10 +59,15 @@ public class AttackHandler : MonoBehaviour, EnemyDetectedListener{
     }
 
 
-    private void Attack(BaseObject target) {
-        attackOpponent = target;
-        attackState = true;
+    private void Attack(BaseObject enemy) {
+        if (GetComponent<TurretRotation>().IsRotationFinished() && Time.time > fireRate + lastShotTimestamp)
+        {
+            lastShotTimestamp = Time.time;
+            GetComponent<BaseUnit>().Attack(attackOpponent);
+
+        }
 
 
     }
+
 }

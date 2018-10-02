@@ -8,6 +8,8 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
     public int unitCost;
 
+    public float health = 100;
+
     public GameObject selectionMarker;
 
     private GameObject inputManagerGameObject;
@@ -39,8 +41,24 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
     }
 
     public bool Within(Vector3 clickVector) {
+
+        Collider c = GetComponent<Collider>();
+        if (c) {
+            return c.bounds.Contains(clickVector);
+        }
+
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        for(int i =0; i < colliders.Length; i++)
+        {
+            if (colliders[i].bounds.Contains(clickVector))
+            {
+                return true;
+            }
+        }
+        return false;
+
+
         
-        return GetComponent<Collider>().bounds.Contains(clickVector);
     }
 
     public abstract void OnSelect();
@@ -48,8 +66,8 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
     public abstract void OnEnemyClick(BaseObject target);
     public abstract void OnGroundClick(Vector3 target);
-    
 
+    public abstract void Attack(BaseObject target);
 
 
     virtual public void Start () {

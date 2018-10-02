@@ -26,11 +26,15 @@ public class RangedEnemyDetector : MonoBehaviour {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange,layerMask);
         if (hitColliders.Length > 0)
         {
-            NotifyListeners(hitColliders[0].gameObject);
+            NotifyListeners(hitColliders[0].transform.root.gameObject);
         }
-
-        
 	}
+
+
+    public bool IsObjectInRange(GameObject target)
+    {
+        return attackRange > Vector3.Distance(target.transform.position, transform.position);
+    }
 
     private void NotifyListeners(GameObject detectedEnemy) {
         foreach(EnemyDetectedListener l in listeners)

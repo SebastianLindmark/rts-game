@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TurretRotation : MonoBehaviour, AttackListener {
 
     
@@ -9,22 +10,17 @@ public class TurretRotation : MonoBehaviour, AttackListener {
    private float targetRotation;
    private AttackHandler attackHandler;
 
-    private Vector3 defaultRotation;
+   private Vector3 defaultRotation;
 
     void Start () {
         Transform transform = GetComponent<Transform>();
         tankTurretTransform = GetChildTransform(transform,"UpperBody");
-        defaultRotation = tankTurretTransform.eulerAngles;
-
-        Debug.Log("I was created with a rotation of " + defaultRotation);
-        
+        defaultRotation = tankTurretTransform.eulerAngles;       
 
 
         attackHandler = GetComponent<AttackHandler>();
         SetTargetRotation(transform.root.eulerAngles.y);
     }
-
-    
     
     void Update () {
 
@@ -38,24 +34,30 @@ public class TurretRotation : MonoBehaviour, AttackListener {
     }
 
 
-  
+    public bool IsRotationFinished() {
+        Vector3 rotation = tankTurretTransform.rotation.eulerAngles;
+        return Mathf.Abs(Mathf.Abs(targetRotation) - Mathf.Abs(rotation.y)) < 0.5f;
+    }
+
+
+
     public void SetTargetRotation(float rotation) {
         targetRotation = rotation + defaultRotation.y;
     }
 
 
-    private bool PIDTowardsTargetAngle(Transform transform, float targetAngle, float k)
+    private bool PIDTowardsTargetAngle(Transform tankTurretTransform, float targetAngle, float k)
     {
-        if (transform)
+        if (tankTurretTransform)
         {
-            Vector3 rotation = transform.rotation.eulerAngles;
+            Vector3 rotation = tankTurretTransform.rotation.eulerAngles;
 
-            if (Mathf.Abs(Mathf.Abs(targetRotation) - Mathf.Abs(rotation.y)) < 1f)
+            if (Mathf.Abs(Mathf.Abs(targetRotation) - Mathf.Abs(rotation.y)) < 0.5f)
             {
                 return true;
             }
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, targetRotation, 0), Time.deltaTime * 5f);
+            tankTurretTransform.rotation = Quaternion.Slerp(tankTurretTransform.rotation, Quaternion.Euler(0, targetRotation, 0), Time.deltaTime * 6f);
         }
         return false;
 
@@ -64,7 +66,6 @@ public class TurretRotation : MonoBehaviour, AttackListener {
 
     public void onAttack(BaseObject target)
     {
-       
         Vector2 targetVector = new Vector2(target.gameObject.transform.position.x, target.gameObject.transform.position.z);
         Vector2 meVector = new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
 

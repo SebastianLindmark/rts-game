@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseBuilding : BaseObject, ToolbarClickListener
+public class BaseBuilding : BaseObject
 {
 
     public List<BaseObject> spawnableUnits;
@@ -19,8 +19,7 @@ public class BaseBuilding : BaseObject, ToolbarClickListener
 
     public override void OnSelect()
     {
-        ToolbarController toolbarController = GameObject.Find("Toolbar").GetComponent<ToolbarController>();
-        toolbarController.PopulateToolbar(spawnableUnits, GetPlayer(), this);
+        
     }
 
     public override void OnUnselect()
@@ -28,18 +27,11 @@ public class BaseBuilding : BaseObject, ToolbarClickListener
         
     }
 
-    public void OnToolBarClick(BaseObject clickedObj)
+    public override void Attack(BaseObject target)
     {
-        if (clickedObj.unitCost < GetPlayer().availableFunds)
-        {
-            Vector3 initalPosition = transform.position + new Vector3(Random.Range(5,10), 5, Random.Range(5, 10)); //add spacing
-            BaseObject instantiated = new BaseFactory().CreateUnit(this, clickedObj,initalPosition);            
-        }
-        else
-        {
-            Debug.Log("Invalid funds");
-        }
+        
     }
+
 
     // Use this for initialization
     public override void Start () {

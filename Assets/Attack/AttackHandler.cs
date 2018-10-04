@@ -6,21 +6,23 @@ public class AttackHandler : MonoBehaviour, EnemyDetectedListener{
 
 
 
+    private float lastShotTimestamp = 0;
 
     public float damage = 0; //should be moved to a data class
     public float attackRange = 50;
-
     public float fireRate = 2;
 
-    private float lastShotTimestamp = 0;
 
     public bool attackState = false;
     public BaseObject attackOpponent;
+
+    public AttackRule attackRule = new StandardAttackRule();
 
     void Start () {
         RangedEnemyDetector red = GetComponent<RangedEnemyDetector>();
         if (red)
         {
+            red.Setup(attackRule, attackRange);
             red.RegisterEnemyDetectorListener(this);
         }
 	}

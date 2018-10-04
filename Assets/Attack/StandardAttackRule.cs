@@ -8,4 +8,9 @@ public class StandardAttackRule : AttackRule
     {
         return player.getPlayerId() != targetObject.GetPlayer().getPlayerId();
     }
+
+    public bool canAttack(BaseObject source, BaseObject targetObject)
+    {
+        return canAttack(source.GetPlayer(), targetObject);
+    }
 }

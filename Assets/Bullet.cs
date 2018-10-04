@@ -25,7 +25,15 @@ public class Bullet : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        transform.position = Vector3.Lerp(transform.position, target.transform.position, 4f * Time.deltaTime);
+        if (target != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 50f * Time.deltaTime);
+        }
+        else {
+            Destroy(gameObject);
+        }
+        
+        
     }
 
     bool CollidedWithTarget(Collision collision) {
@@ -44,8 +52,6 @@ public class Bullet : MonoBehaviour {
     {
         if (CollidedWithTarget(collision))
         {
-            Debug.Log(damage);
-            Debug.Log("Collided with target " + target.name);
             target.DealDamage(damage);
             Destroy(gameObject);
         }

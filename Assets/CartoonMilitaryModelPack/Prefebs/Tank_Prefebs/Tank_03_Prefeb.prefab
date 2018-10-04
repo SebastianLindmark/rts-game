@@ -411,15 +411,18 @@ GameObject:
   m_Component:
   - component: {fileID: 475122}
   - component: {fileID: 114608648427743554}
-  - component: {fileID: 114863415421544084}
   - component: {fileID: 114454018777431884}
   - component: {fileID: 114853013898366628}
   - component: {fileID: 114338774794140422}
   - component: {fileID: 143585893507521988}
   - component: {fileID: 114022823170855764}
+  - component: {fileID: 114540296401458768}
+  - component: {fileID: 114131820694048618}
+  - component: {fileID: 114724056577548144}
+  - component: {fileID: 114528874036337494}
   m_Layer: 0
   m_Name: Tank_03_Prefeb
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -836,7 +839,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105100}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.60729295, z: -0, w: 0.794478}
   m_LocalPosition: {x: -0, y: 1.4214295, z: 0}
   m_LocalScale: {x: 8.5, y: 8.5, z: 8.5}
   m_Children:
@@ -2069,7 +2072,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4615783860927236}
   m_Layer: 0
-  m_Name: MissileLocation
+  m_Name: WeaponShootLocation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2160,6 +2163,27 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114131820694048618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6a34d769a1e4ac7b0b30e433aa443c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  smoothType: 0
+  subdivisions: 2
+  iterations: 2
+  strength: 0.5
+  uniformLength: 1
+  maxSegmentLength: 2
+  bezierTangentLength: 0.4
+  offset: 0.2
+  factor: 0.1
 --- !u!114 &114222663752000610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2241,7 +2265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2301,6 +2325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   attackRange: 50
+  fireRate: 4
   attackState: 0
   attackOpponent: {fileID: 0}
 --- !u!114 &114456156728051476
@@ -2341,6 +2366,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79dc216b3ee2068409badd6c77e93e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114528874036337494
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6a34d769a1e4ac7b0b30e433aa443c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  smoothType: 0
+  subdivisions: 2
+  iterations: 2
+  strength: 0.5
+  uniformLength: 1
+  maxSegmentLength: 2
+  bezierTangentLength: 0.4
+  offset: 0.2
+  factor: 0.1
+--- !u!114 &114540296401458768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf203670bf5161d4e91b41d035726457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitCost: 0
+  health: 100
+  selectionMarker: {fileID: 0}
+  projectilePosition: {fileID: 1582101302624308}
+  bulletPrefab: {fileID: 1736002236419254, guid: 8b4960aef68c61142b13ba8ed635bd41,
+    type: 2}
+  explosionPrefab: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1,
+    type: 2}
 --- !u!114 &114608648427743554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2352,6 +2417,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 555a0e438b4b7e34aa9eea0c50fff9dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114724056577548144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf203670bf5161d4e91b41d035726457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitCost: 0
+  health: 100
+  selectionMarker: {fileID: 0}
+  projectilePosition: {fileID: 1582101302624308}
+  bulletPrefab: {fileID: 1736002236419254, guid: 8b4960aef68c61142b13ba8ed635bd41,
+    type: 2}
+  explosionPrefab: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1,
+    type: 2}
 --- !u!114 &114853013898366628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2378,20 +2462,6 @@ MonoBehaviour:
   traversableTags: -1
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask: -1
---- !u!114 &114863415421544084
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 181314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a84701d674feb1644a56b5456fda5703, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitCost: 0
-  health: 100
-  selectionMarker: {fileID: 0}
 --- !u!143 &143585893507521988
 CharacterController:
   m_ObjectHideFlags: 1
@@ -2449,7 +2519,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1326925996373674}
-  m_LocalRotation: {x: 0.00409981, y: -0, z: 0, w: 0.9999916}
+  m_LocalRotation: {x: -0.5459561, y: -0.08579278, z: -0.056330316, w: 0.83150375}
   m_LocalPosition: {x: 0, y: 0, z: 0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

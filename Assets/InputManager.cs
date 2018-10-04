@@ -19,6 +19,10 @@ public class InputManager : MonoBehaviour
         inputListeners.Add(listener);
     }
 
+    public void UnregisterListener(BaseObject listener) {
+        inputListeners.Remove(listener);
+        selectedObjects.Remove(listener);
+    }
     
 
     void Start()

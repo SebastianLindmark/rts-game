@@ -31,7 +31,7 @@ public class AttackHandler : MonoBehaviour, EnemyDetectedListener{
         if (attackState)
         {
 
-            if (GetComponent<RangedEnemyDetector>().IsObjectInRange(attackOpponent.gameObject))
+            if (attackOpponent != null && GetComponent<RangedEnemyDetector>().IsObjectInRange(attackOpponent.gameObject))
             {
                 Attack(attackOpponent);
             }

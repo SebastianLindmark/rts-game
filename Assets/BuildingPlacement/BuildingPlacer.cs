@@ -13,7 +13,9 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
     private int gridSquareSize = 2;
 
     void Start () {
-        toolbarController = GameObject.Find("Toolbar").GetComponent<ToolbarController>();
+
+        
+        toolbarController = GameObject.FindGameObjectWithTag("Toolbar").GetComponent<ToolbarController>();
         toolbarController.PopulateToolbar(spawnableBuildings, GetComponent<PlayerInitializer>().GetPlayer(), this);
     }
 
@@ -97,8 +99,12 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
     public bool HitsObstacle(Vector3 clickPosition)
     {
+
         int layerMask = ((1 << LayerMask.NameToLayer("Building")));
         Collider[] hitColliders = Physics.OverlapBox(placementObject.transform.position, placementObject.transform.localScale / 2, Quaternion.identity, layerMask);
+        if (hitColliders.Length > 0 ) {
+            Debug.Log(hitColliders[0].name);
+        }
         return hitColliders.Length > 0;
     }
 

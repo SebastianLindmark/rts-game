@@ -436,7 +436,7 @@ MonoBehaviour:
   health: 100
   selectionMarker: {fileID: 0}
   spawnableUnits:
-  - {fileID: 0}
+  - {fileID: 114540296401458768, guid: 87611ddf2b4a04e1f81acc90cbecbd09, type: 2}
   spawnLocation: {fileID: 0}
 --- !u!222 &222019708992097864
 CanvasRenderer:

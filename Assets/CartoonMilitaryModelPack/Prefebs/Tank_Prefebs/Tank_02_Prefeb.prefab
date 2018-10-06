@@ -228,12 +228,12 @@ GameObject:
   m_Component:
   - component: {fileID: 474134}
   - component: {fileID: 114394256295743300}
-  - component: {fileID: 114433173265689866}
   - component: {fileID: 143682442965887346}
   - component: {fileID: 114013288876282520}
   - component: {fileID: 114656820338994994}
   - component: {fileID: 114929365850533692}
   - component: {fileID: 114640062512307970}
+  - component: {fileID: 114147597098512510}
   m_Layer: 0
   m_Name: Tank_02_Prefeb
   m_TagString: Untagged
@@ -1771,6 +1771,23 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
+--- !u!114 &114147597098512510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf203670bf5161d4e91b41d035726457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitCost: 0
+  health: 100
+  selectionMarker: {fileID: 0}
+  projectilePosition: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  explosionPrefab: {fileID: 0}
 --- !u!114 &114191754872141004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1821,22 +1838,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   attackRange: 50
+  fireRate: 2
   attackState: 0
   attackOpponent: {fileID: 0}
---- !u!114 &114433173265689866
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 153872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a84701d674feb1644a56b5456fda5703, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitCost: 0
-  health: 100
-  selectionMarker: {fileID: 0}
 --- !u!114 &114494226708208852
 MonoBehaviour:
   m_ObjectHideFlags: 1

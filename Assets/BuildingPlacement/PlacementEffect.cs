@@ -42,7 +42,18 @@ public class PlacementEffect : MonoBehaviour{
     public void Setup() {
         savedLayer = gameObject.layer;
         gameObject.layer = LayerMask.NameToLayer("Placement");
+        EnableCollider(false);
         
+    }
+
+    void EnableCollider(bool state)
+    {
+        Collider collider = gameObject.GetComponentInChildren<BoxCollider>();
+        if (collider)
+        {
+            collider.enabled = state;
+        }
+
     }
 
     public void ApplyValidEffect()
@@ -75,7 +86,9 @@ public class PlacementEffect : MonoBehaviour{
             SetMaterial(i,originalMaterials[i]);
             gameObject.layer = savedLayer;
         }
-        
+        EnableCollider(true);
+
+
     }
 
 }

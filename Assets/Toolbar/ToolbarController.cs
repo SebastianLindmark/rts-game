@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ToolbarController : MonoBehaviour {
 
@@ -13,54 +14,43 @@ public class ToolbarController : MonoBehaviour {
 
     private ToolbarData toolbarData;
 
+    //private Transform[] cells;
+    private List<Transform> cells = new List<Transform>();
+
     void Start () {
-        toolbarRect = new Rect(Screen.width / 2 - toolbarWidth / 2, Screen.height - 80,toolbarWidth,80);
+
+        foreach (Transform t in gameObject.transform) {
+            cells.Add(t);
+        }
     }
 
     public void PopulateToolbar(List<BaseObject> data, Player player, ToolbarClickListener clickListener)
     {
         toolbarData = new ToolbarData(data, player, clickListener);
-    }
-    
-    void Update () {
-        
-    }
+        List<BaseObject> objs = toolbarData.Data;
 
-    void OnGUI()
-    {
-        GUIStyle container = new GUIStyle();
-        container.normal.background = toolbarIcon;
-            
-        GUI.DrawTexture(toolbarRect, toolbarIcon,ScaleMode.StretchToFill);
-
-        GUI.BeginGroup(new Rect(toolbarRect.x, toolbarRect.y, toolbarRect.width, toolbarRect.height));
-
-        if (toolbarData != null && toolbarData.Data.Count != 0)
+        for (int i = 0; i < cells.Count; i++)
         {
-            float startX = 0;
-            for (int k = 0; k < toolbarData.Data.Count; k++) {
-
-                GUIStyle icon = new GUIStyle();
-                icon.normal.textColor = Color.red;
-
-                Rect subIcon = new Rect(startX + 5, 5, (toolbarWidth / 10) - 10, toolbarRect.height - 10);
-                string name = toolbarData.Data[k].name;
-                if (GUI.Button(subIcon, name))
-                {
-                    ToolItemClick(k);
-                }
+            
+            if (objs.Count > i) {
+                Text text = cells[i].GetComponentInChildren<Text>();
+                text.text = objs[i].name;
                 
-
-                //GUI.Button(subIcon, ,);
-
-
-                startX += toolbarWidth / 10;
+                Image textBackground = cells[i].GetComponentsInChildren<Image>()[1];
+                textBackground.color = new Color(0,0,0,0.153f);
             }
+            else
+            {
+                cells[i].GetComponentInChildren<Text>().text = "";
+                Image imageBox = cells[i].GetComponentInChildren<Image>();
+                Image textBackground = imageBox.GetComponentsInChildren<Image>()[1]; //Gives the parent component at index 0
+                textBackground.color = Color.clear;
+            }
+            
         }
 
-        GUI.EndGroup();
     }
-
+    
     void ToolItemClick(int index) {
         BaseObject clickedObject = toolbarData.Data[index];
         toolbarData.ClickListener.OnToolBarClick(clickedObject);

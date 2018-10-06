@@ -14,6 +14,7 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
     private GameObject inputManagerGameObject;
 
+    private GameObject healthbar;
 
     public Player GetPlayer()
     {
@@ -81,8 +82,25 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
         Destroy(gameObject);
     }
 
-    public abstract void OnSelect();
-    public abstract void OnUnselect();
+    public void ShowHealthbar(bool show)
+    {
+        if (show)
+        {
+            healthbar = Instantiate(Resources.Load("Prefabs/Healthbar") as GameObject, transform);
+            healthbar.transform.parent = gameObject.transform.root;
+        }
+        else if(!show && healthbar){
+            Destroy(healthbar);
+        }
+        
+    }
+
+    public virtual void OnSelect() {
+        ShowHealthbar(true);
+    }
+    public virtual void OnUnselect() {
+        ShowHealthbar(false);
+    }
 
     public abstract void OnEnemyClick(BaseObject target);
     public abstract void OnGroundClick(Vector3 target);

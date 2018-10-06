@@ -165,9 +165,6 @@ public class InputManager : MonoBehaviour
         foreach (BaseObject o in clickedObjects)
         {
             o.OnSelect();
-            o.selectionMarker = Instantiate(selectionPrefab);
-            o.selectionMarker.transform.SetParent(o.transform, false);
-            o.selectionMarker.GetComponent<Projector>().orthographicSize = o.GetComponentInChildren<Renderer>().bounds.size.z;
         }
         DeselectObjects();
         selectedObjects = clickedObjects;
@@ -176,7 +173,6 @@ public class InputManager : MonoBehaviour
     private void DeselectObjects() {
         foreach(BaseObject o in selectedObjects)
         {
-            Destroy(o.selectionMarker);
             o.OnUnselect();
         }
         selectedObjects.Clear();

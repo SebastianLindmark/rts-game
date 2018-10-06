@@ -19,12 +19,12 @@ public class BaseBuilding : BaseObject
 
     public override void OnSelect()
     {
-        
+        base.OnSelect();   
     }
 
     public override void OnUnselect()
     {
-        
+        base.OnUnselect();
     }
 
     public override void Attack(BaseObject target)

@@ -6,7 +6,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
     private ToolbarController toolbarController;
 
-    public List<BaseObject> spawnableBuildings;
+    public List<BaseBuilding> spawnableBuildings;
 
     private GameObject placementObject;
 
@@ -16,7 +16,12 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
         
         toolbarController = GameObject.FindGameObjectWithTag("Toolbar").GetComponent<ToolbarController>();
-        toolbarController.PopulateToolbar(spawnableBuildings, GetComponent<PlayerInitializer>().GetPlayer(), this);
+
+        foreach (BaseBuilding building in spawnableBuildings)
+        {
+            toolbarController.AddToolbarField(building, GetComponent<PlayerInitializer>().GetPlayer(), this);
+        }
+        
     }
 
     void Update() {
@@ -71,7 +76,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
         {
             if (placementObject == null)
             {
-                toolbarController.PopulateToolbar(spawnableBuildings, GetComponent<PlayerInitializer>().GetPlayer(), this);
+                //toolbarController.PopulateToolbar(spawnableBuildings, GetComponent<PlayerInitializer>().GetPlayer(), this);
             }
             else
             {
@@ -91,7 +96,6 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
     public void OnToolBarClick(BaseObject obj)
     {
-        Debug.Log("Tool bar was clicked, spawning " + obj.name);
         placementObject = Instantiate(obj.gameObject);
         placementObject.GetComponent<PlacementEffect>().Setup();
     }

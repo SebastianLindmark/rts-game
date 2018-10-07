@@ -15,6 +15,9 @@ public class BaseUnit : BaseObject {
 
     public override void Start () {
         base.Start();
+
+        Utils.CreateMinimapUnitCube(gameObject);
+        
     }
 
 

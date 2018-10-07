@@ -5,7 +5,6 @@ using UnityEngine;
 public class BaseBuilding : BaseObject
 {
 
-    public List<BaseObject> spawnableUnits;
 
     public override void OnEnemyClick(BaseObject target)
     {

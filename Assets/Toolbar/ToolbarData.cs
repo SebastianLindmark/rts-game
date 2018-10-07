@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ToolbarData {
 
-    public List<BaseObject> Data { get; }
+    public BaseObject Obj { get; }
     public Player Player { get; }
     public ToolbarClickListener ClickListener { get; }
 
-    public ToolbarData(List<BaseObject> data, Player player, ToolbarClickListener clickListener) {
-        Data = data;
+    public ToolbarData(BaseObject o, Player player, ToolbarClickListener clickListener) {
+        Obj = o;
         Player = player;
         ClickListener = clickListener;
     }

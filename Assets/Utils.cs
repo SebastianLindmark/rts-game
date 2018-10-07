@@ -37,4 +37,20 @@ public static class Utils
         Utils.DrawScreenRect(new Rect(rect.xMin, rect.yMax - thickness, rect.width, thickness), color);
     }
 
+    public static GameObject CreateMinimapUnitCube(GameObject target) {
+        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        cube.layer = LayerMask.NameToLayer("Minimap");
+        cube.transform.parent = target.transform;
+        cube.transform.position = target.transform.position;
+
+        Vector3 bounds = target.GetComponentInChildren<BoxCollider>().bounds.size;
+        Debug.Log(bounds);
+        Debug.Log(target.name);
+        cube.transform.localScale = bounds;
+
+        Renderer cubeRenderer = cube.GetComponent<Renderer>();
+        cubeRenderer.material.color = Color.red;
+        return cube;
+    }
+
 }

@@ -7,11 +7,18 @@ public class SpawnableBuilding : BaseBuilding, ToolbarClickListener {
 
     public GameObject spawnLocation;
 
+    public List<BaseUnit> spawnableUnits;
+
     public override void OnSelect()
     {
         base.OnSelect();
         ToolbarController toolbarController = GameObject.Find("Toolbar").GetComponent<ToolbarController>();
-        toolbarController.PopulateToolbar(spawnableUnits, GetPlayer(), this);
+        
+        foreach(BaseUnit unit in spawnableUnits)
+        {
+            toolbarController.AddToolbarField(unit, GetPlayer(), this);
+        }
+        
     }
 
     public void OnToolBarClick(BaseObject clickedObj)

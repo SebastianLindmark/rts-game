@@ -45,7 +45,7 @@ public class ToolbarStateController: MonoBehaviour,ItemClick {
             toolbarStateImages[0].color = unSelectedColor;
             toolbarStateImages[1].color = selectedColor;
 
-            childToolbarStateImages[0].color = new Color(1, 1, 1, 0.5f);
+            childToolbarStateImages[0].color = new Color(1, 1, 1, 0.4f);
             childToolbarStateImages[1].color = new Color(1, 1, 1);
         }
         else {
@@ -53,7 +53,7 @@ public class ToolbarStateController: MonoBehaviour,ItemClick {
             toolbarStateImages[1].color = unSelectedColor;
 
             childToolbarStateImages[0].color = new Color(1, 1, 1);
-            childToolbarStateImages[1].color = new Color(1, 1, 1, 0.5f); 
+            childToolbarStateImages[1].color = new Color(1, 1, 1, 0.4f); 
         }
 
 

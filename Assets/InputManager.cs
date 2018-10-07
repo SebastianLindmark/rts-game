@@ -70,6 +70,7 @@ public class InputManager : MonoBehaviour
         // Selection
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("Mouse down");
             startSelectionDrag = Input.mousePosition;
         }
         else if (Input.GetMouseButtonUp(0))
@@ -81,20 +82,24 @@ public class InputManager : MonoBehaviour
 
             if (startSelectionDrag - Input.mousePosition == Vector3.zero)
             {
+                Debug.Log("Single click");
                 clickedObjects = GetSelectedObject(Input.mousePosition);
             }
             else
             {
+                Debug.Log("Draged area");
                 clickedObjects = GetSelectedObjects(GetViewportBounds(cam, startSelectionDrag, Input.mousePosition));
             }
 
 
             if (clickedObjects.Count > 1)
             {
+                Debug.Log("Clicked on objects");
                 HandleClickOnObjects(clickedObjects);
             }
             else if (clickedObjects.Count == 1)
             {
+                Debug.Log("Clicked on object");
                 HandleClickOnObject(clickedObjects[0]);
             }
             else
@@ -162,11 +167,11 @@ public class InputManager : MonoBehaviour
 
     private void SelectObjects(List<BaseObject> clickedObjects)
     {
+        DeselectObjects();
         foreach (BaseObject o in clickedObjects)
         {
             o.OnSelect();
         }
-        DeselectObjects();
         selectedObjects = clickedObjects;
     }
 

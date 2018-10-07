@@ -84,21 +84,33 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
     public void ShowHealthbar(bool show)
     {
+     
         if (show)
         {
-            healthbar = Instantiate(Resources.Load("Prefabs/Healthbar") as GameObject, transform);
-            healthbar.transform.parent = gameObject.transform.root;
+            
+            if (!healthbar)
+            {
+                healthbar = Instantiate(Resources.Load("Prefabs/Healthbar") as GameObject, transform);
+                healthbar.transform.parent = gameObject.transform.root;
+            }
+            else {
+                Debug.Log("Healthbar is already displaying");
+            }
+            
         }
         else if(!show && healthbar){
-            Destroy(healthbar);
+            
+            DestroyImmediate(healthbar);
         }
         
     }
 
     public virtual void OnSelect() {
+        Debug.Log("Received onSelect");
         ShowHealthbar(true);
     }
     public virtual void OnUnselect() {
+        Debug.Log("Received UnSelect");
         ShowHealthbar(false);
     }
 

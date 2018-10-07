@@ -15,22 +15,20 @@ public class BaseUnit : BaseObject {
 
     public override void Start () {
         base.Start();
-
         Utils.CreateMinimapUnitCube(gameObject);
-        
     }
 
-
-/*    public override void Update () {
-        
-    }
     
-    */
     public override void OnSelect()
     {
-        //Do your thaaang
+        base.OnSelect();
+
     }
 
+    public override void OnUnselect()
+    {
+        base.OnUnselect();
+    }
 
     public override void OnGroundClick(Vector3 target)
     {
@@ -63,10 +61,7 @@ public class BaseUnit : BaseObject {
     }
 
 
-    public override void OnUnselect()
-    {
-        Debug.Log("Unselected");
-    }
+    
 
     public override void Attack(BaseObject target)
     {

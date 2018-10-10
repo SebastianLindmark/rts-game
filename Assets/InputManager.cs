@@ -34,15 +34,12 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         test();
-
     }
 
     public Texture t;
 
     void OnGUI()
     {
-
-        //Debug.Log(startSelectionDrag);
 
         if (startSelectionDrag != Vector3.zero)
         {
@@ -55,7 +52,6 @@ public class InputManager : MonoBehaviour
             Utils.DrawScreenRect(r, new Color(0.8f, 0.8f, 0.95f, 0.25f));
             Utils.DrawScreenRectBorder(r, 1, Color.white);
         }
-
 
 
     }

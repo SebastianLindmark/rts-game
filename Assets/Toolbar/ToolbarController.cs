@@ -17,36 +17,83 @@ public class ToolbarController : MonoBehaviour,ItemClick {
 
     private Rect toolbarRect;
 
-    private ToolbarData toolbarData;
+    private Hashtable existingObjects = new Hashtable();
 
     private List<ToolbarData> availableBuildings = new List<ToolbarData>();
     private List<ToolbarData> availableUnits = new List<ToolbarData>();
 
     private ToolbarState toolbarState;
 
+    private int count;
+
     //private Transform[] cells;
     private List<Transform> cells = new List<Transform>();
 
     void Start () {
+        count = Random.Range(0, 100);
 
         foreach (Transform t in gameObject.transform) {
             t.GetComponent<ToolbarItemClickRegister>().AddClickListener(cells.Count,this);
             cells.Add(t);
         }
+        RedrawToolbar();
     }
-
 
     public void AddToolbarField(BaseUnit unit, Player player, ToolbarClickListener clickListener)
     {
-        availableUnits.Add(new ToolbarData(unit, player, clickListener));
+        if (!existingObjects.Contains(unit.name))
+        {
+            availableUnits.Add(new ToolbarData(unit, player, clickListener));
+            existingObjects.Add(unit.name, unit);
+            RedrawToolbar();
+        }
+        
     }
 
     public void AddToolbarField(BaseBuilding building, Player player, ToolbarClickListener clickListener) {
-        availableBuildings.Add(new ToolbarData(building, player, clickListener));
+        if (!existingObjects.Contains(building.name))
+        {
+            availableBuildings.Add(new ToolbarData(building, player, clickListener));
+            existingObjects.Add(building.name, building);
+            RedrawToolbar();
+        }
+    }
+
+    public void RemoveElement(BaseObject baseObject) {
+        if (existingObjects.Contains(baseObject.name))
+        {
+            existingObjects.Remove(baseObject.name);
+        }
+        Debug.Log("Units before " + availableUnits.Count);
+
+        bool found = false;
+        for (int i = 0; i < availableBuildings.Count && !found; i++){
+            ToolbarData td = availableBuildings[i];
+            if (td.Obj == baseObject)
+            {
+                Debug.Log("Found object in buildings");
+                availableBuildings.Remove(td);
+                found = true;
+            }
+        }
+        for (int i = 0; i < availableUnits.Count && !found; i++)
+        {
+            ToolbarData td = availableUnits[i];
+            if (td.Obj == baseObject)
+            {
+                Debug.Log("Found object in units");
+                availableUnits.Remove(td);
+                found = true;
+            }
+        }
+        Debug.Log("Units after " + availableUnits.Count);
+
+        RedrawToolbar();
     }
 
     public void SetDisplayState(ToolbarState state) {
         if (toolbarState != state) {
+            Debug.Log("Changing state to " + state);
             toolbarState = state;
             RedrawToolbar();
         }
@@ -58,12 +105,15 @@ public class ToolbarController : MonoBehaviour,ItemClick {
         List<ToolbarData> objs;
         if (toolbarState == ToolbarState.BUILDING)
         {
+            Debug.Log("Building state");
             objs = availableBuildings;
         }
-        else
-        {
+        else {
+            Debug.Log("Unit state");
             objs = availableUnits;
         }
+
+        Debug.Log("Drawing num units " + objs.Count);
 
         for (int i = 0; i < cells.Count; i++)
         {
@@ -117,11 +167,7 @@ public class ToolbarController : MonoBehaviour,ItemClick {
 
     }*/
     
-    void ToolItemClick(int index) {
-        //BaseObject clickedObject = toolbarData.Data[index];
-        //toolbarData.ClickListener.OnToolBarClick(clickedObject);
-    }
-
+   
     public void OnClicked(int id)
     {
         ToolbarData toolbarEntry = null;

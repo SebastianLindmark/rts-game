@@ -417,7 +417,6 @@ GameObject:
   - component: {fileID: 143585893507521988}
   - component: {fileID: 114022823170855764}
   - component: {fileID: 114540296401458768}
-  - component: {fileID: 114131820694048618}
   - component: {fileID: 114528874036337494}
   m_Layer: 0
   m_Name: Tank_03_Prefeb
@@ -2061,27 +2060,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f602eb1cbfd7f4084da228c1f23183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114131820694048618
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 181314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb6a34d769a1e4ac7b0b30e433aa443c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  smoothType: 0
-  subdivisions: 2
-  iterations: 2
-  strength: 0.5
-  uniformLength: 1
-  maxSegmentLength: 2
-  bezierTangentLength: 0.4
-  offset: 0.2
-  factor: 0.1
 --- !u!114 &114338774794140422
 MonoBehaviour:
   m_ObjectHideFlags: 1

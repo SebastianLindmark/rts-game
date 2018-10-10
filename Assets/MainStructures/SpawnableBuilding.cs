@@ -9,16 +9,30 @@ public class SpawnableBuilding : BaseBuilding, ToolbarClickListener {
 
     public List<BaseUnit> spawnableUnits;
 
-    public override void OnSelect()
+    private ToolbarController toolbarController;
+
+    public override void Start()
     {
-        base.OnSelect();
-        ToolbarController toolbarController = GameObject.Find("Toolbar").GetComponent<ToolbarController>();
-        
-        foreach(BaseUnit unit in spawnableUnits)
+        base.Start();
+        toolbarController = GameObject.FindGameObjectWithTag("Toolbar").GetComponent<ToolbarController>();
+
+
+
+        foreach (BaseUnit unit in spawnableUnits)
         {
             toolbarController.AddToolbarField(unit, GetPlayer(), this);
         }
-        
+
+    }
+
+
+    public override void RemoveObject()
+    {
+        base.RemoveObject();
+        for (int i = 0; i < spawnableUnits.Count; i++) {
+            toolbarController.RemoveElement(spawnableUnits[i]);
+        }
+
     }
 
     public void OnToolBarClick(BaseObject clickedObj)
@@ -45,7 +59,7 @@ public class SpawnableBuilding : BaseBuilding, ToolbarClickListener {
 
 
     private Vector3 GetRandomCloseLocation() {
-        return transform.position + new Vector3(Random.Range(5, 10), 5, Random.Range(5, 10));
+        return transform.position + new Vector3(Random.Range(10, 15), 5, Random.Range(10, 15));
     }
 
 

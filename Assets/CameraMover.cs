@@ -8,11 +8,11 @@ public class CameraMover : MonoBehaviour {
     private float screenHeight;
 
     public const int boundary = 15; //pixels
-    public const float scrollSpeed = 0.35f;
+    public const float scrollSpeed = 0.5f;
     public const float zoomSpeed = 5f;
 
     public const float zoomMin = 20f;
-    public const float zoomMax = 40f;
+    public const float zoomMax = 100f;
 
     void Start () {
 
@@ -28,8 +28,7 @@ public class CameraMover : MonoBehaviour {
         }
 
 
-
-            if (Input.mousePosition.x < boundary)
+        if (Input.mousePosition.x < boundary)
         {
             positionDelta.x = scrollSpeed;
         }

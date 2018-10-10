@@ -75,7 +75,7 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
         
     }
 
-    protected void RemoveObject()
+    public virtual void RemoveObject()
     {
         InputManager inputManager = GameObject.Find("GameControllerObject").GetComponent<InputManager>();
         inputManager.UnregisterListener(this);

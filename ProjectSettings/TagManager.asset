@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WeaponShootLocation
   - Toolbar
+  - ResourceController
   layers:
   - Default
   - TransparentFX

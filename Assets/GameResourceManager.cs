@@ -22,8 +22,8 @@ public class GameResourceManager : MonoBehaviour {
 
         targetOilResource = startOilResource;
         targetCoinResource = startCoinResource;
-        InvokeRepeating("test", 0, 1.0f);
-        InvokeRepeating("test2", 0, 2.0f);
+        //InvokeRepeating("test", 0, 1.0f);
+        //InvokeRepeating("test2", 0, 2.0f);
 
     }
 

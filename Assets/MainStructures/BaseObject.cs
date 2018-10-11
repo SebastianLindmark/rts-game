@@ -106,11 +106,9 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
     }
 
     public virtual void OnSelect() {
-        Debug.Log("Received onSelect");
         ShowHealthbar(true);
     }
     public virtual void OnUnselect() {
-        Debug.Log("Received UnSelect");
         ShowHealthbar(false);
     }
 

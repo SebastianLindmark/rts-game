@@ -21,14 +21,14 @@ public class Player{
 
     public override bool Equals(object obj)
     {
-        BaseObject item = obj as BaseObject;
+        Player player = obj as Player;
 
-        if (item == null)
+        if (player == null)
         {
+            Debug.LogError("Comparing invalid structure");
             return false;
         }
-
-        return getPlayerId() == item.GetPlayer().getPlayerId();
+        return getPlayerId() == player.getPlayerId();
     }
 
 }

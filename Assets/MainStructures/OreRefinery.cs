@@ -39,7 +39,11 @@ public class OreRefinery : SpawnableBuilding {
 
         if (spawnOnCreation)
         {
-            OnToolBarClick(spawnOnCreation);
+            Vector3 pos = transform.position;
+            pos.y = 1; //Temporary, make constant or calculate height of spawned vehicle instead
+            OreMiner spawnedMiner = new BaseFactory().CreateUnit(this, spawnOnCreation, pos).GetComponent<OreMiner>();
+            spawnedMiner.SetMineState(OreMiner.MineState.RETURN);
+            
         }
 
         smokeLocation1 = Instantiate(smokeParticleEffect, smokeLocation1.transform.position, smokeLocation1.transform.rotation);

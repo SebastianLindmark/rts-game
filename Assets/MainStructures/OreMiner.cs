@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class OreMiner : BaseUnit {
 
-    private enum MineState {
+    public enum MineState {
         IDLE, SEARCH,MINE,RETURN, UNLOAD,EXIT
     }
 
@@ -57,6 +57,10 @@ public class OreMiner : BaseUnit {
         }
         
         Reset();
+    }
+
+    public void SetMineState(MineState state) {
+        mineState = state;
     }
 
     public override void OnEnemyClick(BaseObject o) {
@@ -112,28 +116,42 @@ public class OreMiner : BaseUnit {
                 }
             break;
             case MineState.RETURN:
-                
-                if ((ai.reachedEndOfPath && !ai.pathPending) && refineryHomebase) {
 
-                    ai.gravity = new Vector3(0,0,0);
+                if ((ai.reachedEndOfPath && !ai.pathPending) && refineryHomebase)
+                {
+
+                    ai.gravity = new Vector3(0, 0, 0);
                     GetComponent<Collider>().enabled = false;
 
                     ai.destination = refineryHomebase.transform.position;
                     ai.SearchPath();
                     mineState = MineState.UNLOAD;
                 }
+                else if (!ai.hasPath) {
+                    ai.gravity = new Vector3(0, 0, 0);
+                    GetComponent<Collider>().enabled = false;
+
+                    ai.destination = refineryHomebase.transform.position;
+                    ai.SearchPath();
+                }
+                
+                
                 break;
             case MineState.UNLOAD:
 
                 if ((ai.reachedEndOfPath && !ai.pathPending) && refineryHomebase)
                 {
-                    refineryHomebase.AddResources(inventoryValue);
+                    if (inventoryValue > 0)
+                    {
+                        refineryHomebase.AddResources(inventoryValue);
+                    }
+                    
                 
                     Reset();
                     ai.destination = refineryHomebase.GetEntrancePosition();
                     ai.SearchPath();
                     mineState = MineState.EXIT;
-                    
+
                 }
                 break;
 

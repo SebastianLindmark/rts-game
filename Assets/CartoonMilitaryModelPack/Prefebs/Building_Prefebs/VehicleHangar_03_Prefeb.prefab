@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 406182}
   - component: {fileID: 114882463106297222}
   m_Layer: 0
-  m_Name: VehicleHangar_03_Prefeb
+  m_Name: OreRefinary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -24,13 +24,10 @@ public class ToolbarController : MonoBehaviour,ItemClick {
 
     private ToolbarState toolbarState;
 
-    private int count;
-
     //private Transform[] cells;
     private List<Transform> cells = new List<Transform>();
 
     void Start () {
-        count = Random.Range(0, 100);
 
         foreach (Transform t in gameObject.transform) {
             t.GetComponent<ToolbarItemClickRegister>().AddClickListener(cells.Count,this);
@@ -51,6 +48,8 @@ public class ToolbarController : MonoBehaviour,ItemClick {
     }
 
     public void AddToolbarField(BaseBuilding building, Player player, ToolbarClickListener clickListener) {
+        Debug.Log(building);
+        Debug.Log(building.name);
         if (!existingObjects.Contains(building.name))
         {
             availableBuildings.Add(new ToolbarData(building, player, clickListener));
@@ -64,14 +63,12 @@ public class ToolbarController : MonoBehaviour,ItemClick {
         {
             existingObjects.Remove(baseObject.name);
         }
-        Debug.Log("Units before " + availableUnits.Count);
 
         bool found = false;
         for (int i = 0; i < availableBuildings.Count && !found; i++){
             ToolbarData td = availableBuildings[i];
             if (td.Obj == baseObject)
             {
-                Debug.Log("Found object in buildings");
                 availableBuildings.Remove(td);
                 found = true;
             }
@@ -81,7 +78,6 @@ public class ToolbarController : MonoBehaviour,ItemClick {
             ToolbarData td = availableUnits[i];
             if (td.Obj == baseObject)
             {
-                Debug.Log("Found object in units");
                 availableUnits.Remove(td);
                 found = true;
             }
@@ -93,7 +89,6 @@ public class ToolbarController : MonoBehaviour,ItemClick {
 
     public void SetDisplayState(ToolbarState state) {
         if (toolbarState != state) {
-            Debug.Log("Changing state to " + state);
             toolbarState = state;
             RedrawToolbar();
         }
@@ -105,15 +100,12 @@ public class ToolbarController : MonoBehaviour,ItemClick {
         List<ToolbarData> objs;
         if (toolbarState == ToolbarState.BUILDING)
         {
-            Debug.Log("Building state");
             objs = availableBuildings;
         }
         else {
-            Debug.Log("Unit state");
             objs = availableUnits;
         }
 
-        Debug.Log("Drawing num units " + objs.Count);
 
         for (int i = 0; i < cells.Count; i++)
         {
@@ -121,7 +113,7 @@ public class ToolbarController : MonoBehaviour,ItemClick {
             if (objs.Count > i)
             {
                 Text text = cells[i].GetComponentInChildren<Text>();
-                text.text = objs[i].Obj.name;
+                text.text = objs[i].Obj.printableName.Length > 0 ? objs[i].Obj.printableName : objs[i].Obj.name;
 
                 Image textBackground = cells[i].GetComponentsInChildren<Image>()[1];
                 textBackground.color = new Color(0, 0, 0, 0.153f);

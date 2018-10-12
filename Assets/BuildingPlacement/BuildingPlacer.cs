@@ -8,7 +8,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
     public List<BaseBuilding> spawnableBuildings;
 
-    private GameObject placementObject;
+    private BaseBuilding placementObject;
 
     private int gridSquareSize = 2;
 
@@ -69,8 +69,8 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
     void LateUpdate () {
         if (Input.GetMouseButtonDown(0) && placementObject != null && !HitsObstacle(Input.mousePosition))
         {
-            placementObject.GetComponent<PlacementEffect>().Reset();
-            placementObject = null;
+            PlaceObject();
+            
         }
         else if (Input.GetMouseButtonUp(1))
         {
@@ -86,18 +86,27 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
         }
     }
 
+    public void PlaceObject()
+    {
+        Debug.Log("Placeing object");
+        placementObject.GetComponent<PlacementEffect>().Reset();
+        Destroy(placementObject.GetComponent<PlacementEffect>());
+        placementObject.OnPlaced();
+        placementObject = null;
+    }
+
     public void Deselect()
     {
         if (placementObject != null) {
-            Destroy(placementObject);
+            Destroy(placementObject.gameObject);
             placementObject = null;
         }
     }
 
     public void OnToolBarClick(BaseObject obj)
     {
-        placementObject = Instantiate(obj.gameObject);
-        placementObject.GetComponent<PlacementEffect>().Setup();
+        placementObject = Instantiate(obj.gameObject).GetComponent<BaseBuilding>();
+        placementObject.gameObject.AddComponent<PlacementEffect>().Setup();
     }
 
 

@@ -2142,6 +2142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitCost: 0
   health: 100
+  printableName: Light tank
   selectionMarker: {fileID: 0}
   projectilePosition: {fileID: 1582101302624308}
   bulletPrefab: {fileID: 1736002236419254, guid: 8b4960aef68c61142b13ba8ed635bd41,

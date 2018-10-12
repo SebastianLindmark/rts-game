@@ -14,17 +14,19 @@ public class SpawnableBuilding : BaseBuilding, ToolbarClickListener {
     public override void Start()
     {
         base.Start();
+    }
+
+
+    public override void OnPlaced()
+    {
+        base.OnPlaced();
         toolbarController = GameObject.FindGameObjectWithTag("Toolbar").GetComponent<ToolbarController>();
-
-
 
         foreach (BaseUnit unit in spawnableUnits)
         {
             toolbarController.AddToolbarField(unit, GetPlayer(), this);
         }
-
     }
-
 
     public override void RemoveObject()
     {
@@ -50,6 +52,7 @@ public class SpawnableBuilding : BaseBuilding, ToolbarClickListener {
             }
             
             BaseObject instantiated = new BaseFactory().CreateUnit(this, clickedObj, initalPosition);
+
         }
         else
         {

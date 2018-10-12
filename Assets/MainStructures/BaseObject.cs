@@ -10,11 +10,15 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
     public float health = 100;
 
+    public string printableName;
+
     public GameObject selectionMarker;
 
     private GameObject inputManagerGameObject;
 
     private GameObject healthbar;
+
+
 
     public Player GetPlayer()
     {
@@ -121,6 +125,8 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
     virtual public void Start () {
         InputManager inputManager = GameObject.Find("GameControllerObject").GetComponent<InputManager>();
         inputManager.RegisterListener(this);
+
+        Utils.CreateMinimapUnitCube(gameObject);
     }
 
 

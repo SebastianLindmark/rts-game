@@ -2,9 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseBuilding : BaseObject
+public class BaseBuilding : BaseObject, ToolbarClickListener
 {
 
+
+    public List<BaseBuilding> advancementBuildings;
+
+
+    public override void Start()
+    {
+        base.Start();
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+    }
+
+    public virtual void OnPlaced()
+    {
+        ToolbarController toolbarController = GameObject.FindGameObjectWithTag("Toolbar").GetComponent<ToolbarController>();
+        foreach (BaseBuilding building in advancementBuildings)
+        {
+            toolbarController.AddToolbarField(building, GetPlayer(), this);
+        }
+    }
+
+    public override void Attack(BaseObject target)
+    {
+
+    }
 
     public override void OnEnemyClick(BaseObject target)
     {
@@ -16,31 +44,9 @@ public class BaseBuilding : BaseObject
 
     }
 
-    public override void OnSelect()
+    public void OnToolBarClick(BaseObject obj)
     {
-        base.OnSelect();   
+        BuildingPlacer bp = GameObject.Find("GameControllerObject").GetComponent<BuildingPlacer>();
+        bp.OnToolBarClick(obj);
     }
-
-    public override void OnUnselect()
-    {
-        base.OnUnselect();
-    }
-
-    public override void Attack(BaseObject target)
-    {
-        
-    }
-
-
-    // Use this for initialization
-    public override void Start () {
-        base.Start();
-    }
-    
-    // Update is called once per frame
-    public override void Update () {
-        base.Update();
-
-    }
-
 }

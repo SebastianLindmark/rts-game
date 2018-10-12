@@ -259,5 +259,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitCost: 0
   health: 100
+  printableName: Radar
   selectionMarker: {fileID: 0}
-  spawnableUnits: []
+  advancementBuildings: []

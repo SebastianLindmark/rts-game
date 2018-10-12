@@ -1090,6 +1090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitCost: 0
   health: 100
+  printableName: Ore miner
   selectionMarker: {fileID: 0}
   projectilePosition: {fileID: 0}
   bulletPrefab: {fileID: 0}

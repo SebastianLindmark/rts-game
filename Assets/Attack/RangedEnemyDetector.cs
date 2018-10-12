@@ -35,7 +35,6 @@ public class RangedEnemyDetector : MonoBehaviour {
         {
 
             BaseObject collidingObject = GetBaseObject(hitColliders[i]);
-
             if (collidingObject != null && attackRule.canAttack(attachedBaseObj, collidingObject)) {
                 NotifyListeners(collidingObject);
                 return;

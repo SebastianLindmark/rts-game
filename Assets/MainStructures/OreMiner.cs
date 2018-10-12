@@ -52,22 +52,10 @@ public class OreMiner : BaseUnit {
 
             if (refineries[i].GetPlayer().Equals(GetPlayer())) {
                 refineryHomebase = refineries[i];
-                Debug.Log("Found a homebase");
                 break;
             }
         }
-
-        Collider collider = GetComponentInChildren<Collider>();
-        if (collider != null)
-        {
-            //collider.enabled = false;
-            Debug.Log("YEAYY I FOUND ONE");
-        }
-        else
-        {
-            Debug.Log("NOPE SORRY BOIOI");
-        }
-
+        
         Reset();
     }
 
@@ -79,7 +67,6 @@ public class OreMiner : BaseUnit {
     {
         base.Update();
         
-        Debug.Log(mineState);
         switch (mineState) {
             case MineState.IDLE:
                 //check if both minerals and a ore factory exists, iff -> SEARCH

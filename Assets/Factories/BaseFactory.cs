@@ -10,7 +10,15 @@ public class BaseFactory : MonoBehaviour, IBaseFactory {
         
         BaseObject instantiated = Instantiate<BaseObject>(type,position, Quaternion.Euler(new Vector3(1,0,0)));
         instantiated.SetPlayer(self.GetPlayer());
-        Debug.Log("I was instantiated with rotation of " + instantiated.transform.eulerAngles);
+        return instantiated;
+    }
+
+
+    public BaseObject CreateUnit(Player self, BaseObject type, Vector3 position)
+    {
+
+        BaseObject instantiated = Instantiate<BaseObject>(type, position, Quaternion.Euler(new Vector3(1, 0, 0)));
+        instantiated.SetPlayer(self);
         return instantiated;
     }
 

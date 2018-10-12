@@ -37,7 +37,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
         if (placementObject != null)
         {
             
-            if (HitsObstacle(Input.mousePosition))
+            if (HitsObstacle(Input.mousePosition,placementObject.transform))
             {
                 placementObject.GetComponent<PlacementEffect>().ApplyInvalidEffect();
             }
@@ -67,7 +67,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
 
     void LateUpdate () {
-        if (Input.GetMouseButtonDown(0) && placementObject != null && !HitsObstacle(Input.mousePosition))
+        if (Input.GetMouseButtonDown(0) && placementObject != null && !HitsObstacle(Input.mousePosition, placementObject.transform))
         {
             PlaceObject();
             
@@ -110,11 +110,11 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
     }
 
 
-    public bool HitsObstacle(Vector3 clickPosition)
+    public static bool HitsObstacle(Vector3 clickPosition, Transform buildingToPlace)
     {
 
         int layerMask = ((1 << LayerMask.NameToLayer("Building")));
-        Collider[] hitColliders = Physics.OverlapBox(placementObject.transform.position, placementObject.transform.localScale / 2, Quaternion.identity, layerMask);
+        Collider[] hitColliders = Physics.OverlapBox(buildingToPlace.position, buildingToPlace.localScale / 2, Quaternion.identity, layerMask);
         if (hitColliders.Length > 0 ) {
             Debug.Log(hitColliders[0].name);
         }

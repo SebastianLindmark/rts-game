@@ -40,7 +40,6 @@ public class InputManager : MonoBehaviour
 
     void OnGUI()
     {
-
         if (startSelectionDrag != Vector3.zero)
         {
             Vector3 curPos = Input.mousePosition;
@@ -69,7 +68,7 @@ public class InputManager : MonoBehaviour
             Debug.Log("Mouse down");
             startSelectionDrag = Input.mousePosition;
         }
-        else if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
         {
 
             Vector3 worldPosClick = ConvertMousePosToWorldSpace(Input.mousePosition);
@@ -110,6 +109,7 @@ public class InputManager : MonoBehaviour
             DeselectObjects();
             startSelectionDrag = Vector3.zero;
         }
+        
         
     }
 
@@ -207,6 +207,8 @@ public class InputManager : MonoBehaviour
 
     private List<BaseObject> GetSelectedObjects(Bounds bounds) {
         List<BaseObject> selectedObjects = new List<BaseObject>();
+
+        Debug.Log("Getting selected objects");
 
         foreach (BaseObject unit in inputListeners)
         {

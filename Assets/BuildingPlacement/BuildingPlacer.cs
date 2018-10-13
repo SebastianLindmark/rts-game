@@ -99,9 +99,8 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
     public void Deselect()
     {
-        Debug.Log("On deselect");
         if (placementObject != null) {
-            Destroy(placementObject.gameObject);
+            placementObject.RemoveObject();
             placementObject = null;
         }
     }
@@ -118,7 +117,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
     {
 
         int layerMask = ((1 << LayerMask.NameToLayer("Building")));
-        Collider[] hitColliders = Physics.OverlapBox(buildingToPlace.position, buildingToPlace.localScale / 2, Quaternion.identity, layerMask);
+        Collider[] hitColliders = Physics.OverlapBox(buildingToPlace.position, buildingToPlace.localScale, Quaternion.identity, layerMask);
         if (hitColliders.Length > 0 ) {
             Debug.Log(hitColliders[0].name);
         }

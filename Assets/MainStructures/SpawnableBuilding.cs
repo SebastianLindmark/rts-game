@@ -22,24 +22,30 @@ public class SpawnableBuilding : BaseBuilding, ToolbarClickListener {
         base.OnCreated();
         toolbarController = GameObject.FindGameObjectWithTag("Toolbar").GetComponent<ToolbarController>();
 
+        
+        PlayerDataEnvironment.PlayerEnvironment pEnv = PlayerDataEnvironment.GetPlayerEnvironment(GetPlayer());
+
         foreach (BaseUnit unit in spawnableUnits)
         {
-            toolbarController.AddToolbarField(unit, GetPlayer(), this);
+            pEnv.GetBuildableObjects().AddObject(GetPlayer(), unit, this);
         }
     }
 
     public override void RemoveObject()
     {
         base.RemoveObject();
+
+        PlayerDataEnvironment.PlayerEnvironment pEnv = PlayerDataEnvironment.GetPlayerEnvironment(GetPlayer());
+
         for (int i = 0; i < spawnableUnits.Count; i++) {
-            toolbarController.RemoveElement(spawnableUnits[i]);
+            pEnv.GetBuildableObjects().RemoveElement(spawnableUnits[i]);
         }
 
     }
 
     public void OnToolBarClick(BaseObject clickedObj)
     {
-        if (clickedObj.unitCost < GetPlayer().availableFunds)
+        if (clickedObj.unitCost < GetAvailableGold())
         {
             Vector3 initalPosition;
             if (!spawnLocation)
@@ -63,6 +69,15 @@ public class SpawnableBuilding : BaseBuilding, ToolbarClickListener {
 
     private Vector3 GetRandomCloseLocation() {
         return transform.position + new Vector3(Random.Range(10, 15), 5, Random.Range(10, 15));
+    }
+
+    protected int GetAvailableGold() {
+        return PlayerDataEnvironment.GetPlayerEnvironment(GetPlayer()).GetGoldResource().GetAvailableResources();
+    }
+
+    protected int GetAvailableOil()
+    {
+        return PlayerDataEnvironment.GetPlayerEnvironment(GetPlayer()).GetOilResource().GetAvailableResources();
     }
 
 

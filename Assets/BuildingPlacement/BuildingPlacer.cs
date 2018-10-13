@@ -16,10 +16,13 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
         
         toolbarController = GameObject.FindGameObjectWithTag("Toolbar").GetComponent<ToolbarController>();
+        Player player = PlayerManager.humanPlayer;
+        PlayerDataEnvironment.PlayerEnvironment pEnv = PlayerDataEnvironment.GetPlayerEnvironment(player);
+
 
         foreach (BaseBuilding building in spawnableBuildings)
         {
-            toolbarController.AddToolbarField(building, GetComponent<PlayerInitializer>().GetPlayer(), this);
+            pEnv.GetBuildableObjects().AddObject(player, building, this);
         }
         
     }

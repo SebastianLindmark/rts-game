@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ToolbarData {
+public class PlayerBuildableObjectData {
 
     public BaseObject Obj { get; }
     public Player Player { get; }
     public ToolbarClickListener ClickListener { get; }
 
-    public ToolbarData(BaseObject o, Player player, ToolbarClickListener clickListener) {
+    public PlayerBuildableObjectData(Player player, BaseObject o, ToolbarClickListener responsibleForCreation) {
         Obj = o;
         Player = player;
-        ClickListener = clickListener;
+        ClickListener = responsibleForCreation;
     }
 }

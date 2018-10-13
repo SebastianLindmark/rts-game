@@ -6,9 +6,25 @@ public class PlayerInitializer : MonoBehaviour {
 
     private Player player;
 
-	// Use this for initialization
-	void Awake () {
-        player = PlayerManager.CreatePlayer();
+    public bool isHumanPlayer;
+
+    public int startGold;
+
+    public int startOil;
+
+    public List<BaseBuilding> objectsBuildableFromStart;
+
+    void Awake () {
+        if (isHumanPlayer)
+        {
+            player = PlayerManager.CreateHumanPlayer();
+        }
+        else {
+            player = PlayerManager.CreatePlayer();
+        }
+        
+
+        PlayerDataEnvironment.Register(player, new GameResource(startGold), new GameResource(startOil), new PlayerBuildableObjects());        
 	}
 
     public Player GetPlayer() {

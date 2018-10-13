@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ToolbarController : MonoBehaviour,ItemClick {
+public class ToolbarController : MonoBehaviour,ItemClick, PlayerBuildableObjects.OnBuildableObjectChange {
 
 
     public enum ToolbarState {
@@ -19,13 +19,11 @@ public class ToolbarController : MonoBehaviour,ItemClick {
 
     private Hashtable existingObjects = new Hashtable();
 
-    private List<ToolbarData> availableBuildings = new List<ToolbarData>();
-    private List<ToolbarData> availableUnits = new List<ToolbarData>();
-
     private ToolbarState toolbarState;
 
-    //private Transform[] cells;
     private List<Transform> cells = new List<Transform>();
+
+    private PlayerBuildableObjects buildableObjects;
 
     void Start () {
 
@@ -33,59 +31,14 @@ public class ToolbarController : MonoBehaviour,ItemClick {
             t.GetComponent<ToolbarItemClickRegister>().AddClickListener(cells.Count,this);
             cells.Add(t);
         }
+
+        Player humanPlayer = PlayerManager.humanPlayer;
+        buildableObjects = PlayerDataEnvironment.GetPlayerEnvironment(humanPlayer).GetBuildableObjects();
+        buildableObjects.AddChangeListener(this);
         RedrawToolbar();
     }
 
-    public void AddToolbarField(BaseUnit unit, Player player, ToolbarClickListener clickListener)
-    {
-        if (!existingObjects.Contains(unit.name))
-        {
-            availableUnits.Add(new ToolbarData(unit, player, clickListener));
-            existingObjects.Add(unit.name, unit);
-            RedrawToolbar();
-        }
-        
-    }
-
-    public void AddToolbarField(BaseBuilding building, Player player, ToolbarClickListener clickListener) {
-        Debug.Log(building);
-        Debug.Log(building.name);
-        if (!existingObjects.Contains(building.name))
-        {
-            availableBuildings.Add(new ToolbarData(building, player, clickListener));
-            existingObjects.Add(building.name, building);
-            RedrawToolbar();
-        }
-    }
-
-    public void RemoveElement(BaseObject baseObject) {
-        if (existingObjects.Contains(baseObject.name))
-        {
-            existingObjects.Remove(baseObject.name);
-        }
-
-        bool found = false;
-        for (int i = 0; i < availableBuildings.Count && !found; i++){
-            ToolbarData td = availableBuildings[i];
-            if (td.Obj == baseObject)
-            {
-                availableBuildings.Remove(td);
-                found = true;
-            }
-        }
-        for (int i = 0; i < availableUnits.Count && !found; i++)
-        {
-            ToolbarData td = availableUnits[i];
-            if (td.Obj == baseObject)
-            {
-                availableUnits.Remove(td);
-                found = true;
-            }
-        }
-        Debug.Log("Units after " + availableUnits.Count);
-
-        RedrawToolbar();
-    }
+    
 
     public void SetDisplayState(ToolbarState state) {
         if (toolbarState != state) {
@@ -97,13 +50,13 @@ public class ToolbarController : MonoBehaviour,ItemClick {
 
     private void RedrawToolbar()
     {
-        List<ToolbarData> objs;
+        List<PlayerBuildableObjectData> objs;
         if (toolbarState == ToolbarState.BUILDING)
         {
-            objs = availableBuildings;
+            objs = buildableObjects.getAvailableBuildings();
         }
         else {
-            objs = availableUnits;
+            objs = buildableObjects.getAvailableUnits();
         }
 
 
@@ -131,49 +84,26 @@ public class ToolbarController : MonoBehaviour,ItemClick {
 
     }
 
-
-   /* public void PopulateToolbar(List<BaseObject> data, Player player, ToolbarClickListener clickListener)
-    {
-        toolbarData = new ToolbarData(data, player, clickListener);
-        List<BaseObject> objs = toolbarData.Data;
-
-        for (int i = 0; i < cells.Count; i++)
-        {
-            
-            if (objs.Count > i) {
-                Text text = cells[i].GetComponentInChildren<Text>();
-                text.text = objs[i].name;
-                
-                Image textBackground = cells[i].GetComponentsInChildren<Image>()[1];
-                textBackground.color = new Color(0,0,0,0.153f);
-            }
-            else
-            {
-                cells[i].GetComponentInChildren<Text>().text = "";
-                Image imageBox = cells[i].GetComponentInChildren<Image>();
-                Image textBackground = imageBox.GetComponentsInChildren<Image>()[1]; //Gives the parent component at index 0
-                textBackground.color = Color.clear;
-            }
-            
-        }
-
-    }*/
-    
-   
+ 
     public void OnClicked(int id)
     {
-        ToolbarData toolbarEntry = null;
-        if (toolbarState == ToolbarState.BUILDING && id < availableBuildings.Count)
+        PlayerBuildableObjectData toolbarEntry = null;
+        if (toolbarState == ToolbarState.BUILDING && id < buildableObjects.getAvailableBuildings().Count)
         {
-            toolbarEntry = availableBuildings[id];
+            toolbarEntry = buildableObjects.getAvailableBuildings()[id];
         }
-        else if (toolbarState == ToolbarState.UNIT && id < availableUnits.Count) {
-            toolbarEntry = availableUnits[id];
+        else if (toolbarState == ToolbarState.UNIT && id < buildableObjects.getAvailableUnits().Count) {
+            toolbarEntry = buildableObjects.getAvailableUnits()[id];
         }
 
         if (toolbarEntry != null) {
             toolbarEntry.ClickListener.OnToolBarClick(toolbarEntry.Obj);
         }
         
+    }
+
+    public void OnAvailableBuildingsChanged()
+    {
+        RedrawToolbar();
     }
 }

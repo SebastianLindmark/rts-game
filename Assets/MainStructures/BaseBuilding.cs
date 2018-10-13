@@ -22,10 +22,12 @@ public class BaseBuilding : BaseObject, ToolbarClickListener
 
     public virtual void OnCreated()
     {
-        ToolbarController toolbarController = GameObject.FindGameObjectWithTag("Toolbar").GetComponent<ToolbarController>();
-        foreach (BaseBuilding building in advancementBuildings)
+        Player player = PlayerManager.humanPlayer;
+        PlayerDataEnvironment.PlayerEnvironment pEnv = PlayerDataEnvironment.GetPlayerEnvironment(player);
+
+        foreach (BaseBuilding unit in advancementBuildings)
         {
-            toolbarController.AddToolbarField(building, GetPlayer(), this);
+            pEnv.GetBuildableObjects().AddObject(player, unit, this);
         }
 
         NotifyObjectCreation();

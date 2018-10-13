@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,19 +9,20 @@ public class PlayerManager : MonoBehaviour {
     
     public static List<Player> playerList = new List<Player>();
 
+    public static Player humanPlayer;
+
     public static Player CreatePlayer()
     {
         Player player = new Player();
         playerList.Add(player);
         return player;
-    } 
-    
-    void Start () {
-   
     }
-    
-    
-    void Update () {
-        
+
+    public static Player CreateHumanPlayer()
+    {
+        Player player = CreatePlayer();
+        humanPlayer = player;
+        return player;
     }
+
 }

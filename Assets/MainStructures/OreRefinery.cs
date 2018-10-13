@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class OreRefinery : SpawnableBuilding {
 
-
-    private GameResourceManager resourceManager;
-
     public BaseObject spawnOnCreation;
 
     public GameObject entrancePosition;
@@ -21,12 +18,16 @@ public class OreRefinery : SpawnableBuilding {
     public GameObject smokeLocation1;
     public GameObject smokeLocation2;
 
+    private GameResource goldResource;
+
     private ParticleSystem ps;
+
 
     public override void Start()
     {
         base.Start();
-        resourceManager = GameObject.Find("GameControllerObject").GetComponent<GameResourceManager>();
+        goldResource = PlayerDataEnvironment.GetPlayerEnvironment(GetPlayer()).GetGoldResource();
+
     }
 
     public Vector3 GetEntrancePosition() {
@@ -54,8 +55,8 @@ public class OreRefinery : SpawnableBuilding {
 
     }
 
-    public void AddResources(int coins) {
-        resourceManager.addResource(0, coins);
+    public void AddResources(int gold) {
+        goldResource.AddResource(gold);
         enableSmokeEffect();
     }
 

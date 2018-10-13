@@ -116,8 +116,5 @@ public class GameResourceManager : MonoBehaviour {
             coinResourceText.text = displayedCoinResource + "";
         }
 
-        
-        
-
     }
 }

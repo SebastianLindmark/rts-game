@@ -102,7 +102,8 @@ public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
 
         if (!BuildingPlacer.HitsObstacle(possibleBuildingPlacement, target.transform))
         {
-            Debug.Log("Trying to build a building at " + possibleBuildingPlacement);
+            possibleBuildingPlacement.y += target.transform.position.y; //Offset the building to be above ground
+            
             BaseBuilding newObject = new BaseFactory().CreateUnit(player, target, possibleBuildingPlacement) as BaseBuilding;
             newObject.AddLifecycleListener(this);
             newObject.OnCreated();
@@ -117,13 +118,10 @@ public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
 
     public void onCreated(BaseObject baseObject)
     {
-        Debug.Log("Object created");
         if (!builtObjects.ContainsKey(baseObject.printableName))
         {
-            Debug.Log("Adding " + baseObject.printableName + " to dictornary");
             builtObjects[baseObject.printableName] = new List<BaseObject>();
         }
-        Debug.Log("Adding " + baseObject.printableName + " to list");
         builtObjects[baseObject.printableName].Add(baseObject);
     }
 

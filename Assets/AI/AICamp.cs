@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AICamp : MonoBehaviour {
 
-    private Vector3 campLocation;
+    private Vector3 campLocation = new Vector3(0,0,0);
 
-    private float campRadius = 100; //Will be changed dynamically as camp grows.
+    private float campRadius = 25; //Will be changed dynamically as camp grows.
 
 	void Start () {
 		

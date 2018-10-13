@@ -10,5 +10,7 @@ public abstract class AIBaseHandler : MonoBehaviour{
 
     public abstract void MakeAction();
 
+    public abstract void SetPlayer(Player player);
+
 
 }

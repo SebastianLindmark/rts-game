@@ -17,9 +17,9 @@ public class SpawnableBuilding : BaseBuilding, ToolbarClickListener {
     }
 
 
-    public override void OnPlaced()
+    public override void OnCreated()
     {
-        base.OnPlaced();
+        base.OnCreated();
         toolbarController = GameObject.FindGameObjectWithTag("Toolbar").GetComponent<ToolbarController>();
 
         foreach (BaseUnit unit in spawnableUnits)

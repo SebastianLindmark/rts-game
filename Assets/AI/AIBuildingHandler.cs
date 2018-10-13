@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
@@ -7,20 +8,20 @@ public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
 
     public List<BaseObject> neccesaryObjects; //Will be Tank builder and an Ore refinery
 
-    //private List<BaseObject> builtObjects;
+    
 
     private Dictionary<string, List<BaseObject>> builtObjects = new Dictionary<string,List<BaseObject>>();
 
     private int advancementLevel = 0;
 
-    void Start () {
-		
-	}
-	
+    private Player player;
+    
 
-	void Update () {
-		
-	}
+    public override void SetPlayer(Player player)
+    {
+        this.player = player;
+    }
+
 
     public override void Advance()
     {
@@ -29,8 +30,11 @@ public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
 
     private bool HasBuiltObject(BaseObject target)
     {
-
-        return builtObjects.ContainsKey(target.name) && builtObjects[target.name].Count > 0;
+        
+        //Debug.Log(PrefabUtility.GetCorrespondingObjectFromSource(target.gameObject));
+        //Debug.Log("Checking if " + target.name + " exists");
+        //Debug.Log(builtObjects.ContainsKey(target.printableName) && builtObjects[target.printableName].Count > 0);
+        return builtObjects.ContainsKey(target.printableName) && builtObjects[target.printableName].Count > 0;
         
     }
 
@@ -63,7 +67,22 @@ public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
                 }
             }
         }
+        else {
+            Debug.Log("All neccesary buildings has been built");
+        }
     }
+
+    private Vector3 GetRandomPositionInsideCamp(Vector3 campLocation, float campRadius) {
+
+        Vector3 possibleBuildingPlacement = Vector3.zero;
+        Vector2 temp = (Random.insideUnitCircle * campRadius);
+        possibleBuildingPlacement.x = temp.x;
+        possibleBuildingPlacement.z = temp.y;
+        possibleBuildingPlacement += campLocation;
+        return possibleBuildingPlacement;
+
+    }
+
 
     private void BuildBuilding(BaseObject target)
     {
@@ -71,24 +90,22 @@ public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
         Vector3 campLocation = camp.GetCampLocation();
         float campRadius = camp.GetCampRadius();
 
-        
-        Vector3 possibleBuildingPlacement = (Random.insideUnitCircle * campRadius);
-        possibleBuildingPlacement += campLocation;
+
+        Vector3 possibleBuildingPlacement = GetRandomPositionInsideCamp(campLocation, campRadius);
 
         //Try to place object around camp max 10 times.
         for (int i = 0; i < 10 && !BuildingPlacer.HitsObstacle(possibleBuildingPlacement, target.transform); i++)
         {
-            possibleBuildingPlacement = (Random.insideUnitCircle * campRadius);
-            possibleBuildingPlacement += campLocation;
+            possibleBuildingPlacement = GetRandomPositionInsideCamp(campLocation, campRadius);
         }
 
 
         if (!BuildingPlacer.HitsObstacle(possibleBuildingPlacement, target.transform))
         {
-
-            Player aiPlayer= GameObject.Find("AIHandler").GetComponent<Player>();
-            BaseObject newObject = new BaseFactory().CreateUnit(aiPlayer, target, possibleBuildingPlacement);
-            newObject.AddLifecycleListener(this); 
+            Debug.Log("Trying to build a building at " + possibleBuildingPlacement);
+            BaseBuilding newObject = new BaseFactory().CreateUnit(player, target, possibleBuildingPlacement) as BaseBuilding;
+            newObject.AddLifecycleListener(this);
+            newObject.OnCreated();
         }
         else
         {
@@ -100,17 +117,20 @@ public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
 
     public void onCreated(BaseObject baseObject)
     {
-        if (!builtObjects.ContainsKey(baseObject.name))
+        Debug.Log("Object created");
+        if (!builtObjects.ContainsKey(baseObject.printableName))
         {
-            builtObjects[baseObject.name] = new List<BaseObject>();
+            Debug.Log("Adding " + baseObject.printableName + " to dictornary");
+            builtObjects[baseObject.printableName] = new List<BaseObject>();
         }
-
-        builtObjects[baseObject.name].Add(baseObject);
+        Debug.Log("Adding " + baseObject.printableName + " to list");
+        builtObjects[baseObject.printableName].Add(baseObject);
     }
 
     public void onRemoved(BaseObject baseObject)
     {
-        List<BaseObject> builtObjs = builtObjects[baseObject.name];
+        Debug.Log("Object removed");
+        List<BaseObject> builtObjs = builtObjects[baseObject.printableName];
         
 
         for (int i = 0; i < builtObjs.Count; i++)
@@ -123,4 +143,6 @@ public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
             }
         }
     }
+
+   
 }

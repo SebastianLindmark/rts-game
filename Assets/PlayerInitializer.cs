@@ -7,7 +7,7 @@ public class PlayerInitializer : MonoBehaviour {
     private Player player;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         player = PlayerManager.CreatePlayer();
 	}
 

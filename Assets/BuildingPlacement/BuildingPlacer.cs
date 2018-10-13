@@ -91,7 +91,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
         Debug.Log("Placeing object");
         placementObject.GetComponent<PlacementEffect>().Reset();
         Destroy(placementObject.GetComponent<PlacementEffect>());
-        placementObject.OnPlaced();
+        placementObject.OnCreated();
         placementObject = null;
     }
 

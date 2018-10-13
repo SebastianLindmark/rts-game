@@ -33,9 +33,9 @@ public class OreRefinery : SpawnableBuilding {
         return entrancePosition.transform.position;
     }
 
-    public override void OnPlaced()
+    public override void OnCreated()
     {
-        base.OnPlaced();
+        base.OnCreated();
 
         if (spawnOnCreation)
         {

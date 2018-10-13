@@ -91,7 +91,6 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
     public void PlaceObject()
     {
-        Debug.Log("Placeing object");
         placementObject.GetComponent<PlacementEffect>().Reset();
         Destroy(placementObject.GetComponent<PlacementEffect>());
         placementObject.OnCreated();
@@ -100,6 +99,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
     public void Deselect()
     {
+        Debug.Log("On deselect");
         if (placementObject != null) {
             Destroy(placementObject.gameObject);
             placementObject = null;
@@ -108,7 +108,8 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
     public void OnToolBarClick(BaseObject obj)
     {
-        placementObject = Instantiate(obj.gameObject).GetComponent<BaseBuilding>();
+        Vector3 startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        placementObject = new BaseFactory().CreateUnit(PlayerManager.humanPlayer, obj, startPosition) as BaseBuilding;
         placementObject.gameObject.AddComponent<PlacementEffect>().Setup();
     }
 

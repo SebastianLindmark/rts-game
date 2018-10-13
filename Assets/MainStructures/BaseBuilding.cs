@@ -22,12 +22,11 @@ public class BaseBuilding : BaseObject, ToolbarClickListener
 
     public virtual void OnCreated()
     {
-        Player player = PlayerManager.humanPlayer;
-        PlayerDataEnvironment.PlayerEnvironment pEnv = PlayerDataEnvironment.GetPlayerEnvironment(player);
+        PlayerDataEnvironment.PlayerEnvironment pEnv = PlayerDataEnvironment.GetPlayerEnvironment(GetPlayer());
 
         foreach (BaseBuilding unit in advancementBuildings)
         {
-            pEnv.GetBuildableObjects().AddObject(player, unit, this);
+            pEnv.GetBuildableObjects().AddObject(GetPlayer(), unit, this);
         }
 
         NotifyObjectCreation();

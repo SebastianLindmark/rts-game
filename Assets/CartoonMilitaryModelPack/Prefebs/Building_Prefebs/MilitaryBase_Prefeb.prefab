@@ -10,7 +10,7 @@ GameObject:
   - component: {fileID: 475750}
   - component: {fileID: 3317340}
   - component: {fileID: 2373484}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Antena10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 438608}
   - component: {fileID: 3359612}
   - component: {fileID: 2308080}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Antena9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 458094}
   - component: {fileID: 3318686}
   - component: {fileID: 2316162}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Antena3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 485244}
   - component: {fileID: 3301604}
   - component: {fileID: 2347684}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Antena5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 463080}
   - component: {fileID: 3326368}
   - component: {fileID: 2311474}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Antena8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 405624}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Antena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 406624}
   - component: {fileID: 3306248}
   - component: {fileID: 2327644}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Antena7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 402936}
   - component: {fileID: 3348616}
   - component: {fileID: 2346576}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Antena11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 427720}
   - component: {fileID: 114927098608620294}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MilitaryBase_Prefeb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 466284}
   - component: {fileID: 3396982}
   - component: {fileID: 2315628}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Antena4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 407582}
   - component: {fileID: 3366200}
   - component: {fileID: 2344620}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Antena6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 463212}
   - component: {fileID: 9572938}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MilitaryBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 467626}
   - component: {fileID: 3346400}
   - component: {fileID: 2354330}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Antena12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 406102}
   - component: {fileID: 3340144}
   - component: {fileID: 2379114}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Antena2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 465164}
   - component: {fileID: 3332940}
   - component: {fileID: 2334050}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Antena 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 467190}
   - component: {fileID: 3385552}
   - component: {fileID: 2313050}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MilitaryBase_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1083,3 +1083,4 @@ MonoBehaviour:
   selectionMarker: {fileID: 0}
   advancementBuildings:
   - {fileID: 114882463106297222, guid: 7a95816aadbfe49db81a2937fca2055a, type: 2}
+  - {fileID: 114811659807151646, guid: 47fc85326e071424d852735168bcd9e9, type: 2}

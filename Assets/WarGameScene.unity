@@ -256,7 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAIIeyBKN9fQAIAANoEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMty2jAU/RVG6yZjOzEM3bUOoV0QMqGdbrwR8jXWIEsePQKE4d97JRswZmX5nPs49yEdCZemAWaVnmteLFQB5PuI+DP5NiI0cB/UcoVwjAg3qgarOfshN8LbRgg6yUul61mxgUwZaxAuqTCAlFbWe0uEjiOy7xwO3ffLf0cnPDGQFvS91UMSP6bjJB6Pkxt7J5mgdQPFin/B1S2OorOnPwZTiUV1Vr4CpoTgppNE7KEJFWe0MQ4LQoOCUywxiPH2FfBNZfEn6Tsvy9KA7YRqenjhGjvVRiU/la18pJqabavtkwrn8zxFkySIaqMu7gzSuOVLrepf58xxKMpWnG0/6IFRY3sd7sMvt9Kd3FGxpWsB/yqQb2qulZMFklY77+oMJC+9UJfqsgrY9mrXih2ArrmfVnyd0SnUv88Er9ceeXxugZVQoeNT7wMaZ/MbBYcdMV0kRL2Ivwb+0E1/mTrilWtjkeoSSq9urZz2pmQWeuaLcTZTWkKAO80NSCrs4R3D2OEQB1wv7YB5pf66dMk77nwbBi4BvtpH0YB6V7vLsEyldgsw1dJZwWU/mGfesFGZkrJdMjNgvd/K6ZKyvt/G8eJ2uwgwNllPaQxRzNYpTB7GT+mYJlMo0qc0fQYgYfu4xEqpeG+ldg3CuclrKyVu2vmpGM01bcLGF5ru5vyrVr2mc1mqFdMActlGuCgHjUnwZhazgmOLVmAtl2Hi5JgTodgWivwSKA+lzvZW0/waJScN/1TWIznJwiuSkxM5/QdQSwMEFAAACAgAAAgh7Bgsi8RtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPUMzTTUVBKL0osyCgGihiCOKWZKSB2tFJqcrJ5kmWiYaqBYXKSaaq5rpmxqVmikWVqiqmxqalJaqpSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAgh7IEo319AAgAA2gQAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAgh7Bgsi8RtAAAAeAAAAAkAJAAAAAAAAAAAAAAAjQIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABFAwAAAAA=
+    dataString: UEsDBBQAAAgIAAAIIey+ZvwYQAIAANQEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMty2jAU/RVG6yZjm5hMumsdQrvIY0I73Xgj5GusQZY8eoQAw7/3ShbYkJXlc+7j3Id0IFyaDphVeqF59awqIN8nxJ/JtwmhgXunliuEU0S4US1YzdkPuRbeNkHQSV4r3c6rNRTKWINwTYUBpLSy3lsidJiQz+iwi9+9/06OeGIgLeivVjdZepvPsnQ2yy7snWSCth1US76HwS1PTo54CoYSS4o2Xj9TQnATBRG760K9Be2Mw3LQoOIUCwxSvH0DfN1Y/MnGzq91bcBGmZruHrnGPvVRyU9lGx+ppWbTK/ugwvk80+Q+C6L6qM9fDPK052ut2l+nzGmoyTacbd7pjlFjR/0dw4+X0p3cUrGhKwH/GpAvaqGVkxWSVjvv6gxkj6NQ5+qKBthmsOvFXoGu+zqrdJjQMdT/WQjerjxye9cDS6FCxx+8D2iczW8UHDbExEiIehF/Dfyh6/EqReKJa2ORigmlV7dSTntT8oQH33vmbKG0hIBGyR1IKuzuDaPY6xlecaOsV8wT9Xcl5o7c6SpcuQR4sE+SK+pNbc+zMo3aPoNpXp0VXMIg2hMv2KZCSdmvmLkkvdfS6Zqykdfa8epyswgwdr96oCkkKVvlcH8zm+Yzmj1AlU/z/A6AhM3jEsuk4q3XGbuDM5NDcIlbdnokJgtNu7DtlabbBd+3aqSPy1otmQaQr32EU4cMaEyCt7KaVxz7swRruQzTJoeSCMU2UJXnQGWodP5pNS2HKCXp+IeyHilJEd6PkhzJ8T9QSwMEFAAACAgAAAgh7Bgsi8RtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPUMzTTUVBKL0osyCgGihiCOKWZKSB2tFJqcrJ5kmWiYaqBYXKSaaq5rpmxqVmikWVqiqmxqalJaqpSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAgh7L5m/BhAAgAA1AQAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAgh7Bgsi8RtAAAAeAAAAAkAJAAAAAAAAAAAAAAAjQIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABFAwAAAAA=
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -490,6 +490,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5019cc34d8ef24442a88e358a1612083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &171630350
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 493476420}
+    m_Modifications:
+    - target: {fileID: 4978644691497462, guid: ce177063728cbf848a24a722dcf6e5e3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 40.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978644691497462, guid: ce177063728cbf848a24a722dcf6e5e3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.3297454
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978644691497462, guid: ce177063728cbf848a24a722dcf6e5e3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 29.279842
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978644691497462, guid: ce177063728cbf848a24a722dcf6e5e3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978644691497462, guid: ce177063728cbf848a24a722dcf6e5e3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978644691497462, guid: ce177063728cbf848a24a722dcf6e5e3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978644691497462, guid: ce177063728cbf848a24a722dcf6e5e3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978644691497462, guid: ce177063728cbf848a24a722dcf6e5e3, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ce177063728cbf848a24a722dcf6e5e3, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!4 &275206449 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 412698, guid: 5d3da218c80d84fd2b8d58ccb621b129,
@@ -992,6 +1034,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a7073636bf9c94ba68c43bb5c70b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &493476416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 493476420}
+  - component: {fileID: 493476419}
+  - component: {fileID: 493476418}
+  - component: {fileID: 493476417}
+  m_Layer: 0
+  m_Name: AIHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &493476417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 493476416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a17fcb24c3d21b4478bfcdbc72473565, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &493476418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 493476416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77e9f2095ce99649bf5d884bd5e44d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &493476419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 493476416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344cf9c14cada184a8b414ff579eaee5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHumanPlayer: 0
+  startGold: 0
+  startOil: 0
+  objectsBuildableFromStart: []
+--- !u!4 &493476420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 493476416}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -35.60678, y: 1.3959107, z: 41.588707}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1288293275}
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &525706915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1473,7 +1584,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 475122, guid: 87611ddf2b4a04e1f81acc90cbecbd09, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 40.6
+      value: 36.7
       objectReference: {fileID: 0}
     - target: {fileID: 475122, guid: 87611ddf2b4a04e1f81acc90cbecbd09, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1481,7 +1592,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 475122, guid: 87611ddf2b4a04e1f81acc90cbecbd09, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 28.4
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 475122, guid: 87611ddf2b4a04e1f81acc90cbecbd09, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2376,6 +2487,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344cf9c14cada184a8b414ff579eaee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHumanPlayer: 1
+  startGold: 1000
+  startOil: 1000
+  objectsBuildableFromStart: []
 --- !u!4 &1042598650
 Transform:
   m_ObjectHideFlags: 0
@@ -2429,8 +2544,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oilResourceText: {fileID: 1547265387}
   coinResourceText: {fileID: 1201913895}
-  startOilResource: 0
-  startCoinResource: 0
 --- !u!1 &1056426822
 GameObject:
   m_ObjectHideFlags: 0
@@ -2970,6 +3083,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1221676163}
   m_CullTransparentMesh: 0
+--- !u!4 &1288293275 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4978644691497462, guid: ce177063728cbf848a24a722dcf6e5e3,
+    type: 2}
+  m_PrefabInternal: {fileID: 171630350}
 --- !u!1 &1303532673
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - component: {fileID: 443702}
   - component: {fileID: 9567092}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: VehicleHangar_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ GameObject:
   m_Component:
   - component: {fileID: 406182}
   - component: {fileID: 114882463106297222}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: OreRefinery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3310994}
   - component: {fileID: 2340554}
   - component: {fileID: 65522813384884494}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: VehicleHangar_03_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4113495845545206}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Smoke2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 33805646499032910}
   - component: {fileID: 23948460190212636}
   - component: {fileID: 136288562422717408}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Chimney2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735393152553628}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Smoke1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 33611914476588834}
   - component: {fileID: 23148416197625146}
   - component: {fileID: 136428906464912514}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Chimney1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4512854223923064}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EntrancePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}

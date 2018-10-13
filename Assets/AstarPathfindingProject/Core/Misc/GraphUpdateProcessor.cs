@@ -386,6 +386,7 @@ namespace Pathfinding {
 		 * \see Pathfinding.Node.area
 		 */
 		public void FloodFill () {
+            return;
 			var graphs = astar.graphs;
 
 			if (graphs == null) {

@@ -81,8 +81,8 @@ GameObject:
   - component: {fileID: 114494411131164478}
   - component: {fileID: 114810042136224190}
   - component: {fileID: 143903999645532418}
-  - component: {fileID: 114919550918006250}
   - component: {fileID: 114250502974282522}
+  - component: {fileID: 114966128082019302}
   m_Layer: 0
   m_Name: Tank_01_Prefeb
   m_TagString: Untagged
@@ -2158,6 +2158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   attackRange: 50
+  fireRate: 2
   attackState: 0
   attackOpponent: {fileID: 0}
 --- !u!114 &114465006122142840
@@ -2352,20 +2353,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114919550918006250
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 126358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a84701d674feb1644a56b5456fda5703, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitCost: 0
-  health: 100
-  selectionMarker: {fileID: 0}
 --- !u!114 &114932810673201894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2393,6 +2380,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114966128082019302
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126358}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 5160169539079865067
+  updateError: 1
+  checkTime: 0.2
 --- !u!143 &143903999645532418
 CharacterController:
   m_ObjectHideFlags: 1

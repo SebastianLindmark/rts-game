@@ -11,9 +11,6 @@ public class ToolbarResourceController : MonoBehaviour {
 
     public Text coinResourceText;
 
-    public int startOilResource;
-    public int startCoinResource;
-
     private int displayedOilResource = 0;
     private int displayedCoinResource = 0;
 
@@ -32,8 +29,10 @@ public class ToolbarResourceController : MonoBehaviour {
     void Update () {
 
         float k = 20f;
-        
-        if((oilResource.GetAvailableResources() - displayedOilResource) / k < 1f){
+
+        //p-regulator
+
+        if ((oilResource.GetAvailableResources() - displayedOilResource) / k < 1f){
             displayedOilResource = oilResource.GetAvailableResources();
         }else{
             displayedOilResource += Mathf.RoundToInt((oilResource.GetAvailableResources() - displayedOilResource) / k);

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIBuildingHandler : AIBaseHandler {
+public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
 
 
     public List<BaseObject> neccesaryObjects; //Will be Tank builder and an Ore refinery
 
     //private List<BaseObject> builtObjects;
 
-    private Dictionary<string,int> builtObjects = new Dictionary<string,int>();
+    private Dictionary<string, List<BaseObject>> builtObjects = new Dictionary<string,List<BaseObject>>();
 
     private int advancementLevel = 0;
 
@@ -30,7 +30,7 @@ public class AIBuildingHandler : AIBaseHandler {
     private bool HasBuiltObject(BaseObject target)
     {
 
-        return builtObjects.ContainsKey(target.name) && builtObjects[target.name] > 0;
+        return builtObjects.ContainsKey(target.name) && builtObjects[target.name].Count > 0;
         
     }
 
@@ -83,21 +83,12 @@ public class AIBuildingHandler : AIBaseHandler {
         }
 
 
-
-
         if (!BuildingPlacer.HitsObstacle(possibleBuildingPlacement, target.transform))
         {
 
             Player aiPlayer= GameObject.Find("AIHandler").GetComponent<Player>();
             BaseObject newObject = new BaseFactory().CreateUnit(aiPlayer, target, possibleBuildingPlacement);
-            if (builtObjects.ContainsKey(target.name))
-            {
-                builtObjects[target.name]++;
-            }
-            else
-            {
-                builtObjects.Add(target.name, 1);
-            }
+            newObject.AddLifecycleListener(this); 
         }
         else
         {
@@ -107,5 +98,29 @@ public class AIBuildingHandler : AIBaseHandler {
 
     }
 
+    public void onCreated(BaseObject baseObject)
+    {
+        if (!builtObjects.ContainsKey(baseObject.name))
+        {
+            builtObjects[baseObject.name] = new List<BaseObject>();
+        }
 
+        builtObjects[baseObject.name].Add(baseObject);
+    }
+
+    public void onRemoved(BaseObject baseObject)
+    {
+        List<BaseObject> builtObjs = builtObjects[baseObject.name];
+        
+
+        for (int i = 0; i < builtObjs.Count; i++)
+        {
+            BaseObject built = builtObjs[i];
+
+            if (GameObject.ReferenceEquals(baseObject,built)) {
+                builtObjs.Remove(built);
+                break;
+            }
+        }
+    }
 }

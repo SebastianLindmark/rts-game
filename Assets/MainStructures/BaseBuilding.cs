@@ -20,13 +20,15 @@ public class BaseBuilding : BaseObject, ToolbarClickListener
 
     }
 
-    public virtual void OnPlaced()
+    public virtual void OnCreated()
     {
         ToolbarController toolbarController = GameObject.FindGameObjectWithTag("Toolbar").GetComponent<ToolbarController>();
         foreach (BaseBuilding building in advancementBuildings)
         {
             toolbarController.AddToolbarField(building, GetPlayer(), this);
         }
+
+        NotifyObjectCreation();
     }
 
     public override void Attack(BaseObject target)

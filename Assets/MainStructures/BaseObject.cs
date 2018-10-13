@@ -18,12 +18,11 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
     private GameObject healthbar;
 
+    private List<ObjectLifecycleListener> lifecycleListeners = new List<ObjectLifecycleListener>();
 
 
     public Player GetPlayer()
     {
-        //return owner;
-
         if (player == null)
         {
             Debug.LogWarning("Creating new player from script.");
@@ -73,18 +72,38 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
                 return true;
             }
         }
-        return false;
-
-
-        
+        return false;        
     }
 
     public virtual void RemoveObject()
     {
+        NotifyObjectRemoval();
         InputManager inputManager = GameObject.Find("GameControllerObject").GetComponent<InputManager>();
         inputManager.UnregisterListener(this);
         Destroy(gameObject);
     }
+
+    public void AddLifecycleListener(ObjectLifecycleListener listener)
+    {
+        lifecycleListeners.Add(listener);
+    }
+
+    protected void NotifyObjectRemoval()
+    {
+        foreach (ObjectLifecycleListener lcl in lifecycleListeners) {
+            lcl.onRemoved(this);
+        }
+    }
+
+
+    protected void NotifyObjectCreation()
+    {
+        foreach (ObjectLifecycleListener lcl in lifecycleListeners)
+        {
+            lcl.onCreated(this);
+        }
+    }
+
 
     public void ShowHealthbar(bool show)
     {
@@ -125,7 +144,6 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
     virtual public void Start () {
         InputManager inputManager = GameObject.Find("GameControllerObject").GetComponent<InputManager>();
         inputManager.RegisterListener(this);
-
         Utils.CreateMinimapUnitCube(gameObject);
     }
 

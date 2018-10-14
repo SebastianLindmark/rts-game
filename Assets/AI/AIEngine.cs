@@ -38,7 +38,7 @@ public class AIEngine : MonoBehaviour {
                 minDevelopmentLevel = handler.GetDevelopmentLevel();
             }
         }
-
+        Debug.Log("Making action on " + minHandler);
         minHandler.MakeAction();
 
 

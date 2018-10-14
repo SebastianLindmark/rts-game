@@ -48,9 +48,10 @@ public class BaseBuilding : BaseObject, ToolbarClickListener
 
     }
 
-    public void OnToolBarClick(BaseObject obj)
+    public virtual BaseObject OnToolBarClick(BaseObject obj)
     {
         BuildingPlacer bp = GameObject.Find("GameControllerObject").GetComponent<BuildingPlacer>();
         bp.OnToolBarClick(obj);
+        return null;
     }
 }

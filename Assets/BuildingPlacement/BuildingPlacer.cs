@@ -106,11 +106,12 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
         }
     }
 
-    public void OnToolBarClick(BaseObject obj)
+    public BaseObject OnToolBarClick(BaseObject obj)
     {
         Vector3 startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         placementObject = new BaseFactory().CreateUnit(PlayerManager.humanPlayer, obj, startPosition) as BaseBuilding;
         placementObject.gameObject.AddComponent<PlacementEffect>().Setup();
+        return null; //Should not be used
     }
 
 

@@ -98,13 +98,24 @@ public class ToolbarController : MonoBehaviour,ItemClick, PlayerBuildableObjects
         }
 
         if (toolbarEntry != null) {
-            toolbarEntry.ClickListener.OnToolBarClick(toolbarEntry.Obj);
+            toolbarEntry.creationObject.OnToolBarClick(toolbarEntry.Obj);
         }
         
     }
 
-    public void OnAvailableBuildingsChanged()
+    public void OnBuildingOptionAdded(PlayerBuildableObjectData addedObj)
     {
         RedrawToolbar();
+
+
     }
+
+    public void OnBuildingOptionRemoved(PlayerBuildableObjectData removedObj)
+    {
+
+        RedrawToolbar();
+    }
+
+
+
 }

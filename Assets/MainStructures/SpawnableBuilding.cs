@@ -40,7 +40,7 @@ public class SpawnableBuilding : BaseBuilding, ToolbarClickListener {
 
     }
 
-    public void OnToolBarClick(BaseObject clickedObj)
+    public override BaseObject OnToolBarClick(BaseObject clickedObj)
     {
         if (clickedObj.unitCost < GetAvailableGold())
         {
@@ -54,12 +54,13 @@ public class SpawnableBuilding : BaseBuilding, ToolbarClickListener {
                 initalPosition = spawnLocation.transform.position;
             }
             
-            BaseObject instantiated = new BaseFactory().CreateUnit(this, clickedObj, initalPosition);
+            return new BaseFactory().CreateUnit(this, clickedObj, initalPosition);
 
         }
         else
         {
             Debug.Log("Invalid funds");
+            return null;
         }
     }
 

@@ -6,11 +6,11 @@ public class PlayerBuildableObjectData {
 
     public BaseObject Obj { get; }
     public Player Player { get; }
-    public ToolbarClickListener ClickListener { get; }
+    public ToolbarClickListener creationObject { get; }
 
     public PlayerBuildableObjectData(Player player, BaseObject o, ToolbarClickListener responsibleForCreation) {
         Obj = o;
         Player = player;
-        ClickListener = responsibleForCreation;
+        creationObject = responsibleForCreation;
     }
 }

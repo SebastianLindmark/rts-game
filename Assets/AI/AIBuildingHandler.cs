@@ -50,7 +50,7 @@ public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
         }
 
         //We have built all the neccessary buildings. TODO Add extra defence
-        return advancementLevel;
+        return advancementLevel + 1;
     }
 
     public override void MakeAction()

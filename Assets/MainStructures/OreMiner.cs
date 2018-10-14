@@ -143,7 +143,7 @@ public class OreMiner : BaseUnit {
                 mineState = MineState.EXIT;
                 break;
             case MineState.EXIT:
-                Debug.Log("Exiting " + Vector3.Distance(transform.position, refineryHomebase.GetEntrancePosition()));
+                //Debug.Log("Exiting " + Vector3.Distance(transform.position, refineryHomebase.GetEntrancePosition()));
                 transform.position = Vector3.MoveTowards(transform.position, refineryHomebase.GetEntrancePosition(), 0.3f);
                 if (Vector3.Distance(transform.position, refineryHomebase.GetEntrancePosition()) < 2f)
                 {

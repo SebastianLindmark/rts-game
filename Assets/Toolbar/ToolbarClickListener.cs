@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface ToolbarClickListener {
-    void OnToolBarClick(BaseObject obj);
+    BaseObject OnToolBarClick(BaseObject obj);
 }

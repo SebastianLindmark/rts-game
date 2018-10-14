@@ -261,6 +261,8 @@ GameObject:
   - component: {fileID: 467190}
   - component: {fileID: 3385552}
   - component: {fileID: 2313050}
+  - component: {fileID: 65469231534590116}
+  - component: {fileID: 114172570276832626}
   m_Layer: 11
   m_Name: MilitaryBase_Body
   m_TagString: Untagged
@@ -352,7 +354,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -39, y: 0.63613, z: 45.57}
+  m_LocalPosition: {x: -24.160522, y: 0.0034927584, z: 34.69728}
   m_LocalScale: {x: 1.4661344, y: 1.4661344, z: 1.4661344}
   m_Children:
   - {fileID: 463212}
@@ -1066,6 +1068,33 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 166950}
   m_IsPrefabAsset: 1
+--- !u!65 &65469231534590116
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199662}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.19567834, y: 0.37179306, z: 0.21890728}
+  m_Center: {x: 0.030164592, y: 0.18577741, z: -4.2866453e-16}
+--- !u!114 &114172570276832626
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 8738161318911175789
+  updateError: 1
+  checkTime: 0.2
 --- !u!114 &114927098608620294
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -16,9 +16,48 @@ public class BaseUnit : BaseObject {
     public override void Start () {
         base.Start();
         NotifyObjectCreation();
+
+        Debug.Log(gameObject.GetComponent<Collider>().bounds);
+        //AstarPath.active.UpdateGraphs(gameObject.GetComponent<Collider>().bounds);
+        //AddMeshCollider(gameObject);
+        //test();
     }
 
-    
+
+    private void test() {
+
+        BoxCollider bc = GetComponentInChildren<BoxCollider>();
+        if (bc != null) {
+            BoxCollider newBc = gameObject.AddComponent<BoxCollider>();
+            newBc.center = Vector3.zero;
+            newBc.size = bc.bounds.size;
+            Destroy(bc);
+        }
+        gameObject.AddComponent<DynamicGridObstacle>();
+
+
+    }
+
+    private void AddMeshCollider(GameObject containerModel)
+    {
+        // Add mesh collider
+        MeshFilter meshFilter = containerModel.GetComponent<MeshFilter>();
+        if (meshFilter != null)
+        {
+            MeshCollider meshCollider = containerModel.AddComponent<MeshCollider>();
+            meshCollider.sharedMesh = meshFilter.sharedMesh;
+        }
+        // Add mesh collider (convex) for each mesh in child elements.
+        Component[] meshes = containerModel.GetComponentsInChildren<MeshFilter>();
+        foreach (MeshFilter mesh in meshes)
+        {
+            MeshCollider meshCollider = containerModel.AddComponent<MeshCollider>();
+            meshCollider.sharedMesh = mesh.sharedMesh;
+        }
+    }
+
+
+
     public override void OnSelect()
     {
         base.OnSelect();
@@ -58,10 +97,13 @@ public class BaseUnit : BaseObject {
         IAstarAI ai = GetComponent<IAstarAI>();
         ai.destination = direction;
         ai.SearchPath();
+        
     }
 
 
-    
+   
+
+
 
     public override void Attack(BaseObject target)
     {

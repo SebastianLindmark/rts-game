@@ -11,10 +11,7 @@ public class SpawnableBuilding : BaseBuilding, ToolbarClickListener {
 
     private ToolbarController toolbarController;
 
-    public override void Start()
-    {
-        base.Start();
-    }
+   
 
 
     public override void OnCreated()

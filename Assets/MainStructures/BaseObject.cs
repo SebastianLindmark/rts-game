@@ -81,7 +81,6 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
         NotifyObjectRemoval();
         InputManager inputManager = GameObject.Find("GameControllerObject").GetComponent<InputManager>();
         inputManager.UnregisterListener(this);
-        Debug.Log("Unregistrating listener");
         Destroy(gameObject);
     }
 

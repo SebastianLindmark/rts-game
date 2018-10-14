@@ -20,6 +20,12 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
     private List<ObjectLifecycleListener> lifecycleListeners = new List<ObjectLifecycleListener>();
 
+    virtual public void Start()
+    {
+        InputManager inputManager = GameObject.Find("GameControllerObject").GetComponent<InputManager>();
+        inputManager.RegisterListener(this);
+        //Utils.CreateMinimapUnitCube(gameObject);
+    }
 
     public Player GetPlayer()
     {
@@ -142,11 +148,7 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
     public abstract void Attack(BaseObject target);
 
 
-    virtual public void Start () {
-        InputManager inputManager = GameObject.Find("GameControllerObject").GetComponent<InputManager>();
-        inputManager.RegisterListener(this);
-        Utils.CreateMinimapUnitCube(gameObject);
-    }
+    
 
 
     virtual public void Update () {

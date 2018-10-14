@@ -127,7 +127,6 @@ public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
 
     public void onRemoved(BaseObject baseObject)
     {
-        Debug.Log("Object removed");
         List<BaseObject> builtObjs = builtObjects[baseObject.printableName];
         
 

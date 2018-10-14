@@ -42,7 +42,8 @@ GameObject:
   - component: {fileID: 444368}
   - component: {fileID: 3310994}
   - component: {fileID: 2340554}
-  - component: {fileID: 65522813384884494}
+  - component: {fileID: 114957319751802344}
+  - component: {fileID: 65073812750482860}
   m_Layer: 11
   m_Name: VehicleHangar_03_Body
   m_TagString: Untagged
@@ -57,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -55.679638, y: 1.96, z: 24.12}
+  m_LocalPosition: {x: 47.91924, y: 2.0159535, z: 55.15333}
   m_LocalScale: {x: 1, y: 1.26064, z: 1}
   m_Children:
   - {fileID: 443702}
@@ -294,7 +295,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1948752941213816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: -14}
+  m_LocalPosition: {x: 0, y: -0.717, z: -15.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 406182}
@@ -397,7 +398,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1224930917236736}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65522813384884494
+--- !u!65 &65073812750482860
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -407,8 +408,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.1999998, y: 0.79957527, z: 2.0968022}
-  m_Center: {x: 0, y: -0.000000029802322, z: -0.002723515}
+  m_Size: {x: 2.1999998, y: 0.7995754, z: 2.0968022}
+  m_Center: {x: -0.00000047683716, y: -0.000000029802322, z: -0.002723515}
 --- !u!114 &114882463106297222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -434,6 +435,21 @@ MonoBehaviour:
   smokeParticleEffect: {fileID: 100000, guid: 5a97962f7d5ba4df0823334b52c7c02c, type: 2}
   smokeLocation1: {fileID: 1398300232681410}
   smokeLocation2: {fileID: 1119596728295616}
+--- !u!114 &114957319751802344
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 6603071993342710753
+  updateError: 1
+  checkTime: 0.2
 --- !u!136 &136288562422717408
 CapsuleCollider:
   m_ObjectHideFlags: 1

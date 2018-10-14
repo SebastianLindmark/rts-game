@@ -34,6 +34,15 @@ public class OreRefinery : SpawnableBuilding {
         return entrancePosition.transform.position;
     }
 
+    public Vector3 GetUnloadPosition() {
+        Vector3 unloadPos = Vector3.zero;
+        unloadPos.x = entrancePosition.transform.position.x;
+        unloadPos.y = entrancePosition.transform.position.y;
+        unloadPos.z = entrancePosition.transform.position.z + 13;
+        return unloadPos;
+
+    }
+
     public override void OnCreated()
     {
         base.OnCreated();
@@ -43,18 +52,20 @@ public class OreRefinery : SpawnableBuilding {
             Vector3 pos = transform.position;
             pos.y = 1; //Temporary, make constant or calculate height of spawned vehicle instead
             OreMiner spawnedMiner = new BaseFactory().CreateUnit(this, spawnOnCreation, pos).GetComponent<OreMiner>();
-            spawnedMiner.SetMineState(OreMiner.MineState.RETURN);
+            spawnedMiner.SetMineState(OreMiner.MineState.EXIT);
+            spawnedMiner.enterUnloadState();
             
+
         }
 
         smokeLocation1 = Instantiate(smokeParticleEffect, smokeLocation1.transform.position, smokeLocation1.transform.rotation);
         smokeLocation1.transform.parent = this.transform;
-
+        Debug.Log(smokeLocation1);
         ps = smokeLocation1.GetComponent<ParticleSystem>();
 
 
     }
-
+    
     public void AddResources(int gold) {
         goldResource.AddResource(gold);
         enableSmokeEffect();

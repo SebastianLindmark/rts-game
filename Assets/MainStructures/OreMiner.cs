@@ -6,7 +6,7 @@ using UnityEngine;
 public class OreMiner : BaseUnit {
 
     public enum MineState {
-        IDLE, SEARCH,MINE,RETURN, UNLOAD,EXIT
+        IDLE, SEARCH, MINE, RETURN, UNLOAD, EXIT
     }
 
     private OreResource[] resources;
@@ -44,7 +44,7 @@ public class OreMiner : BaseUnit {
         oreRenderers.Add(gameObject.transform.Find("Ore4").GetComponent<Renderer>());
 
         savedGravity = ai.gravity;
-      
+
 
         OreRefinery[] refineries = FindObjectsOfType<OreRefinery>();
         for (int i = 0; i < refineries.Length; i++)
@@ -55,7 +55,7 @@ public class OreMiner : BaseUnit {
                 break;
             }
         }
-        
+
         Reset();
     }
 
@@ -69,8 +69,8 @@ public class OreMiner : BaseUnit {
 
     public override void Update()
     {
+
         base.Update();
-        
         switch (mineState) {
             case MineState.IDLE:
                 //check if both minerals and a ore factory exists, iff -> SEARCH
@@ -84,15 +84,15 @@ public class OreMiner : BaseUnit {
                         closestResource = resources[i];
                     }
                 }
-                
+
                 ai.destination = closestResource.transform.position;
                 ai.SearchPath();
-                
+
                 mineState = MineState.SEARCH;
 
                 break;
             case MineState.SEARCH:
-                if ( (ai.reachedEndOfPath && !ai.pathPending) || ai.remainingDistance < 5) {
+                if ((ai.reachedEndOfPath && !ai.pathPending) || ai.remainingDistance < 6) {
                     mineState = MineState.MINE;
                     mineTime = Time.time;
                 }
@@ -100,7 +100,7 @@ public class OreMiner : BaseUnit {
                 break;
             case MineState.MINE:
 
-                if(mineTime + mineInterval < Time.time)
+                if (mineTime + mineInterval < Time.time)
                 {
                     addOreToInventory(closestResource.getResourceValue());
                     mineTime = Time.time;
@@ -112,66 +112,63 @@ public class OreMiner : BaseUnit {
                         ai.SearchPath();
                         mineState = MineState.RETURN;
                     }
-                    
+
                 }
-            break;
+                break;
             case MineState.RETURN:
 
                 if ((ai.reachedEndOfPath && !ai.pathPending) && refineryHomebase)
                 {
 
-                    ai.gravity = new Vector3(0, 0, 0);
-                    GetComponent<Collider>().enabled = false;
+                    enterUnloadState();
 
-                    ai.destination = refineryHomebase.transform.position;
-                    ai.SearchPath();
-                    mineState = MineState.UNLOAD;
-                }
-                else if (!ai.hasPath) {
-                    ai.gravity = new Vector3(0, 0, 0);
-                    GetComponent<Collider>().enabled = false;
 
-                    ai.destination = refineryHomebase.transform.position;
-                    ai.SearchPath();
+                    Vector3 _direction = (refineryHomebase.transform.position - transform.position).normalized;
+
+                    Quaternion _lookRotation = Quaternion.LookRotation(_direction);
+
+                    transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, 0.35f);
+
+
+
+                    transform.position = Vector3.MoveTowards(transform.position, refineryHomebase.GetUnloadPosition(), 0.2f);
+                    if (Vector3.Distance(transform.position, refineryHomebase.GetUnloadPosition()) < 1f) {
+                        mineState = MineState.UNLOAD;
+                    }
                 }
-                
-                
                 break;
             case MineState.UNLOAD:
-
-                if ((ai.reachedEndOfPath && !ai.pathPending) && refineryHomebase)
-                {
-                    if (inventoryValue > 0)
-                    {
-                        refineryHomebase.AddResources(inventoryValue);
-                    }
-                    
-                
-                    Reset();
-                    ai.destination = refineryHomebase.GetEntrancePosition();
-                    ai.SearchPath();
-                    mineState = MineState.EXIT;
-
-                }
+                refineryHomebase.AddResources(inventoryValue);
+                Reset();
+                mineState = MineState.EXIT;
                 break;
-
             case MineState.EXIT:
-                if (ai.reachedEndOfPath && !ai.pathPending)
+                Debug.Log("Exiting " + Vector3.Distance(transform.position, refineryHomebase.GetEntrancePosition()));
+                transform.position = Vector3.MoveTowards(transform.position, refineryHomebase.GetEntrancePosition(), 0.3f);
+                if (Vector3.Distance(transform.position, refineryHomebase.GetEntrancePosition()) < 2f)
                 {
-                    ai.gravity = savedGravity;
                     GetComponent<Collider>().enabled = true;
+                    ai.gravity = savedGravity;
+                    Debug.Log("Saved gravity is " + savedGravity);
+                    ai.enabled = true;
                     mineState = MineState.IDLE;
                 }
-
-
                 break;
 
         }
 
-       
+
 
 
     }
+
+    public void enterUnloadState() {
+        GetComponent<Collider>().enabled = false;
+        AIPath a = GetComponent<AIPath>();
+        a.gravity = new Vector3(0, 0, 0);
+        a.enabled = false;
+    }
+
 
     private void Reset()
     {

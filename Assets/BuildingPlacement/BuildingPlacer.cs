@@ -91,6 +91,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
     public void PlaceObject()
     {
+        Debug.Log("Placing object");
         placementObject.GetComponent<PlacementEffect>().Reset();
         Destroy(placementObject.GetComponent<PlacementEffect>());
         placementObject.OnCreated();
@@ -118,8 +119,8 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
         int layerMask = ((1 << LayerMask.NameToLayer("Building")));
         Collider[] hitColliders = Physics.OverlapBox(buildingToPlace.position, buildingToPlace.localScale, Quaternion.identity, layerMask);
-        if (hitColliders.Length > 0 ) {
-            Debug.Log(hitColliders[0].name);
+        if (hitColliders.Length > 0) {
+            //Debug.Log(hitColliders[0].name);
         }
         return hitColliders.Length > 0;
     }

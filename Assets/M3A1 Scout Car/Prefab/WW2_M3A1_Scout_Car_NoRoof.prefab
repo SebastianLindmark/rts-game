@@ -173,7 +173,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 102866}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -38.077995, y: 0.02767495, z: -0.23909551}
+  m_LocalPosition: {x: 34.011353, y: 0.027674973, z: -64.34477}
   m_LocalScale: {x: 1, y: 1, z: -1}
   m_Children:
   - {fileID: 4893131267801336}
@@ -1111,4 +1111,4 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}

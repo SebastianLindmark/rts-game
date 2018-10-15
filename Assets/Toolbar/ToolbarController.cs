@@ -87,7 +87,6 @@ public class ToolbarController : MonoBehaviour,ItemClick, PlayerBuildableObjects
  
     public void OnClicked(int id)
     {
-        Debug.Log("TOOLBAR WAS CLICKED");
         PlayerBuildableObjectData toolbarEntry = null;
         if (toolbarState == ToolbarState.BUILDING && id < buildableObjects.getAvailableBuildings().Count)
         {

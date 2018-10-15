@@ -25,4 +25,9 @@ public class PlayerManager : MonoBehaviour {
         return player;
     }
 
+    public static List<Player> GetEnemyPlayers(Player player) {
+        return playerList.FindAll(p => !player.Equals(p));
+
+    }
+
 }

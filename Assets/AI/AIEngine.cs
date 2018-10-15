@@ -6,6 +6,8 @@ public class AIEngine : MonoBehaviour {
 
     private List<AIBaseHandler> AIBaseHandlers = new List<AIBaseHandler>();
 
+    private List<AIStrategy> strategicDivisionHandlers = new List<AIStrategy>();
+
     private Player player;
 
 
@@ -17,6 +19,7 @@ public class AIEngine : MonoBehaviour {
         AIBaseHandlers.ForEach(elem => elem.SetPlayer(player));
 
         InvokeRepeating("AIBaseAdvancementLoop", 2.0f, 1f);
+        InvokeRepeating("AIStrategyLoop", 3.0f, 1f);
     }
 
 
@@ -44,7 +47,37 @@ public class AIEngine : MonoBehaviour {
 
     }
 
-	void Update () {
+
+    private void AIStrategyLoop() {
+
+        strategicDivisionHandlers.ForEach(handler => handler.MakeAction());
+
+        AIUnitHandler unitHandler = GetComponent<AIUnitHandler>();
+        List<BaseObject> undeployedUnits = unitHandler.getUndeployedUnits();
+
+        if(undeployedUnits.Count > AIDivision.UnitsInDivision)
+        {
+            List<BaseObject> units = undeployedUnits.GetRange(0, AIDivision.UnitsInDivision);
+            undeployedUnits.RemoveRange(0, AIDivision.UnitsInDivision);
+
+            AIDivision division = new AIDivision(units);
+            //Add mix between offence and defence
+            AIStrategy strategy = new AIOffence(player, division);
+
+            strategicDivisionHandlers.Add(strategy);
+        }
+
+
+        
+
+
+
+    }
+
+
+
+
+    void Update () {
 	
         
 

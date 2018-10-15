@@ -24,7 +24,7 @@ public class PlayerInitializer : MonoBehaviour {
         }
         
 
-        PlayerDataEnvironment.Register(player, new GameResource(startGold), new GameResource(startOil), new PlayerBuildableObjects());        
+        PlayerDataEnvironment.Register(player, new GameResource(startGold), new GameResource(startOil), new PlayerBuildableObjects(), new PlayerBuiltObjects());        
 	}
 
     public Player GetPlayer() {

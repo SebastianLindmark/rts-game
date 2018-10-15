@@ -18,6 +18,9 @@ public class AIUnitHandler : AIBaseHandler, PlayerBuildableObjects.OnBuildableOb
 
     private List<BaseObject> availableBattleUnits = new List<BaseObject>();
 
+    private List<BaseObject> undeployedUnits = new List<BaseObject>();
+
+
     public override void Advance()
     {
         advancementLevel++;
@@ -30,8 +33,8 @@ public class AIUnitHandler : AIBaseHandler, PlayerBuildableObjects.OnBuildableOb
 
     public override void MakeAction()
     {
-        Debug.Log("Making action");
-        if (hasBuiltFactory) {
+        if (hasBuiltFactory)
+        {
 
             //Check how many units we are missing to advance one level
 
@@ -39,20 +42,26 @@ public class AIUnitHandler : AIBaseHandler, PlayerBuildableObjects.OnBuildableOb
             int unitsLeft = requiredUnits - availableBattleUnits.Count;
             Debug.Log("Units left " + unitsLeft);
 
-            PlayerBuildableObjectData pbod = pEnv.GetBuildableObjects().GetBuildableObject(factoryToSearchFor);
-            for (int i = 0; i < unitsLeft; i++) {    
-                CreateUnit(pbod);
-            }            
+            //Another approach is to map different units from beginning. Problably more control.
+            List<PlayerBuildableObjectData> buildableObjectList = pEnv.GetBuildableObjects().getAvailableUnits();
+            List<PlayerBuildableObjectData> attackUnits = buildableObjectList.FindAll(elem => elem.Obj.GetComponent<AttackHandler>() != null);
+
+            if (attackUnits.Count > 0)
+            {
+                for (int i = 0; i < unitsLeft; i++)
+                {
+                    CreateUnit(attackUnits[0]);
+                }
+            }
         }
 
     }
-
+    
 
     public void OnBuildingOptionAdded(PlayerBuildableObjectData addedObj)
     {
         if(addedObj.Obj.printableName == factoryToSearchFor.printableName)
         {
-            Debug.Log("Found building we are looking for");
             hasBuiltFactory = true;
         }
 
@@ -81,7 +90,11 @@ public class AIUnitHandler : AIBaseHandler, PlayerBuildableObjects.OnBuildableOb
     private void CreateUnit(PlayerBuildableObjectData pbod) {
         BaseObject createdObject = pbod.creationObject.OnToolBarClick(pbod.Obj);
         availableBattleUnits.Add(createdObject);
-        Debug.Log("Created unit");
+        undeployedUnits.Add(createdObject);
+    }
+
+    public List<BaseObject> getUndeployedUnits() {
+        return undeployedUnits;
     }
 
     // Use this for initialization

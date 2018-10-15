@@ -22,6 +22,7 @@ public class PlayerBuildableObjects {
     }
 
 
+    //Player argument can be removed since this class is unique for each player.
     public void AddObject(Player player, BaseUnit obj, ToolbarClickListener responsibleForCreation)
     {
         PlayerBuildableObjectData pbo = new PlayerBuildableObjectData(player, obj, responsibleForCreation);

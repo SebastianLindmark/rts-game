@@ -24,6 +24,7 @@ public class BaseBuilding : BaseObject, ToolbarClickListener
     public virtual void OnCreated()
     {
         PlayerDataEnvironment.PlayerEnvironment pEnv = PlayerDataEnvironment.GetPlayerEnvironment(GetPlayer());
+        pEnv.GetBuiltObjects().Add(this);
 
         foreach (BaseBuilding unit in advancementBuildings)
         {

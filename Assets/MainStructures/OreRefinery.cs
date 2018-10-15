@@ -60,7 +60,6 @@ public class OreRefinery : SpawnableBuilding {
 
         smokeLocation1 = Instantiate(smokeParticleEffect, smokeLocation1.transform.position, smokeLocation1.transform.rotation);
         smokeLocation1.transform.parent = this.transform;
-        Debug.Log(smokeLocation1);
         ps = smokeLocation1.GetComponent<ParticleSystem>();
 
 

@@ -24,7 +24,6 @@ public class BaseBuilding : BaseObject, ToolbarClickListener
     public virtual void OnCreated()
     {
         PlayerDataEnvironment.PlayerEnvironment pEnv = PlayerDataEnvironment.GetPlayerEnvironment(GetPlayer());
-        Debug.Log("About to add myself as a building in my environment");
         pEnv.GetBuiltObjects().AddBuilding(this);
 
         foreach (BaseBuilding building in advancementBuildings)
@@ -51,7 +50,7 @@ public class BaseBuilding : BaseObject, ToolbarClickListener
     }
 
     public virtual BaseObject OnToolBarClick(BaseObject obj)
-    {
+    {   
         BuildingPlacer bp = GameObject.Find("GameControllerObject").GetComponent<BuildingPlacer>();
         bp.OnToolBarClick(obj);
         return null;

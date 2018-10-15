@@ -26,7 +26,6 @@ public class AIOffence : AIStrategy, ObjectLifecycleListener
 
     public void MakeAction()
     {
-        Debug.Log("Make action");
         if (targetObject == null)
         {
             targetObject = GetTargetObject();

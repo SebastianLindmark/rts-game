@@ -24,12 +24,10 @@ public class AIUnitHandler : AIBaseHandler, PlayerBuildableObjects.OnBuildableOb
     public override void Advance()
     {
         advancementLevel++;
-        Debug.Log("Advancing Unit handler to " + advancementLevel);
     }
 
     public override int GetDevelopmentLevel()
     {
-        Debug.Log("Unit handler level " + availableBattleUnits.Count / unitsPerLevel);
         return availableBattleUnits.Count / unitsPerLevel; 
     }
 

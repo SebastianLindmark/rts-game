@@ -97,7 +97,6 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
     protected void NotifyObjectRemoval()
     {
-        Debug.Log("Notifying removal with " + lifecycleListeners.Count + " listeners");
         foreach (ObjectLifecycleListener lcl in lifecycleListeners) {
             lcl.onRemoved(this);
         }

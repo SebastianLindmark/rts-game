@@ -162,7 +162,6 @@ public class OreMiner : BaseUnit {
                     {
                         GetComponent<Collider>().enabled = true;
                         ai.gravity = savedGravity;
-                        Debug.Log("Saved gravity is " + savedGravity);
                         ai.enabled = true;
                         mineState = MineState.IDLE;
                     }

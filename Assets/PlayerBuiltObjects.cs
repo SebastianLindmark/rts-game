@@ -9,7 +9,6 @@ public class PlayerBuiltObjects : ObjectLifecycleListener {
     public void AddBuilding(BaseBuilding obj) {
         obj.AddLifecycleListener(this);
         builtBuildings.Add(obj);
-        Debug.Log("Adding building option");
 
     }
 

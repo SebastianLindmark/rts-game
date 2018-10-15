@@ -12,6 +12,8 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
     private int gridSquareSize = 2;
 
+    private bool m_Started = false;
+
     void Start () {
 
         
@@ -24,7 +26,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
         {
             pEnv.GetBuildableObjects().AddObject(player, building, this);
         }
-        
+        m_Started = true;
     }
 
     void Update() {
@@ -70,7 +72,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
 
     void LateUpdate () {
-        if (Input.GetMouseButtonDown(0) && placementObject != null && !HitsObstacle(Input.mousePosition, placementObject.transform))
+        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftControl) && placementObject != null && !HitsObstacle(Input.mousePosition, placementObject.transform))
         {
             PlaceObject();
             
@@ -119,11 +121,14 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
     {
 
         int layerMask = ((1 << LayerMask.NameToLayer("Building")));
-        Collider[] hitColliders = Physics.OverlapBox(buildingToPlace.position, buildingToPlace.localScale, Quaternion.identity, layerMask);
-        if (hitColliders.Length > 0) {
-            //Debug.Log(hitColliders[0].name);
+
+        Collider c = buildingToPlace.GetComponentInChildren<Collider>();
+        Collider[] hitColliders = Physics.OverlapBox(buildingToPlace.position, c.bounds.size / 2, buildingToPlace.rotation, layerMask);
+
+        if (hitColliders.Length == 1) {
+            return buildingToPlace.gameObject != hitColliders[0].transform.root.gameObject; //Will always collide with itself
         }
-        return hitColliders.Length > 0;
+        return hitColliders.Length > 1;
     }
 
 
@@ -140,5 +145,16 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
         return result;
     }
+
+
+    /*void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
+        if (m_Started && placementObject != null) { 
+            Collider c = placementObject.GetComponentInChildren<Collider>();
+            Gizmos.DrawWireCube(placementObject.transform.position, c.bounds.size);
+        }
+    }*/
 
 }

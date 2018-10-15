@@ -42,7 +42,7 @@ public class PlacementEffect : MonoBehaviour{
     public void Setup() {
         savedLayer = gameObject.layer;
         gameObject.layer = LayerMask.NameToLayer("Placement");
-        EnableCollider(false);
+        //EnableCollider(false);
         
     }
 

@@ -42,7 +42,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
         if (placementObject != null)
         {
             
-            if (HitsObstacle(Input.mousePosition,placementObject.transform))
+            if (HitsObstacle(placementObject.transform.position,placementObject.transform))
             {
                 placementObject.GetComponent<PlacementEffect>().ApplyInvalidEffect();
             }
@@ -72,7 +72,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
 
     void LateUpdate () {
-        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftControl) && placementObject != null && !HitsObstacle(Input.mousePosition, placementObject.transform))
+        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftControl) && placementObject != null && !HitsObstacle(placementObject.transform.position, placementObject.transform))
         {
             PlaceObject();
             
@@ -123,9 +123,12 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
         int layerMask = ((1 << LayerMask.NameToLayer("Building")));
 
         Collider c = buildingToPlace.GetComponentInChildren<Collider>();
-        Collider[] hitColliders = Physics.OverlapBox(buildingToPlace.position, c.bounds.size / 2, buildingToPlace.rotation, layerMask);
+        Debug.Log(c.bounds.size);
+        Collider[] hitColliders = Physics.OverlapBox(clickPosition, c.bounds.size / 2, buildingToPlace.rotation, layerMask);
 
+        Debug.Log("The hit colliders detected are " + hitColliders.Length);
         if (hitColliders.Length == 1) {
+            Debug.Log("Colliding with itself " + (buildingToPlace.gameObject == hitColliders[0].transform.root.gameObject));
             return buildingToPlace.gameObject != hitColliders[0].transform.root.gameObject; //Will always collide with itself
         }
         return hitColliders.Length > 1;

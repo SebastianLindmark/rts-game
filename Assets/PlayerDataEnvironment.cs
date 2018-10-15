@@ -44,7 +44,14 @@ public class PlayerDataEnvironment  {
 
     public static PlayerEnvironment GetPlayerEnvironment(Player player)
     {
-        return dataEnvironment[player.getPlayerId()];
+        if (dataEnvironment.ContainsKey(player.getPlayerId()))
+        {
+            return dataEnvironment[player.getPlayerId()];
+        }
+        else {
+            return null;
+        }
+        
     }
 
 

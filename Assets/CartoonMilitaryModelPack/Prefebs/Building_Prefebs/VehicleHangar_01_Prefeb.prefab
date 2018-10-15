@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 3338768}
   - component: {fileID: 2340270}
   - component: {fileID: 65622544318113998}
+  - component: {fileID: 114297940445771380}
   m_Layer: 11
   m_Name: VechileHangar_01_Body
   m_TagString: Untagged
@@ -58,7 +59,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.098698, y: 2.9032326, z: 24.007364}
+  m_LocalPosition: {x: 60.960846, y: 1.44, z: -62.678234}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 484584}
@@ -72,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 122670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.000000047683713, y: 0.13, z: 0}
+  m_LocalPosition: {x: 0.000000047683713, y: 0.59, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 484584}
@@ -175,6 +176,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5689251, z: 1.0008552}
   m_Center: {x: 0, y: -0.03186065, z: 0.00042761862}
+--- !u!114 &114297940445771380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 6986931752130587474
+  updateError: 1
+  checkTime: 0.2
 --- !u!114 &114755592538194526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -201,6 +217,7 @@ MonoBehaviour:
   health: 100
   printableName: Tank factory
   selectionMarker: {fileID: 0}
+  advancementBuildings: []
   spawnLocation: {fileID: 0}
   spawnableUnits:
   - {fileID: 114540296401458768, guid: 87611ddf2b4a04e1f81acc90cbecbd09, type: 2}

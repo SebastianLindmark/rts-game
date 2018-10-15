@@ -70,7 +70,7 @@ public class AttackHandler : MonoBehaviour, EnemyDetectedListener{
         float distance = Vector3.Distance(transform.position, target.transform.position);
         
         if (distance > attackRange) {
-            Vector3 pointAroundTarget = Random.insideUnitCircle * attackRange / 2;
+            Vector3 pointAroundTarget = Random.insideUnitCircle.normalized * attackRange / 2;
             GetComponent<BaseUnit>().Walk(pointAroundTarget + target.transform.position);
         }
 

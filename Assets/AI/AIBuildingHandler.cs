@@ -93,19 +93,20 @@ public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
 
 
         Vector3 possibleBuildingPlacement = GetRandomPositionInsideCamp(campLocation, campRadius);
+        BaseBuilding newObject = Instantiate<BaseObject>(target, possibleBuildingPlacement, Quaternion.Euler(Vector3.zero)) as BaseBuilding;
 
         //Try to place object around camp max 10 times.
-        for (int i = 0; i < 10 && !BuildingPlacer.HitsObstacle(possibleBuildingPlacement, target.transform); i++)
+        for (int i = 0; i < 10 && BuildingPlacer.HitsObstacle(possibleBuildingPlacement, newObject.transform); i++)
         {
             possibleBuildingPlacement = GetRandomPositionInsideCamp(campLocation, campRadius);
         }
 
 
-        if (!BuildingPlacer.HitsObstacle(possibleBuildingPlacement, target.transform))
+        if (!BuildingPlacer.HitsObstacle(possibleBuildingPlacement, newObject.transform))
         {
-            possibleBuildingPlacement.y += target.transform.position.y; //Offset the building to be above ground
 
-            BaseBuilding newObject = Instantiate<BaseObject>(target, possibleBuildingPlacement, Quaternion.Euler(Vector3.zero)) as BaseBuilding;
+            possibleBuildingPlacement.y += newObject.GetComponentInChildren<Collider>().bounds.size.y;
+            //possibleBuildingPlacement.y += newObject.transform.position.y; //Offset the building to be above ground
             newObject.SetPlayer(player);
             newObject.AddLifecycleListener(this);
             newObject.OnCreated();
@@ -113,6 +114,7 @@ public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
         else
         {
             Debug.LogError("A placement was not found");
+            newObject.RemoveObject();
         }
 
 

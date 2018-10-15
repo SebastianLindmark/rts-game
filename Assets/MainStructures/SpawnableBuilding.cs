@@ -33,9 +33,12 @@ public class SpawnableBuilding : BaseBuilding, ToolbarClickListener {
         base.RemoveObject();
 
         PlayerDataEnvironment.PlayerEnvironment pEnv = PlayerDataEnvironment.GetPlayerEnvironment(GetPlayer());
+        //Todo Should investigate why this would ever return null. (Triggered by the AIBuildingPlacer)
 
-        for (int i = 0; i < spawnableUnits.Count; i++) {
-            pEnv.GetBuildableObjects().RemoveElement(spawnableUnits[i]);
+        if (pEnv != null) {
+            for (int i = 0; i < spawnableUnits.Count; i++) {
+                pEnv.GetBuildableObjects().RemoveElement(spawnableUnits[i]);
+            }
         }
 
     }
@@ -66,7 +69,13 @@ public class SpawnableBuilding : BaseBuilding, ToolbarClickListener {
 
 
     private Vector3 GetRandomCloseLocation() {
-        return transform.position + new Vector3(Random.Range(10, 15), 5, Random.Range(10, 15));
+        Vector2 randomCirclePoint = Random.insideUnitCircle.normalized * 20;
+        Vector3 spawn = Vector3.zero;
+        spawn.x = randomCirclePoint.x;
+        spawn.z = randomCirclePoint.y;
+        spawn.y = 5;
+
+        return spawn + transform.position;
     }
 
     protected int GetAvailableGold() {

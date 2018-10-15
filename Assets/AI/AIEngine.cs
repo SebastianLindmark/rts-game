@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AIEngine : MonoBehaviour {
 
-    private List<AIBaseHandler> AIBaseHandlers = new List<AIBaseHandler>();
+    private List<AIBaseHandler> aiBaseHandlers = new List<AIBaseHandler>();
 
     private List<AIStrategy> strategicDivisionHandlers = new List<AIStrategy>();
 
@@ -15,11 +15,11 @@ public class AIEngine : MonoBehaviour {
 	void Start () {
 
         player = GetComponent<PlayerInitializer>().GetPlayer();
-        AIBaseHandlers = new List<AIBaseHandler>(GetComponentsInChildren<AIBaseHandler>());
-        AIBaseHandlers.ForEach(elem => elem.SetPlayer(player));
+        aiBaseHandlers = new List<AIBaseHandler>(GetComponentsInChildren<AIBaseHandler>());
+        aiBaseHandlers.ForEach(elem => elem.SetPlayer(player));
 
         InvokeRepeating("AIBaseAdvancementLoop", 2.0f, 1f);
-        InvokeRepeating("AIStrategyLoop", 3.0f, 1f);
+        InvokeRepeating("AIStrategyLoop", 10.0f, 1f);
     }
 
 
@@ -27,22 +27,31 @@ public class AIEngine : MonoBehaviour {
 
         //Determine the camp advancement level
 
-        if (AIBaseHandlers.Count <= 0) {
+        if (aiBaseHandlers.Count <= 0) {
             return;
         }
 
-        AIBaseHandler minHandler = AIBaseHandlers[0];
+        AIBaseHandler minHandler = aiBaseHandlers[0];
         int minDevelopmentLevel = minHandler.GetDevelopmentLevel();
 
-        foreach (AIBaseHandler handler in AIBaseHandlers)
+        bool sameLevel = true;
+
+        foreach (AIBaseHandler handler in aiBaseHandlers)
         {
             if (handler.GetDevelopmentLevel() < minDevelopmentLevel) {
                 minHandler = handler;
                 minDevelopmentLevel = handler.GetDevelopmentLevel();
+                sameLevel = false;
             }
         }
 
+        if (sameLevel) {
+            aiBaseHandlers.ForEach(handler => handler.Advance());
+        }
+        
         minHandler.MakeAction();
+        
+        
 
 
     }

@@ -54,7 +54,7 @@ public class SpawnableBuilding : BaseBuilding, ToolbarClickListener {
                 initalPosition = spawnLocation.transform.position;
             }
             
-            return new BaseFactory().CreateUnit(this, clickedObj, initalPosition);
+            return new BaseFactory().ProduceUnit(GetPlayer(), clickedObj, initalPosition);
 
         }
         else

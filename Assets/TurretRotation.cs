@@ -25,7 +25,7 @@ public class TurretRotation : MonoBehaviour, AttackListener {
     void Update () {
 
 
-        if (attackHandler.attackState)
+        if (attackHandler.attackState && attackHandler.attackOpponent)
         {
             onAttack(attackHandler.attackOpponent);
         }

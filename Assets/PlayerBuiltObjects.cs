@@ -24,7 +24,6 @@ public class PlayerBuiltObjects : ObjectLifecycleListener {
 
     public void onRemoved(BaseObject baseObject)
     {
-        Debug.Log("THIS WAS REMOVED MAN");
         builtBuildings.Remove(baseObject);
     }
 }

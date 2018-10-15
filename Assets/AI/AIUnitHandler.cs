@@ -24,10 +24,12 @@ public class AIUnitHandler : AIBaseHandler, PlayerBuildableObjects.OnBuildableOb
     public override void Advance()
     {
         advancementLevel++;
+        Debug.Log("Advancing Unit handler to " + advancementLevel);
     }
 
     public override int GetDevelopmentLevel()
     {
+        Debug.Log("Unit handler level " + availableBattleUnits.Count / unitsPerLevel);
         return availableBattleUnits.Count / unitsPerLevel; 
     }
 
@@ -64,10 +66,7 @@ public class AIUnitHandler : AIBaseHandler, PlayerBuildableObjects.OnBuildableOb
         {
             hasBuiltFactory = true;
         }
-        //Debug.Log("This should be the source");
-        //addedObj.creationObject.OnToolBarClick(addedObj.Obj);
-        
-
+     
     }
 
     public void OnBuildingOptionRemoved(PlayerBuildableObjectData removedObj)
@@ -89,8 +88,11 @@ public class AIUnitHandler : AIBaseHandler, PlayerBuildableObjects.OnBuildableOb
 
     private void CreateUnit(PlayerBuildableObjectData pbod) {
         BaseObject createdObject = pbod.creationObject.OnToolBarClick(pbod.Obj);
-        availableBattleUnits.Add(createdObject);
-        undeployedUnits.Add(createdObject);
+        if (createdObject != null) {
+            availableBattleUnits.Add(createdObject);
+            undeployedUnits.Add(createdObject);
+        }
+        
     }
 
     public List<BaseObject> getUndeployedUnits() {

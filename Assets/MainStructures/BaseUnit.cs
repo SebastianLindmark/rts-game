@@ -21,6 +21,7 @@ public class BaseUnit : BaseObject {
 
     public override void OnGroundClick(Vector3 target)
     {
+        GetComponent<AttackHandler>().AbortAttack();
         Walk(target);
     }
 
@@ -44,18 +45,31 @@ public class BaseUnit : BaseObject {
 
     public virtual void Walk(Vector3 position)
     {
+        
         IAstarAI ai = GetComponent<IAstarAI>();
         ai.destination = position;
         ai.SearchPath();
+        
     }
 
+    public override void Update()
+    {
+        base.Update();
+        IAstarAI ai = GetComponent<IAstarAI>();
+        //Debug.Log("AI Path pending " + ai.pathPending);
+        //Debug.Log("AI Has path " + ai.hasPath);
+        //Debug.Log("AI distance " + ai.remainingDistance);
+        //Debug.Log("AI reached end " + ai.reachedEndOfPath);
+        //Debug.Log("AI is stopped " + ai.isStopped);
 
-   
+    }
+
 
 
 
     public override void Attack(BaseObject target)
     {
+        Debug.Log("Attacking target, i am " + GetInstanceID());
         GetComponent<AttackHandler>().AttackEnemy(target);
         //GameObject spawned = Instantiate(this.bulletPrefab, projectilePosition.transform.position, projectilePosition.transform.rotation);
         //GameObject explosion = Instantiate(this.explosionPrefab, projectilePosition.transform.position, projectilePosition.transform.rotation);

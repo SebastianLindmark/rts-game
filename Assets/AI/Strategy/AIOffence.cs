@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Pathfinding;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class AIOffence : AIStrategy, ObjectLifecycleListener
 
     private BaseObject targetObject;
 
+    private bool attacking = false;
+
     public AIOffence(Player player, AIDivision division)
     {
         this.division = division;
@@ -23,13 +26,23 @@ public class AIOffence : AIStrategy, ObjectLifecycleListener
 
     public void MakeAction()
     {
-
+        Debug.Log("Make action");
         if (targetObject == null)
         {
             targetObject = GetTargetObject();
         }
-        else {
+        else if (!attacking)
+        {
             division.getDivision().ForEach(unit => unit.Attack(targetObject));
+            Debug.Log("Attacking with division of " + division.getDivision().Count);
+            attacking = true;
+        }
+        else {
+            List<BaseObject> units = division.getDivision().FindAll(unit => !unit.GetComponent<IAstarAI>().hasPath);
+            units.ForEach(unit => unit.Attack(targetObject));
+
+            Debug.Log("We found " + units.Count + " who didnt have a target");
+
         }
         
     }
@@ -42,8 +55,8 @@ public class AIOffence : AIStrategy, ObjectLifecycleListener
     public void onRemoved(BaseObject baseObject)
     {
         if (baseObject == targetObject) {
-            //Building has been shot down
             targetObject = null;
+            attacking = false;
         }
     }
 

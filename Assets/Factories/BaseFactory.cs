@@ -22,13 +22,16 @@ public class BaseFactory : MonoBehaviour, IBaseFactory {
         return instantiated;
     }
 
+    public BaseObject ProduceUnit(Player player, BaseObject type, Vector3 position) {
+        PlayerDataEnvironment.PlayerEnvironment pEnv = PlayerDataEnvironment.GetPlayerEnvironment(player);
+        if (pEnv.GetOilResource().GetAvailableResources() >= type.unitCost) {
+            pEnv.GetOilResource().RemoveResource(type.unitCost);
+            return CreateUnit(player, type, position);
+        }
 
-    void Start () {
-        
+
+        return null;
+
     }
-    
-    
-    void Update () {
-        
-    }
+
 }

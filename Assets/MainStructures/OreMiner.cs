@@ -45,22 +45,25 @@ public class OreMiner : BaseUnit {
 
         savedGravity = ai.gravity;
 
-
-        OreRefinery[] refineries = FindObjectsOfType<OreRefinery>();
-        for (int i = 0; i < refineries.Length; i++)
-        {
-
-            if (refineries[i].GetPlayer().Equals(GetPlayer())) {
-                refineryHomebase = refineries[i];
-                break;
-            }
-        }
-
+        FindOreRefinery();
         Reset();
     }
 
     public void SetMineState(MineState state) {
         mineState = state;
+    }
+
+    private OreRefinery FindOreRefinery() {
+        OreRefinery[] refineries = FindObjectsOfType<OreRefinery>();
+        for (int i = 0; i < refineries.Length; i++)
+        {
+
+            if (refineries[i].GetPlayer().Equals(GetPlayer()))
+            {
+                return refineries[i];
+            }
+        }
+        return null;
     }
 
     public override void OnEnemyClick(BaseObject o) {
@@ -71,6 +74,15 @@ public class OreMiner : BaseUnit {
     {
 
         base.Update();
+
+        if (refineryHomebase == null) {
+            refineryHomebase = FindOreRefinery();
+            if (refineryHomebase == null) {
+                return;
+            }
+        }
+
+
         switch (mineState) {
             case MineState.IDLE:
                 //check if both minerals and a ore factory exists, iff -> SEARCH
@@ -143,15 +155,17 @@ public class OreMiner : BaseUnit {
                 mineState = MineState.EXIT;
                 break;
             case MineState.EXIT:
-                //Debug.Log("Exiting " + Vector3.Distance(transform.position, refineryHomebase.GetEntrancePosition()));
-                transform.position = Vector3.MoveTowards(transform.position, refineryHomebase.GetEntrancePosition(), 0.3f);
-                if (Vector3.Distance(transform.position, refineryHomebase.GetEntrancePosition()) < 2f)
-                {
-                    GetComponent<Collider>().enabled = true;
-                    ai.gravity = savedGravity;
-                    Debug.Log("Saved gravity is " + savedGravity);
-                    ai.enabled = true;
-                    mineState = MineState.IDLE;
+                
+                if (refineryHomebase) { 
+                    transform.position = Vector3.MoveTowards(transform.position, refineryHomebase.GetEntrancePosition(), 0.3f);
+                    if (Vector3.Distance(transform.position, refineryHomebase.GetEntrancePosition()) < 2f)
+                    {
+                        GetComponent<Collider>().enabled = true;
+                        ai.gravity = savedGravity;
+                        Debug.Log("Saved gravity is " + savedGravity);
+                        ai.enabled = true;
+                        mineState = MineState.IDLE;
+                    }
                 }
                 break;
 

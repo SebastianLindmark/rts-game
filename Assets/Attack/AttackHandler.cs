@@ -70,14 +70,15 @@ public class AttackHandler : MonoBehaviour, EnemyDetectedListener{
         float distance = Vector3.Distance(transform.position, target.transform.position);
         
         if (distance > attackRange) {
-            GetComponent<BaseUnit>().Walk(target.transform.position);
+            Vector3 pointAroundTarget = Random.insideUnitCircle * attackRange / 2;
+            GetComponent<BaseUnit>().Walk(pointAroundTarget + target.transform.position);
         }
 
         attackState = true;
         attackOpponent = target;
     }
 
-    public void Reset() {
+    public void AbortAttack() {
         attackState = false;
         attackOpponent = null;
     }
@@ -92,8 +93,6 @@ public class AttackHandler : MonoBehaviour, EnemyDetectedListener{
             GameObject explosion = Instantiate(this.explosionPrefab, projectilePosition.transform.position, projectilePosition.transform.rotation);
             spawned.GetComponent<Bullet>().Setup(enemy);
 
-
-//            GetComponent<BaseUnit>().Attack(attackOpponent); //Logic should be moved here
 
         }
 

@@ -104,8 +104,6 @@ public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
         if (!BuildingPlacer.HitsObstacle(possibleBuildingPlacement, target.transform))
         {
             possibleBuildingPlacement.y += target.transform.position.y; //Offset the building to be above ground
-            Debug.Log("The possible placement is " + possibleBuildingPlacement);
-            //BaseBuilding newObject = new BaseFactory().CreateUnit(player, target, possibleBuildingPlacement) as BaseBuilding;
 
             BaseBuilding newObject = Instantiate<BaseObject>(target, possibleBuildingPlacement, Quaternion.Euler(Vector3.zero)) as BaseBuilding;
             newObject.SetPlayer(player);

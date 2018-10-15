@@ -65,7 +65,6 @@ public class InputManager : MonoBehaviour
         // Selection
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Mouse down");
             startSelectionDrag = Input.mousePosition;
         }
         if (Input.GetMouseButtonUp(0))
@@ -77,7 +76,6 @@ public class InputManager : MonoBehaviour
 
             if (startSelectionDrag - Input.mousePosition == Vector3.zero)
             {
-                Debug.Log("Single click");
                 clickedObjects = GetSelectedObject(Input.mousePosition);
             }
             else

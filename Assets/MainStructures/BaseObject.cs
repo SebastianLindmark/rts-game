@@ -45,8 +45,7 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
             Debug.LogWarning("Creating new player from script.");
             player = new Player();
         }
-        Debug.Log("Local player " + player);
-        Debug.Log("Remove player " + p);
+
         player.setPlayerId(p.getPlayerId()); //This wont work if comparing references.
         
     }
@@ -98,6 +97,7 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
     protected void NotifyObjectRemoval()
     {
+        Debug.Log("Notifying removal with " + lifecycleListeners.Count + " listeners");
         foreach (ObjectLifecycleListener lcl in lifecycleListeners) {
             lcl.onRemoved(this);
         }

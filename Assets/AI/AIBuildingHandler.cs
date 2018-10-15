@@ -55,6 +55,7 @@ public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
 
     public override void MakeAction()
     {
+
         int level = GetDevelopmentLevel();
         if (level == 0)
         {
@@ -68,7 +69,7 @@ public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
             }
         }
         else {
-            Debug.Log("All neccesary buildings has been built");
+            //Debug.Log("All neccesary buildings has been built");
         }
     }
 
@@ -103,8 +104,11 @@ public class AIBuildingHandler : AIBaseHandler,ObjectLifecycleListener {
         if (!BuildingPlacer.HitsObstacle(possibleBuildingPlacement, target.transform))
         {
             possibleBuildingPlacement.y += target.transform.position.y; //Offset the building to be above ground
-            
-            BaseBuilding newObject = new BaseFactory().CreateUnit(player, target, possibleBuildingPlacement) as BaseBuilding;
+            Debug.Log("The possible placement is " + possibleBuildingPlacement);
+            //BaseBuilding newObject = new BaseFactory().CreateUnit(player, target, possibleBuildingPlacement) as BaseBuilding;
+
+            BaseBuilding newObject = Instantiate<BaseObject>(target, possibleBuildingPlacement, Quaternion.Euler(Vector3.zero)) as BaseBuilding;
+            newObject.SetPlayer(player);
             newObject.AddLifecycleListener(this);
             newObject.OnCreated();
         }

@@ -16,8 +16,6 @@ public class BaseUnit : BaseObject {
     public override void Start () {
         base.Start();
         NotifyObjectCreation();
-
-        Debug.Log(gameObject.GetComponent<Collider>().bounds);
         //AstarPath.active.UpdateGraphs(gameObject.GetComponent<Collider>().bounds);
         //AddMeshCollider(gameObject);
         //test();

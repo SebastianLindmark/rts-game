@@ -29,6 +29,7 @@ public class AIOffence : AIStrategy, ObjectLifecycleListener
             targetObject = GetTargetObject();
         }
         else {
+            Debug.Log("Attacking target");
             division.getDivision().ForEach(unit => unit.Attack(targetObject));
         }
         
@@ -49,7 +50,7 @@ public class AIOffence : AIStrategy, ObjectLifecycleListener
 
     private BaseObject GetTargetObject() {
         PlayerDataEnvironment.PlayerEnvironment pEnv = PlayerDataEnvironment.GetPlayerEnvironment(targetEnemy);
-        List<BaseObject> builtBuildings = pEnv.GetBuiltObjects().GetBuildings();
+        List<BaseObject> builtBuildings = pEnv.GetBuiltObjects().GetBuildings(); //This one returns null
 
         //Logic for targeting specific buildings can be placed here
         if (builtBuildings.Count > 0)

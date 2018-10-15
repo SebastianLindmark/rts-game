@@ -9,6 +9,7 @@ public class PlayerBuiltObjects : ObjectLifecycleListener {
     public void AddBuilding(BaseBuilding obj) {
         obj.AddLifecycleListener(this);
         builtBuildings.Add(obj);
+        Debug.Log("Adding building option");
 
     }
 
@@ -23,6 +24,7 @@ public class PlayerBuiltObjects : ObjectLifecycleListener {
 
     public void onRemoved(BaseObject baseObject)
     {
+        Debug.Log("THIS WAS REMOVED MAN");
         builtBuildings.Remove(baseObject);
     }
 }

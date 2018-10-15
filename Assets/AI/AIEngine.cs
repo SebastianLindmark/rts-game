@@ -41,7 +41,7 @@ public class AIEngine : MonoBehaviour {
                 minDevelopmentLevel = handler.GetDevelopmentLevel();
             }
         }
-        Debug.Log("Making action on " + minHandler);
+
         minHandler.MakeAction();
 
 
@@ -52,7 +52,7 @@ public class AIEngine : MonoBehaviour {
 
         strategicDivisionHandlers.ForEach(handler => handler.MakeAction());
 
-        AIUnitHandler unitHandler = GetComponent<AIUnitHandler>();
+        AIUnitHandler unitHandler = GetComponentInChildren<AIUnitHandler>();
         List<BaseObject> undeployedUnits = unitHandler.getUndeployedUnits();
 
         if(undeployedUnits.Count > AIDivision.UnitsInDivision)

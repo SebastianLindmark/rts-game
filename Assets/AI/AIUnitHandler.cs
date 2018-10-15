@@ -40,7 +40,7 @@ public class AIUnitHandler : AIBaseHandler, PlayerBuildableObjects.OnBuildableOb
 
             int requiredUnits = unitsPerLevel * (advancementLevel + 1);
             int unitsLeft = requiredUnits - availableBattleUnits.Count;
-            Debug.Log("Units left " + unitsLeft);
+            //Debug.Log("Units left " + unitsLeft);
 
             //Another approach is to map different units from beginning. Problably more control.
             List<PlayerBuildableObjectData> buildableObjectList = pEnv.GetBuildableObjects().getAvailableUnits();
@@ -64,8 +64,8 @@ public class AIUnitHandler : AIBaseHandler, PlayerBuildableObjects.OnBuildableOb
         {
             hasBuiltFactory = true;
         }
-
-        addedObj.creationObject.OnToolBarClick(addedObj.Obj);
+        //Debug.Log("This should be the source");
+        //addedObj.creationObject.OnToolBarClick(addedObj.Obj);
         
 
     }

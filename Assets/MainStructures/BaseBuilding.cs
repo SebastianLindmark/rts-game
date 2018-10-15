@@ -24,11 +24,12 @@ public class BaseBuilding : BaseObject, ToolbarClickListener
     public virtual void OnCreated()
     {
         PlayerDataEnvironment.PlayerEnvironment pEnv = PlayerDataEnvironment.GetPlayerEnvironment(GetPlayer());
-        pEnv.GetBuiltObjects().Add(this);
+        Debug.Log("About to add myself as a building in my environment");
+        pEnv.GetBuiltObjects().AddBuilding(this);
 
-        foreach (BaseBuilding unit in advancementBuildings)
+        foreach (BaseBuilding building in advancementBuildings)
         {
-            pEnv.GetBuildableObjects().AddObject(GetPlayer(), unit, this);
+            pEnv.GetBuildableObjects().AddObject(GetPlayer(), building, this);
         }
 
         NotifyObjectCreation();

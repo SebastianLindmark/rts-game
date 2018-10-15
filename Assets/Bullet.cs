@@ -16,9 +16,8 @@ public class Bullet : MonoBehaviour {
 		
 	}
 
-    public void Setup(BaseObject owner, BaseObject target) {
+    public void Setup(BaseObject target) {
         this.target = target;
-        this.owner = owner;
 
         colliders = target.GetComponentsInChildren<BoxCollider>();
     }

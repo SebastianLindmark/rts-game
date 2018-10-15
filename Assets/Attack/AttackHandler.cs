@@ -16,6 +16,11 @@ public class AttackHandler : MonoBehaviour, EnemyDetectedListener{
     public bool attackState = false;
     public BaseObject attackOpponent;
 
+
+    public GameObject bulletPrefab;
+    public GameObject projectilePosition;
+    public GameObject explosionPrefab;
+
     public AttackRule attackRule = new StandardAttackRule();
 
     void Start () {
@@ -35,7 +40,7 @@ public class AttackHandler : MonoBehaviour, EnemyDetectedListener{
 
             if (attackOpponent != null && GetComponent<RangedEnemyDetector>().IsObjectInRange(attackOpponent.gameObject))
             {
-                Attack(attackOpponent);
+                Shoot(attackOpponent);
             }
             else
             {
@@ -60,12 +65,35 @@ public class AttackHandler : MonoBehaviour, EnemyDetectedListener{
      
     }
 
+    public void AttackEnemy(BaseObject target) {
 
-    private void Attack(BaseObject enemy) {
+        float distance = Vector3.Distance(transform.position, target.transform.position);
+        
+        if (distance > attackRange) {
+            GetComponent<BaseUnit>().Walk(target.transform.position);
+        }
+
+        attackState = true;
+        attackOpponent = target;
+    }
+
+    public void Reset() {
+        attackState = false;
+        attackOpponent = null;
+    }
+
+
+    private void Shoot(BaseObject enemy) {
         if (GetComponent<TurretRotation>().IsRotationFinished() && Time.time > fireRate + lastShotTimestamp)
         {
             lastShotTimestamp = Time.time;
-            GetComponent<BaseUnit>().Attack(attackOpponent);
+
+            GameObject spawned = Instantiate(this.bulletPrefab, projectilePosition.transform.position, projectilePosition.transform.rotation);
+            GameObject explosion = Instantiate(this.explosionPrefab, projectilePosition.transform.position, projectilePosition.transform.rotation);
+            spawned.GetComponent<Bullet>().Setup(enemy);
+
+
+//            GetComponent<BaseUnit>().Attack(attackOpponent); //Logic should be moved here
 
         }
 

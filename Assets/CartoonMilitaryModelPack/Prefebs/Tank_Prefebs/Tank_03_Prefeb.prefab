@@ -793,7 +793,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8753395, y: 0.75232613, z: 28.4}
+  m_LocalPosition: {x: 38.695778, y: 0.75, z: -12.032541}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 476224}
@@ -2108,6 +2108,11 @@ MonoBehaviour:
   fireRate: 4
   attackState: 0
   attackOpponent: {fileID: 0}
+  bulletPrefab: {fileID: 1736002236419254, guid: 8b4960aef68c61142b13ba8ed635bd41,
+    type: 2}
+  projectilePosition: {fileID: 1582101302624308}
+  explosionPrefab: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1,
+    type: 2}
 --- !u!114 &114528874036337494
 MonoBehaviour:
   m_ObjectHideFlags: 1

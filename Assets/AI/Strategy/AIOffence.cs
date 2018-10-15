@@ -29,7 +29,6 @@ public class AIOffence : AIStrategy, ObjectLifecycleListener
             targetObject = GetTargetObject();
         }
         else {
-            Debug.Log("Attacking target");
             division.getDivision().ForEach(unit => unit.Attack(targetObject));
         }
         

@@ -16,56 +16,8 @@ public class BaseUnit : BaseObject {
     public override void Start () {
         base.Start();
         NotifyObjectCreation();
-        //AstarPath.active.UpdateGraphs(gameObject.GetComponent<Collider>().bounds);
-        //AddMeshCollider(gameObject);
-        //test();
     }
 
-
-    private void test() {
-
-        BoxCollider bc = GetComponentInChildren<BoxCollider>();
-        if (bc != null) {
-            BoxCollider newBc = gameObject.AddComponent<BoxCollider>();
-            newBc.center = Vector3.zero;
-            newBc.size = bc.bounds.size;
-            Destroy(bc);
-        }
-        gameObject.AddComponent<DynamicGridObstacle>();
-
-
-    }
-
-    private void AddMeshCollider(GameObject containerModel)
-    {
-        // Add mesh collider
-        MeshFilter meshFilter = containerModel.GetComponent<MeshFilter>();
-        if (meshFilter != null)
-        {
-            MeshCollider meshCollider = containerModel.AddComponent<MeshCollider>();
-            meshCollider.sharedMesh = meshFilter.sharedMesh;
-        }
-        // Add mesh collider (convex) for each mesh in child elements.
-        Component[] meshes = containerModel.GetComponentsInChildren<MeshFilter>();
-        foreach (MeshFilter mesh in meshes)
-        {
-            MeshCollider meshCollider = containerModel.AddComponent<MeshCollider>();
-            meshCollider.sharedMesh = mesh.sharedMesh;
-        }
-    }
-
-
-
-    public override void OnSelect()
-    {
-        base.OnSelect();
-
-    }
-
-    public override void OnUnselect()
-    {
-        base.OnUnselect();
-    }
 
     public override void OnGroundClick(Vector3 target)
     {
@@ -90,12 +42,11 @@ public class BaseUnit : BaseObject {
         }
     }
 
-    public virtual void Walk(Vector3 direction)
+    public virtual void Walk(Vector3 position)
     {
         IAstarAI ai = GetComponent<IAstarAI>();
-        ai.destination = direction;
+        ai.destination = position;
         ai.SearchPath();
-        
     }
 
 
@@ -105,9 +56,10 @@ public class BaseUnit : BaseObject {
 
     public override void Attack(BaseObject target)
     {
-        GameObject spawned = Instantiate(this.bulletPrefab, projectilePosition.transform.position, projectilePosition.transform.rotation);
-        GameObject explosion = Instantiate(this.explosionPrefab, projectilePosition.transform.position, projectilePosition.transform.rotation);
-        spawned.GetComponent<Bullet>().Setup(this,target);
+        GetComponent<AttackHandler>().AttackEnemy(target);
+        //GameObject spawned = Instantiate(this.bulletPrefab, projectilePosition.transform.position, projectilePosition.transform.rotation);
+        //GameObject explosion = Instantiate(this.explosionPrefab, projectilePosition.transform.position, projectilePosition.transform.rotation);
+        //spawned.GetComponent<Bullet>().Setup(target);
 
     }
 }

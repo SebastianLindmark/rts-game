@@ -63,17 +63,17 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
     }
 
-    public bool Within(Vector3 clickVector) {
+    public bool Within(Vector3 position) {
 
         Collider c = GetComponent<Collider>();
         if (c) {
-            return c.bounds.Contains(clickVector);
+            return c.bounds.Contains(position);
         }
 
         Collider[] colliders = GetComponentsInChildren<Collider>();
         for(int i =0; i < colliders.Length; i++)
         {
-            if (colliders[i].bounds.Contains(clickVector))
+            if (colliders[i].bounds.Contains(position))
             {
                 return true;
             }

@@ -58,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 47.91924, y: 2.0159535, z: 55.15333}
+  m_LocalPosition: {x: -70.01109, y: 2.0159533, z: -8.426606}
   m_LocalScale: {x: 1, y: 1.26064, z: 1}
   m_Children:
   - {fileID: 443702}
@@ -193,7 +193,6 @@ GameObject:
   - component: {fileID: 4087209122660516}
   - component: {fileID: 33805646499032910}
   - component: {fileID: 23948460190212636}
-  - component: {fileID: 136288562422717408}
   m_Layer: 11
   m_Name: Chimney2
   m_TagString: Untagged
@@ -226,7 +225,6 @@ GameObject:
   - component: {fileID: 4327936509019228}
   - component: {fileID: 33611914476588834}
   - component: {fileID: 23148416197625146}
-  - component: {fileID: 136428906464912514}
   m_Layer: 11
   m_Name: Chimney1
   m_TagString: Untagged
@@ -450,29 +448,3 @@ MonoBehaviour:
   uniqueID: 6603071993342710753
   updateError: 1
   checkTime: 0.2
---- !u!136 &136288562422717408
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1224930917236736}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!136 &136428906464912514
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1924231292271166}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}

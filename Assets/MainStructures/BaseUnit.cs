@@ -69,11 +69,6 @@ public class BaseUnit : BaseObject {
 
     public override void Attack(BaseObject target)
     {
-        Debug.Log("Attacking target, i am " + GetInstanceID());
         GetComponent<AttackHandler>().AttackEnemy(target);
-        //GameObject spawned = Instantiate(this.bulletPrefab, projectilePosition.transform.position, projectilePosition.transform.rotation);
-        //GameObject explosion = Instantiate(this.explosionPrefab, projectilePosition.transform.position, projectilePosition.transform.rotation);
-        //spawned.GetComponent<Bullet>().Setup(target);
-
     }
 }

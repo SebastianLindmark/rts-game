@@ -2145,7 +2145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf203670bf5161d4e91b41d035726457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitCost: 0
+  unitCost: 150
   health: 100
   printableName: Light tank
   selectionMarker: {fileID: 0}

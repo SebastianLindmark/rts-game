@@ -17,7 +17,7 @@ public class ToolbarController : MonoBehaviour,ItemClick, PlayerBuildableObjects
 
     private Rect toolbarRect;
 
-    private Hashtable existingObjects = new Hashtable();
+    private Dictionary<string, BaseObject> existingObjects = new Dictionary<string, BaseObject>();
 
     private ToolbarState toolbarState;
 
@@ -50,14 +50,16 @@ public class ToolbarController : MonoBehaviour,ItemClick, PlayerBuildableObjects
 
     private void RedrawToolbar()
     {
-        List<PlayerBuildableObjectData> objs;
+        HashSet<PlayerBuildableObjectData> uniqueItems;
         if (toolbarState == ToolbarState.BUILDING)
         {
-            objs = buildableObjects.getAvailableBuildings();
+            uniqueItems = new HashSet<PlayerBuildableObjectData>(buildableObjects.getAvailableBuildings());
         }
         else {
-            objs = buildableObjects.getAvailableUnits();
+            uniqueItems = new HashSet<PlayerBuildableObjectData>(buildableObjects.getAvailableUnits());
         }
+
+        List<PlayerBuildableObjectData> objs = new List<PlayerBuildableObjectData>(uniqueItems);
 
 
         for (int i = 0; i < cells.Count; i++)
@@ -102,11 +104,15 @@ public class ToolbarController : MonoBehaviour,ItemClick, PlayerBuildableObjects
         
     }
 
+
+    private void UpdateItemState()
+    {
+
+    }
+
     public void OnBuildingOptionAdded(PlayerBuildableObjectData addedObj)
     {
         RedrawToolbar();
-
-
     }
 
     public void OnBuildingOptionRemoved(PlayerBuildableObjectData removedObj)

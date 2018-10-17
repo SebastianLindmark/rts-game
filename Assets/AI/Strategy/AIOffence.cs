@@ -40,8 +40,6 @@ public class AIOffence : AIStrategy, ObjectLifecycleListener
             List<BaseObject> units = division.getDivision().FindAll(unit => !unit.GetComponent<IAstarAI>().hasPath);
             units.ForEach(unit => unit.Attack(targetObject));
 
-            Debug.Log("We found " + units.Count + " who didnt have a target");
-
         }
         
     }

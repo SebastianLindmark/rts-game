@@ -131,6 +131,11 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
             Debug.Log("Colliding with itself " + (buildingToPlace.gameObject == hitColliders[0].transform.root.gameObject));
             return buildingToPlace.gameObject != hitColliders[0].transform.root.gameObject; //Will always collide with itself
         }
+
+        for (int i = 0; i < hitColliders.Length; i++) {
+            Debug.Log("Colliding with " + hitColliders[i]);
+        }
+
         return hitColliders.Length > 1;
     }
 

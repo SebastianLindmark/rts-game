@@ -12,5 +12,26 @@ public class PlayerBuildableObjectData {
         Obj = o;
         Player = player;
         creationObject = responsibleForCreation;
+
     }
+
+    public override bool Equals(object obj) {
+        PlayerBuildableObjectData comp = obj as PlayerBuildableObjectData;
+        Debug.Log("Comparing");
+        if(comp == null)
+        {
+            return false;
+        }
+
+        return Obj.printableName.Equals(comp.Obj.printableName);
+    }
+
+    public override int GetHashCode()
+    {
+        return Obj.printableName.GetHashCode();
+    }
+
+
+
+
 }

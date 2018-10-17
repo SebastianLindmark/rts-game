@@ -17,7 +17,7 @@ public class PlayerBuildableObjectData {
 
     public override bool Equals(object obj) {
         PlayerBuildableObjectData comp = obj as PlayerBuildableObjectData;
-        Debug.Log("Comparing");
+
         if(comp == null)
         {
             return false;

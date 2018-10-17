@@ -51,7 +51,7 @@ public class TurretRotation : MonoBehaviour, AttackListener {
         if (tankTurretTransform)
         {
             Vector3 rotation = tankTurretTransform.rotation.eulerAngles;
-
+            //Debug.Log(targetRotation);
             if (Mathf.Abs(Mathf.Abs(targetRotation) - Mathf.Abs(rotation.y)) < 0.5f)
             {
                 return true;
@@ -71,6 +71,14 @@ public class TurretRotation : MonoBehaviour, AttackListener {
 
         Vector2 targetDir = meVector - targetVector;
         float angle = Vector2.Angle(targetDir, transform.up);
+        Vector3 cross = Vector3.Cross(targetDir, transform.up);
+
+        if (cross.z < 0) {
+            angle = 360 - angle;
+        }
+
+
+        Debug.Log(angle);
         SetTargetRotation(angle + 180);
     }
 

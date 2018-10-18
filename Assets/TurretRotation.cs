@@ -77,8 +77,6 @@ public class TurretRotation : MonoBehaviour, AttackListener {
             angle = 360 - angle;
         }
 
-
-        Debug.Log(angle);
         SetTargetRotation(angle + 180);
     }
 

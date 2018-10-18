@@ -793,7 +793,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 38.695778, y: 0.75, z: -12.032541}
+  m_LocalPosition: {x: -84.24922, y: 0.752326, z: 35.250877}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 476224}
@@ -2145,7 +2145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf203670bf5161d4e91b41d035726457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitCost: 150
+  productionCost: 250
   health: 100
   printableName: Light tank
   selectionMarker: {fileID: 0}

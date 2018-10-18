@@ -6,7 +6,7 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
     private Player player;
 
-    public int unitCost;
+    public int productionCost;
 
     public float health = 100;
 
@@ -58,9 +58,23 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
         if(health <= 0)
         {
-            RemoveObject();
+            ZeroHealth();
         }
+    }
 
+    public virtual void ZeroHealth()
+    {
+        RemoveObject();
+    }
+
+
+    public virtual void RemoveObject()
+    {
+        NotifyObjectRemoval();
+        InputManager inputManager = GameObject.Find("GameControllerObject").GetComponent<InputManager>();
+        inputManager.UnregisterListener(this);
+        //Should clear listeners here
+        Destroy(gameObject);
     }
 
     public bool Within(Vector3 position) {
@@ -81,14 +95,7 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
         return false;        
     }
 
-    public virtual void RemoveObject()
-    {
-        NotifyObjectRemoval();
-        InputManager inputManager = GameObject.Find("GameControllerObject").GetComponent<InputManager>();
-        inputManager.UnregisterListener(this);
-        //Should clear listeners here
-        Destroy(gameObject);
-    }
+   
 
     public void AddLifecycleListener(ObjectLifecycleListener listener)
     {

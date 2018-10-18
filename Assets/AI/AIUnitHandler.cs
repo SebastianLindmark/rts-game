@@ -94,6 +94,7 @@ public class AIUnitHandler : AIBaseHandler, PlayerBuildableObjects.OnBuildableOb
     }
 
     public List<BaseObject> getUndeployedUnits() {
+        
         return undeployedUnits;
     }
 

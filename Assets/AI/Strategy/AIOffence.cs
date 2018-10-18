@@ -26,17 +26,20 @@ public class AIOffence : AIStrategy, ObjectLifecycleListener
 
     public void MakeAction()
     {
+
         if (targetObject == null)
         {
             targetObject = GetTargetObject();
         }
         else if (!attacking)
         {
+
             division.getDivision().ForEach(unit => unit.Attack(targetObject));
-            Debug.Log("Attacking with division of " + division.getDivision().Count);
+
             attacking = true;
         }
         else {
+
             List<BaseObject> units = division.getDivision().FindAll(unit => !unit.GetComponent<IAstarAI>().hasPath);
             units.ForEach(unit => unit.Attack(targetObject));
 

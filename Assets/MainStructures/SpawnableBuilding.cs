@@ -45,7 +45,8 @@ public class SpawnableBuilding : BaseBuilding, ToolbarClickListener {
 
     public override BaseObject OnToolBarClick(BaseObject clickedObj)
     {
-        if (clickedObj.unitCost < GetAvailableGold())
+        
+        if (clickedObj.productionCost < GetAvailableGold())
         {
             Vector3 initalPosition;
             if (!spawnLocation)
@@ -56,13 +57,13 @@ public class SpawnableBuilding : BaseBuilding, ToolbarClickListener {
             {
                 initalPosition = spawnLocation.transform.position;
             }
-            
+
             return new BaseFactory().ProduceUnit(GetPlayer(), clickedObj, initalPosition);
 
         }
         else
         {
-            Debug.Log("Invalid funds");
+            Debug.Log("Insufficient funds");
             return null;
         }
     }

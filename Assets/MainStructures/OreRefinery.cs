@@ -51,7 +51,7 @@ public class OreRefinery : SpawnableBuilding {
         {
             Vector3 pos = transform.position;
             pos.y = 1; //Temporary, make constant or calculate height of spawned vehicle instead
-            OreMiner spawnedMiner = new BaseFactory().CreateUnit(this, spawnOnCreation, pos).GetComponent<OreMiner>();
+            OreMiner spawnedMiner = new BaseFactory().CreateObject(this, spawnOnCreation, pos).GetComponent<OreMiner>();
             spawnedMiner.SetMineState(OreMiner.MineState.EXIT);
             spawnedMiner.enterUnloadState();
             

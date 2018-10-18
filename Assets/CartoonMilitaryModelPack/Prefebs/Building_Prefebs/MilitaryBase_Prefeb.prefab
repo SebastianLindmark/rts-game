@@ -1106,10 +1106,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0dd0fc1e7add241b5d87f0f06f3bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitCost: 0
+  productionCost: 0
   health: 300
   printableName: Base building
   selectionMarker: {fileID: 0}
   advancementBuildings:
   - {fileID: 114882463106297222, guid: 7a95816aadbfe49db81a2937fca2055a, type: 2}
   - {fileID: 114811659807151646, guid: 47fc85326e071424d852735168bcd9e9, type: 2}
+  - {fileID: 114581242244981156, guid: 3a47d47dcaade49f5aa9af8addf986f5, type: 2}

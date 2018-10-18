@@ -26,7 +26,7 @@ public class OilTank : BaseBuilding {
 
     public override void ZeroHealth()
     {
-        Invoke("DelayRemovalEffect", Random.Range(0.5f,0.75f));
+        Invoke("DelayRemovalEffect", Random.Range(0.3f,0.5f));
     }
 
     private void DelayRemovalEffect() {

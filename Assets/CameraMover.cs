@@ -8,8 +8,8 @@ public class CameraMover : MonoBehaviour {
     private float screenHeight;
 
     public const int boundary = 15; //pixels
-    public const float scrollSpeed = 0.5f;
-    public const float zoomSpeed = 5f;
+    public const float scrollSpeed = 1f;
+    public const float zoomSpeed = 10f;
 
     public const float zoomMin = 20f;
     public const float zoomMax = 100f;

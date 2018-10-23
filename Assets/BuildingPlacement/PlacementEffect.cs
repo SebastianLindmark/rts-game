@@ -13,11 +13,9 @@ public class PlacementEffect : MonoBehaviour{
     private int savedLayer;
 
 
-
-
-    void Start()
+    void Awake()
     {
-
+        Debug.Log("Running start in placement Effect");
         placementRenderers = GetComponentsInChildren<Renderer>();
 
         if (placementRenderers.Length == 0)
@@ -36,7 +34,14 @@ public class PlacementEffect : MonoBehaviour{
 
             placementMaterials[i].shader = Shader.Find("Transparent/Diffuse");
         }
-        
+
+        Debug.Log("The renderers are " + placementRenderers.Length);
+
+    }
+
+    void Start()
+    {
+       
     }
 
     public void Setup() {
@@ -52,6 +57,19 @@ public class PlacementEffect : MonoBehaviour{
         if (collider)
         {
             collider.enabled = state;
+        }
+
+    }
+
+    public void ApplyColorToOriginal(Color color) {
+        Debug.Log("Applying teamcolor to original " + color);
+
+        for (int i = 0; i < originalMaterials.Length; i++)
+        {
+            Material material = new Material(originalMaterials[i]);
+            material.color = new Color(color.r, color.g, color.b, color.a);
+            originalMaterials[i] = material;
+            SetMaterial(i, material);
         }
 
     }
@@ -82,7 +100,9 @@ public class PlacementEffect : MonoBehaviour{
     }
 
     public void Reset() {
+        Debug.Log("Reseting material");
         for (int i = 0; i < originalMaterials.Length; i++) {
+            Debug.Log(originalMaterials[i].color);
             SetMaterial(i,originalMaterials[i]);
             gameObject.layer = savedLayer;
         }

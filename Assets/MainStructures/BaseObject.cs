@@ -25,13 +25,21 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
         InputManager inputManager = GameObject.Find("GameControllerObject").GetComponent<InputManager>();
         inputManager.RegisterListener(this);
         //Utils.CreateMinimapUnitCube(gameObject);
+
+
+        PlacementEffect teamColor = GetComponent<PlacementEffect>();
+        if (teamColor == null) {
+            teamColor = gameObject.AddComponent<PlacementEffect>();
+        }
+        Debug.Log("Applying team color");
+        teamColor.ApplyColorToOriginal(GetPlayer().GetTeamColor());        
     }
 
     public Player GetPlayer()
     {
         if (player == null)
         {
-            Debug.LogWarning("Creating new player from script.");
+            Debug.LogError("Creating new player from script.");
             player = new Player();
         }
 
@@ -40,13 +48,7 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
     public void SetPlayer(Player p)
     {
-        if (player == null)
-        {
-            Debug.LogWarning("Creating new player from script.");
-            player = new Player();
-        }
-
-        player.setPlayerId(p.getPlayerId()); //This wont work if comparing references.
+        player = p; //This wont work if comparing references.
         
     }
 

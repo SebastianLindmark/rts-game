@@ -95,7 +95,6 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
     {
         Debug.Log("Placing object");
         placementObject.GetComponent<PlacementEffect>().Reset();
-        Destroy(placementObject.GetComponent<PlacementEffect>());
         placementObject.OnCreated();
         placementObject = null;
     }
@@ -112,7 +111,13 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
     {
         Vector3 startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         placementObject = new BaseFactory().CreateUnit(PlayerManager.humanPlayer, obj, startPosition) as BaseBuilding;
-        placementObject.gameObject.AddComponent<PlacementEffect>().Setup();
+
+        PlacementEffect placementEffect = placementObject.GetComponent<PlacementEffect>();
+
+        if (placementObject.GetComponent<PlacementEffect>() == null) {
+            placementEffect = placementObject.gameObject.AddComponent<PlacementEffect>();
+        }
+        placementEffect.Setup();
         return null; //Should not be used
     }
 
@@ -123,16 +128,10 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
         int layerMask = ((1 << LayerMask.NameToLayer("Building")));
 
         Collider c = buildingToPlace.GetComponentInChildren<Collider>();
-        Debug.Log(c.bounds.size);
         Collider[] hitColliders = Physics.OverlapBox(clickPosition, c.bounds.size / 2, buildingToPlace.rotation, layerMask);
 
-        Debug.Log("The hit colliders detected are " + hitColliders.Length);
         if (hitColliders.Length == 1) {
             return buildingToPlace.gameObject != hitColliders[0].transform.root.gameObject; //Will always collide with itself
-        }
-
-        for (int i = 0; i < hitColliders.Length; i++) {
-            Debug.Log("Colliding with " + hitColliders[i]);
         }
 
         return hitColliders.Length > 1;

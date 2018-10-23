@@ -419,11 +419,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d3c6925e46c8184085d2cf1297b50be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitCost: 0
+  productionCost: 0
   health: 100
   printableName: Ore refinery
   selectionMarker: {fileID: 0}
+  thumbnail: {fileID: 21300000, guid: 2210ca4cb8b47c34a8c11605e49d68ad, type: 3}
   advancementBuildings: []
+  destroyExplosion: {fileID: 0}
   spawnLocation: {fileID: 0}
   spawnableUnits:
   - {fileID: 114667675083770750, guid: d34c0c87e5bdee64282f001c576625c3, type: 2}

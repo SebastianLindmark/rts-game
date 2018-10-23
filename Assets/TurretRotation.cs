@@ -15,17 +15,20 @@ public class TurretRotation : MonoBehaviour, AttackListener {
     void Start () {
         Transform transform = GetComponent<Transform>();
         tankTurretTransform = GetChildTransform(transform,"UpperBody");
+        if (tankTurretTransform == null) {
+            Debug.Log("Didnt find upperbody");
+            tankTurretTransform = GetChildTransform(transform, "Turret_Body");
+            Debug.Log("Found instead " + tankTurretTransform.name);
+        }
         defaultRotation = tankTurretTransform.eulerAngles;       
 
 
-        attackHandler = GetComponent<AttackHandler>();
+        attackHandler = gameObject.GetComponent<AttackHandler>();
         SetTargetRotation(transform.root.eulerAngles.y);
     }
     
     void Update () {
-
-
-        if (attackHandler.attackState && attackHandler.attackOpponent)
+        if (attackHandler.attackState && attackHandler.attackOpponent != null)
         {
             onAttack(attackHandler.attackOpponent);
         }

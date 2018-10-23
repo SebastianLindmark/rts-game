@@ -3,11 +3,14 @@
 --- !u!1 &126172
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 443974}
+  - component: {fileID: 114795582897937904}
+  - component: {fileID: 114226107249290284}
+  - component: {fileID: 114756679930354894}
   m_Layer: 0
   m_Name: GuardPoint_03_Prefeb
   m_TagString: Untagged
@@ -18,13 +21,15 @@ GameObject:
 --- !u!1 &168504
 GameObject:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 400688}
   - component: {fileID: 3381660}
   - component: {fileID: 2347290}
+  - component: {fileID: 65967566001847484}
+  - component: {fileID: 114586906279088188}
   m_Layer: 0
   m_Name: GuardPoint_03_Body
   m_TagString: Untagged
@@ -35,9 +40,9 @@ GameObject:
 --- !u!1 &173570
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 495620}
   - component: {fileID: 9575092}
@@ -51,7 +56,7 @@ GameObject:
 --- !u!4 &400688
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168504}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -64,12 +69,12 @@ Transform:
 --- !u!4 &443974
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 126172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -36.84, y: -0, z: 286.7}
+  m_LocalScale: {x: 1.8605633, y: 1.8605633, z: 1.8605633}
   m_Children:
   - {fileID: 495620}
   m_Father: {fileID: 0}
@@ -78,7 +83,7 @@ Transform:
 --- !u!4 &495620
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173570}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -92,15 +97,17 @@ Transform:
 --- !u!23 &2347290
 MeshRenderer:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168504}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: c67bdd5186606420d8db6efb40bf4c59, type: 2}
   m_StaticBatchInfo:
@@ -113,6 +120,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -124,7 +132,7 @@ MeshRenderer:
 --- !u!33 &3381660
 MeshFilter:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 168504}
   m_Mesh: {fileID: 4300000, guid: 76c16cda42786410092600da2b993f4e, type: 3}
@@ -132,7 +140,7 @@ MeshFilter:
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173570}
   m_Enabled: 1
@@ -145,6 +153,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -153,6 +162,82 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 126172}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1
+--- !u!65 &65967566001847484
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168504}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.33043265, y: 0.16222039, z: 0.33043265}
+  m_Center: {x: -0.00000023841858, y: 0.081110194, z: 0.0000019073486}
+--- !u!114 &114226107249290284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f602eb1cbfd7f4084da228c1f23183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114586906279088188
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 5722402671725588631
+  updateError: 1
+  checkTime: 0.2
+--- !u!114 &114756679930354894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a4389919060704ebeeaafe841e2764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+  attackRange: 50
+  fireRate: 10
+  attackState: 0
+  attackOpponent: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  projectilePosition: {fileID: 0}
+  explosionPrefab: {fileID: 0}
+--- !u!114 &114795582897937904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3353d5163ba733744997eeb6819e0837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  productionCost: 0
+  health: 100
+  printableName: Guard Point
+  selectionMarker: {fileID: 0}
+  thumbnail: {fileID: 0}
+  destroyExplosion: {fileID: 0}
+  advancementBuildings: []
+  destroyExplosion: {fileID: 0}

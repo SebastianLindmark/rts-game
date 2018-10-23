@@ -15,7 +15,7 @@ public class PlacementEffect : MonoBehaviour{
 
     void Awake()
     {
-        Debug.Log("Running start in placement Effect");
+
         placementRenderers = GetComponentsInChildren<Renderer>();
 
         if (placementRenderers.Length == 0)
@@ -62,7 +62,7 @@ public class PlacementEffect : MonoBehaviour{
     }
 
     public void ApplyColorToOriginal(Color color) {
-        Debug.Log("Applying teamcolor to original " + color);
+
 
         for (int i = 0; i < originalMaterials.Length; i++)
         {
@@ -100,9 +100,9 @@ public class PlacementEffect : MonoBehaviour{
     }
 
     public void Reset() {
-        Debug.Log("Reseting material");
+
         for (int i = 0; i < originalMaterials.Length; i++) {
-            Debug.Log(originalMaterials[i].color);
+
             SetMaterial(i,originalMaterials[i]);
             gameObject.layer = savedLayer;
         }

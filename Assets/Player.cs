@@ -23,12 +23,10 @@ public class Player {
 
     public void SetTeamColor(Color color)
     {
-        Debug.Log("Setting color " + color);
         teamColor = color;
     }
 
     public Color GetTeamColor() {
-        Debug.Log("Returning color " + teamColor);
         return teamColor;
     }
 

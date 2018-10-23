@@ -22,7 +22,6 @@ public class PlayerManager : MonoBehaviour {
         {
             Player player = new Player();
             Color color = GetColor();
-            Debug.Log(color);
             player.SetTeamColor(color);
             playerList.Add(player);
             playerCount++;
@@ -41,7 +40,6 @@ public class PlayerManager : MonoBehaviour {
         int index = UnityEngine.Random.Range(0, availableTeamColors.Count);
         Color color = availableTeamColors[index];
         availableTeamColors.RemoveAt(index);
-        Debug.Log("Got color " + color);
         return color;
     }
 

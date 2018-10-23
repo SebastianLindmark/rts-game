@@ -15,13 +15,18 @@ public class BaseUnit : BaseObject {
 
     public override void Start () {
         base.Start();
+        Utils.CreateMinimapUnitCube(GetPlayer().GetTeamColor(), gameObject);
         NotifyObjectCreation();
     }
 
 
     public override void OnGroundClick(Vector3 target)
     {
-        GetComponent<AttackHandler>().AbortAttack();
+        AttackHandler attackHandler = GetComponent<AttackHandler>();
+        if (attackHandler != null) {
+            GetComponent<AttackHandler>().AbortAttack();
+        }
+        
         Walk(target);
     }
 

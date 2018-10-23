@@ -43,8 +43,6 @@ public class OreMiner : BaseUnit {
         oreRenderers.Add(gameObject.transform.Find("Ore3").GetComponent<Renderer>());
         oreRenderers.Add(gameObject.transform.Find("Ore4").GetComponent<Renderer>());
 
-        savedGravity = ai.gravity;
-
         FindOreRefinery();
         Reset();
     }
@@ -160,8 +158,9 @@ public class OreMiner : BaseUnit {
                     transform.position = Vector3.MoveTowards(transform.position, refineryHomebase.GetEntrancePosition(), 0.3f);
                     if (Vector3.Distance(transform.position, refineryHomebase.GetEntrancePosition()) < 2f)
                     {
+                        
                         GetComponent<Collider>().enabled = true;
-                        ai.gravity = savedGravity;
+                        //ai.gravity = savedGravity;
                         ai.enabled = true;
                         mineState = MineState.IDLE;
                     }
@@ -178,7 +177,7 @@ public class OreMiner : BaseUnit {
     public void enterUnloadState() {
         GetComponent<Collider>().enabled = false;
         AIPath a = GetComponent<AIPath>();
-        a.gravity = new Vector3(0, 0, 0);
+        //a.gravity = new Vector3(0, 0, 0);
         a.enabled = false;
     }
 

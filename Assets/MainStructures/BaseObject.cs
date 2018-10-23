@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
@@ -14,24 +15,27 @@ public abstract class BaseObject : MonoBehaviour , IBaseObject {
 
     public GameObject selectionMarker;
 
+    public Sprite thumbnail;
+    
     private GameObject inputManagerGameObject;
 
     private GameObject healthbar;
 
     private List<ObjectLifecycleListener> lifecycleListeners = new List<ObjectLifecycleListener>();
 
+
+
     virtual public void Start()
     {
         InputManager inputManager = GameObject.Find("GameControllerObject").GetComponent<InputManager>();
         inputManager.RegisterListener(this);
-        //Utils.CreateMinimapUnitCube(gameObject);
 
 
         PlacementEffect teamColor = GetComponent<PlacementEffect>();
         if (teamColor == null) {
             teamColor = gameObject.AddComponent<PlacementEffect>();
         }
-        Debug.Log("Applying team color");
+
         teamColor.ApplyColorToOriginal(GetPlayer().GetTeamColor());        
     }
 

@@ -71,7 +71,10 @@ public class AttackHandler : MonoBehaviour, EnemyDetectedListener{
         
         if (distance > attackRange) {
             Vector3 pointAroundTarget = Random.insideUnitCircle.normalized * attackRange / 2;
-            GetComponent<BaseUnit>().Walk(pointAroundTarget + target.transform.position);
+            if (GetComponent<BaseUnit>() != null) {
+                GetComponent<BaseUnit>().Walk(pointAroundTarget + target.transform.position);
+            }
+            
         }
 
         attackState = true;
@@ -85,7 +88,10 @@ public class AttackHandler : MonoBehaviour, EnemyDetectedListener{
 
 
     private void Shoot(BaseObject enemy) {
-        if (GetComponent<TurretRotation>().IsRotationFinished() && Time.time > fireRate + lastShotTimestamp)
+
+        TurretRotation tr = GetComponent<TurretRotation>();
+        Debug.Log(tr.IsRotationFinished());
+        if ((tr == null || (tr != null &&  tr.IsRotationFinished())) && Time.time > fireRate + lastShotTimestamp)
         {
             lastShotTimestamp = Time.time;
 

@@ -47,6 +47,10 @@ public class ToolbarController : MonoBehaviour,ItemClick, PlayerBuildableObjects
         }
     }
 
+    private void GetImage(string name) {
+        //Temp function
+    }
+
 
     private void RedrawToolbar()
     {
@@ -70,13 +74,26 @@ public class ToolbarController : MonoBehaviour,ItemClick, PlayerBuildableObjects
                 Text text = cells[i].GetComponentInChildren<Text>();
                 text.text = objs[i].Obj.printableName.Length > 0 ? objs[i].Obj.printableName : objs[i].Obj.name;
 
-                Image textBackground = cells[i].GetComponentsInChildren<Image>()[1];
-                textBackground.color = new Color(0, 0, 0, 0.153f);
+                Image[] images = cells[i].GetComponentsInChildren<Image>();
+
+                Image imageBackground = images[0];
+                Image textBackground = images[1];
+
+                Sprite thumbnail = objs[i].Obj.thumbnail;
+
+                if (thumbnail) {
+                    imageBackground.sprite = thumbnail;
+                    imageBackground.color = new Color(1,1,1);
+                }
+                
+                textBackground.color = new Color(0.1058824f, 0.172549f, 0.1921569f, 0.90f);
             }
             else
             {
                 cells[i].GetComponentInChildren<Text>().text = "";
                 Image imageBox = cells[i].GetComponentInChildren<Image>();
+                imageBox.sprite = null;
+                imageBox.color = new Color(0.1058824f, 0.172549f, 0.1921569f);
                 Image textBackground = imageBox.GetComponentsInChildren<Image>()[1]; //Gives the parent component at index 0
                 textBackground.color = Color.clear;
             }

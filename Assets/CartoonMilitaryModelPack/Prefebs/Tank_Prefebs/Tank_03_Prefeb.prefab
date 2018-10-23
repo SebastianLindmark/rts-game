@@ -2149,6 +2149,7 @@ MonoBehaviour:
   health: 100
   printableName: Light tank
   selectionMarker: {fileID: 0}
+  thumbnail: {fileID: 21300000, guid: 7ab2998f192058c4198a758f9d1bbcf4, type: 3}
   projectilePosition: {fileID: 1582101302624308}
   bulletPrefab: {fileID: 1736002236419254, guid: 8b4960aef68c61142b13ba8ed635bd41,
     type: 2}

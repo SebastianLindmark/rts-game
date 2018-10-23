@@ -9,6 +9,7 @@ public class BaseBuilding : BaseObject, ToolbarClickListener
 
     public List<BaseBuilding> advancementBuildings;
 
+    public GameObject destroyExplosion;
 
     public override void Start()
     {
@@ -42,6 +43,12 @@ public class BaseBuilding : BaseObject, ToolbarClickListener
     public override void OnEnemyClick(BaseObject target)
     {
 
+    }
+
+    public override void ZeroHealth()
+    {
+        base.ZeroHealth();
+        GameObject explosion = Instantiate(this.destroyExplosion, transform.position, transform.rotation);
     }
 
     public override void OnGroundClick(Vector3 target)

@@ -15,7 +15,8 @@ public class RangedEnemyDetector : MonoBehaviour {
 	void Start () {
         attackRange = GetComponent<AttackHandler>().attackRange;
         attachedBaseObj = GetComponent<BaseObject>();
-	}
+        this.attackRule = new StandardAttackRule();
+    }
 
     public void RegisterEnemyDetectorListener(EnemyDetectedListener listener) {
         listeners.Add(listener);
@@ -23,7 +24,8 @@ public class RangedEnemyDetector : MonoBehaviour {
 
     public void Setup(AttackRule attackRule, float attackRange)
     {
-        this.attackRule = attackRule;
+        this.attackRule = new StandardAttackRule();
+
         this.attackRange = attackRange;
     }
 

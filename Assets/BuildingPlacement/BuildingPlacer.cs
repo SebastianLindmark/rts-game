@@ -72,7 +72,7 @@ public class BuildingPlacer : MonoBehaviour, ToolbarClickListener{
 
 
     void LateUpdate () {
-        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftControl) && placementObject != null && !HitsObstacle(placementObject.transform.position, placementObject.transform))
+        if (Input.GetMouseButtonDown(0) && placementObject != null && !HitsObstacle(placementObject.transform.position, placementObject.transform))
         {
             PlaceObject();
             

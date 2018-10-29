@@ -28,7 +28,7 @@ public class ToolbarResourceController : MonoBehaviour {
 
     void Update () {
 
-        float k = 20f;
+        float k = 40f;
 
         //p-regulator
 

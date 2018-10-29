@@ -8,14 +8,13 @@ public class CameraMover : MonoBehaviour {
     private float screenHeight;
 
     public const int boundary = 15; //pixels
-    public const float scrollSpeed = 1f;
+    public const float scrollSpeed = 0.7f;
     public const float zoomSpeed = 10f;
 
     public const float zoomMin = 20f;
     public const float zoomMax = 100f;
 
     void Start () {
-
         this.screenWidth = Screen.width;
         this.screenHeight = Screen.height;
     }
@@ -23,9 +22,9 @@ public class CameraMover : MonoBehaviour {
     void Update () {
         Vector3 positionDelta = new Vector3(0, 0, 0);
 
-        if (!Input.GetKey(KeyCode.LeftControl)) {
+        /*if (!Input.GetKey(KeyCode.LeftControl)) {
             return;
-        }
+        }*/
 
 
         if (Input.mousePosition.x < boundary)

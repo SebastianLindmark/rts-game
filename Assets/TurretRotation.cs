@@ -16,9 +16,7 @@ public class TurretRotation : MonoBehaviour, AttackListener {
         Transform transform = GetComponent<Transform>();
         tankTurretTransform = GetChildTransform(transform,"UpperBody");
         if (tankTurretTransform == null) {
-            Debug.Log("Didnt find upperbody");
             tankTurretTransform = GetChildTransform(transform, "Turret_Body");
-            Debug.Log("Found instead " + tankTurretTransform.name);
         }
         defaultRotation = tankTurretTransform.eulerAngles;       
 
@@ -39,7 +37,12 @@ public class TurretRotation : MonoBehaviour, AttackListener {
 
     public bool IsRotationFinished() {
         Vector3 rotation = tankTurretTransform.rotation.eulerAngles;
-        return Mathf.Abs(Mathf.Abs(targetRotation) - Mathf.Abs(rotation.y)) < 0.5f;
+
+        Debug.Log("Combined: " + Mathf.Abs(Mathf.Abs(targetRotation) - Mathf.Abs(rotation.y)));
+        Debug.Log("Target: " + Mathf.Abs(targetRotation));
+        Debug.Log("Current rotation: " + Mathf.Abs(rotation.y));
+
+        return Mathf.Abs(Mathf.Abs(targetRotation) - Mathf.Abs(rotation.y)) % 360 < 0.5f;
     }
 
 
@@ -54,8 +57,7 @@ public class TurretRotation : MonoBehaviour, AttackListener {
         if (tankTurretTransform)
         {
             Vector3 rotation = tankTurretTransform.rotation.eulerAngles;
-            //Debug.Log(targetRotation);
-            if (Mathf.Abs(Mathf.Abs(targetRotation) - Mathf.Abs(rotation.y)) < 0.5f)
+            if (IsRotationFinished())
             {
                 return true;
             }

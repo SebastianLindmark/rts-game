@@ -1115,4 +1115,5 @@ MonoBehaviour:
   - {fileID: 114882463106297222, guid: 7a95816aadbfe49db81a2937fca2055a, type: 2}
   - {fileID: 114811659807151646, guid: 47fc85326e071424d852735168bcd9e9, type: 2}
   - {fileID: 114581242244981156, guid: 3a47d47dcaade49f5aa9af8addf986f5, type: 2}
-  destroyExplosion: {fileID: 0}
+  destroyExplosion: {fileID: 1970623497446246, guid: b31d23a16f7570d47b9a2af6c79a7f39,
+    type: 2}

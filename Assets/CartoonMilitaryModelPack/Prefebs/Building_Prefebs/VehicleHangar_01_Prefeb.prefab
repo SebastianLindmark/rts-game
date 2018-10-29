@@ -219,7 +219,8 @@ MonoBehaviour:
   selectionMarker: {fileID: 0}
   thumbnail: {fileID: 21300000, guid: c294e0c3282bd564c8b603feb5aa27e9, type: 3}
   advancementBuildings: []
-  destroyExplosion: {fileID: 0}
+  destroyExplosion: {fileID: 1970623497446246, guid: b31d23a16f7570d47b9a2af6c79a7f39,
+    type: 2}
   spawnLocation: {fileID: 0}
   spawnableUnits:
   - {fileID: 114540296401458768, guid: 87611ddf2b4a04e1f81acc90cbecbd09, type: 2}

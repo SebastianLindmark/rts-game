@@ -90,7 +90,7 @@ public class AttackHandler : MonoBehaviour, EnemyDetectedListener{
     private void Shoot(BaseObject enemy) {
 
         TurretRotation tr = GetComponent<TurretRotation>();
-        Debug.Log(tr.IsRotationFinished());
+
         if ((tr == null || (tr != null &&  tr.IsRotationFinished())) && Time.time > fireRate + lastShotTimestamp)
         {
             lastShotTimestamp = Time.time;

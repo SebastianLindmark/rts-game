@@ -29,18 +29,21 @@ public class AIOffence : AIStrategy, ObjectLifecycleListener
 
         if (targetObject == null)
         {
+            Debug.Log("Target object is null");
             targetObject = GetTargetObject();
+            Debug.Log("Got new target object: " + targetObject);
         }
         else if (!attacking)
         {
-
+            Debug.Log("Targeting attack on: " + targetObject);
             division.getDivision().ForEach(unit => unit.Attack(targetObject));
 
             attacking = true;
         }
         else {
-
-            List<BaseObject> units = division.getDivision().FindAll(unit => !unit.GetComponent<IAstarAI>().hasPath);
+            
+            List<BaseObject> units = division.getDivision().FindAll(unit => !unit.GetComponent<IAstarAI>().pathPending);
+            Debug.Log("There is still " + units.Count + " number of idle units");
             units.ForEach(unit => unit.Attack(targetObject));
 
         }

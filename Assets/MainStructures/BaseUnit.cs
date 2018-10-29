@@ -54,18 +54,19 @@ public class BaseUnit : BaseObject {
         IAstarAI ai = GetComponent<IAstarAI>();
         ai.destination = position;
         ai.SearchPath();
-        
     }
 
     public override void Update()
     {
         base.Update();
         IAstarAI ai = GetComponent<IAstarAI>();
-        //Debug.Log("AI Path pending " + ai.pathPending);
-        //Debug.Log("AI Has path " + ai.hasPath);
-        //Debug.Log("AI distance " + ai.remainingDistance);
-        //Debug.Log("AI reached end " + ai.reachedEndOfPath);
-        //Debug.Log("AI is stopped " + ai.isStopped);
+        if (false) { 
+        Debug.Log("AI Path pending " + ai.pathPending);
+        Debug.Log("AI Has path " + ai.hasPath);
+        Debug.Log("AI distance " + ai.remainingDistance);
+        Debug.Log("AI reached end " + ai.reachedEndOfPath);
+        Debug.Log("AI is stopped " + ai.isStopped);
+        }
 
     }
 
